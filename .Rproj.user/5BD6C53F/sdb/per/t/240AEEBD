@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "install.packages(c('dplyr', 'lazyeval', 'stringr', 'ggplot2', 'openxlsx', 'tidyr'))\n",
+    "created" : 1506670008150.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3231752687",
+    "id" : "240AEEBD",
+    "lastKnownWriteTime" : 1506670169,
+    "last_content_update" : 1506670169816,
+    "path" : "X:/Dropbox/_Actual/_Rankings/rwos_package/install.packages.R",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "Package: rwos\nType: Package\nTitle: Analysis of Web of Science (WoS) Data with R\nVersion: 0.1.1\nDate: 2017-09-22\nAuthors@R: c(\n    person(\"Ruben\", \"Fernandez-Casal\", role = c(\"aut\", \"cre\"),\n    email = \"rubenfcasal@gmail.com\"),\n    person(\"Borja\", \"Lafuente-Rego\", role = c(\"aut\"),\n    email = \"borjalrego@gmail.com\"),\n    person(\"Maria Jose\", \"Lombardia\", role = c(\"aut\"),\n    email = \"maria.jose.lombardia@udc.es\"),    \n    person(\"Javier\", \"Tarrio-Saavedra\", role = c(\"aut\"),\n    email = \"javier.tarrio@udc.es\"),\n    person(\"Julian\", \"Costa-Bouzas\", role = c(\"aut\"),\n    email = \"julian.costa.bouzas@udc.es\")\n    )\nDescription: This package implements tools for quantitative research in scientometrics and bibliometrics.\n    It provides routines for importing bibliographic data from \n    Thomson Reuters' Web of Science (<http://www.webofknowledge.com/>) and performing bibliometric analysis.\nDepends:\n    R (>= 2.14.0),\n    graphics\nImports:\n    dplyr,\n    lazyeval,\n    stringr,\n    ggplot2\nSuggests:\n    openxlsx,\n    tidyr\nLicense: GPL (>= 2)\nEncoding: UTF-8\nLazyData: true\nRoxygenNote: 6.0.1\n",
+    "created" : 1506669973950.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1634242799",
+    "id" : "2CE0DC5B",
+    "lastKnownWriteTime" : 1506672919,
+    "last_content_update" : 1506672919965,
+    "path" : "X:/Dropbox/_Actual/_Rankings/rwos_package/rwos/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "dcf"
+}

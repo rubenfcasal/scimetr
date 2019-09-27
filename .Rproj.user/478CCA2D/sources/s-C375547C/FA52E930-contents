@@ -1,0 +1,21 @@
+
+#' @keywords internal
+.stable <- function(x, nmax = 10, others = TRUE) {
+  res <- sort(table(x), decreasing = TRUE)
+  n <- length(res)
+  if ( n > nmax) {
+    if (others) {
+      res[nmax + 1] <- sum(res[(nmax+1):n])
+      names(res)[nmax + 1] <- "Others"
+    }
+    res <- res[1:(nmax + others)]
+  }
+  return(res)
+}
+
+
+#' @keywords internal
+.get.ida.AutDoc<- function(db, idocs)
+  return(with(db$AutDoc, ida[idd %in% idocs]))
+
+

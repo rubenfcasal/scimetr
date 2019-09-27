@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1517404481837.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "847794912",
+    "id" : "E10E07C9",
+    "lastKnownWriteTime" : 1517404627,
+    "last_content_update" : 1517404627675,
+    "path" : "~/Dropbox/_Actual/__Rankings/_rwos_package/rwos/R/getid.R",
+    "project_path" : "R/getid.R",
+    "properties" : {
+        "cursorPosition" : "20,10",
+        "scrollLine" : "0"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

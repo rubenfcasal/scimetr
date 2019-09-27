@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1517311371147.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "F0C2DF70",
+    "lastKnownWriteTime" : 1517312920,
+    "last_content_update" : 1517312920111,
+    "path" : "~/__New/__Rankings/rwos_package/rwos/R/rwos_package.R",
+    "project_path" : "R/rwos_package.R",
+    "properties" : {
+        "cursorPosition" : "120,0",
+        "scrollLine" : "112"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1569544303200.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "9DBACA5A",
+    "lastKnownWriteTime" : 1569109453,
+    "last_content_update" : 1569109453,
+    "path" : "~/__npsp/npsp/R/zzz.R",
+    "project_path" : null,
+    "properties" : {
+        "cursorPosition" : "19,0",
+        "scrollLine" : "8"
+    },
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

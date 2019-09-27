@@ -1,0 +1,233 @@
+---
+title: "Analysis of Scientific Publication Data with scimetr"
+author: "UDC Ranking's Group"
+date: '`r paste("scimetr", packageVersion("scimetr"),":", Sys.Date())`'
+output: 
+  rmarkdown::html_vignette:
+    toc: yes
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Introduction to the scimetr Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(cache = FALSE, fig.height=4, fig.width=7, 
+                      fig.align = 'center', out.width = '100%')
+# knitr::spin("scimetr.R", knit = FALSE)
+# knitr::purl("scimetr.Rmd", documentation = 2)
+# options(digits = 5)
+```
+
+Instalación
+-----------
+
+Para instalar el paquete sería recomendable en primer lugar instalar las dependencias:
+
+```{r dependencies, eval=FALSE}
+install.packages(c('dplyr', 'lazyeval', 'stringr', 'ggplot2', 'openxlsx', 'tidyr'))
+```
+
+Como de momento no está disponible en CRAN, 
+habría que instalar la versión de desarrollo en GitHub.
+En Windows bastaría con instalar la versión binaria del paquete *scimetr_X.Y.Z.zip*
+(disponible [aqui](https://github.com/rubenfcasal/scimetr/tree/master/docs)), 
+alternativamente se puede instalar directamente de GitHub:
+```{r eval=FALSE}
+# install.packages("devtools")
+devtools::install_github("rubenfcasal/scimetr")
+```
+
+Una vez instalado ya podríamos cargar el paquete:
+
+```{r }
+library(scimetr)
+```
+
+
+Carga de datos
+--------------
+
+### Datos de ejemplo
+
+En el paquete se incluyen dos conjuntos de datos de ejemplo 
+correspondientes a la búsqueda en WoS
+por el campo Organización-Nombre preferido de la UDC 
+(Organization-Enhaced: OG = Universidade da Coruna):
+
+- `wosdf`: año 2015.
+
+- `wosdf2`:  área de investigación 'Mathematics', años 2008-2017.
+
+Variables WoS:
+
+```{r }
+# View(wosdf2) # En RStudio...
+variable.labels <- attr(wosdf, "variable.labels")
+knitr::kable(as.data.frame(variable.labels)) # caption = "Variable labels"
+```
+
+Se puede crear una base de datos con la función `CreateDB.wos()`:
+
+```{r wosdf2, cache=TRUE}
+db <- CreateDB.wos(wosdf2, label = "Mathematics_UDC_2008-2017 (01-02-2019)")
+str(db, 1)
+```
+
+### Cargar datos de directorio
+
+Se pueden cargar automáticamente los archivos wos
+(tienen una limitación de 500 registros) de un subdirectorio:
+
+```{r eval=FALSE}
+dir("UDC_2008-2017 (01-02-2019)", pattern='*.txt')
+```
+```{r echo=FALSE}
+# dput(dir("UDC_2008-2017 (01-02-2019)", pattern='*.txt'))
+c("savedrecs01.txt", "savedrecs02.txt", "savedrecs03.txt", "savedrecs04.txt", 
+"savedrecs05.txt", "savedrecs06.txt", "savedrecs07.txt", "savedrecs08.txt", 
+"savedrecs09.txt", "savedrecs10.txt", "savedrecs11.txt", "savedrecs12.txt", 
+"savedrecs13.txt", "savedrecs14.txt", "savedrecs15.txt")
+```
+
+
+Se pueden combinar los ficheros y crear la correspondiente base de datos con los siguientes comandos:
+
+```{r ,eval=FALSE}
+wos.txt <- ImportSources.wos("UDC_2008-2017 (01-02-2019)", other = FALSE)
+db.txt <- CreateDB.wos(wos.txt)
+```
+
+
+Sumarios
+--------
+
+### Sumario `summary.wos.db()`
+
+```{r summary, cache=TRUE}
+res1 <- summary(db)
+options(digits = 5)
+res1
+```
+
+### Sumario por años `summary_year()`
+
+```{r }
+res2 <- summary_year(db)
+res2
+```
+
+
+Gráficos
+--------
+
+Se emplea la librería [`ggplot2`](https://ggplot2.tidyverse.org)...
+
+
+### Gráficos de la base de datos `plot.wos.db()`
+
+```{r plotdb, warning=FALSE, message=FALSE}
+plot(db)
+```
+
+### Gráficos sumario `plot.summary.wos.db()`
+
+```{r , fig.align = 'left'}
+plot(res1)
+
+plot(res1, pie = TRUE)
+```
+
+### Gráficos sumario por años `plot.summary.year()`
+
+```{r , fig.align = 'left'}
+plot(res2)
+
+plot(res2, boxplot = TRUE)
+```
+
+Filtrado
+--------
+
+Se combinan las funciones `get.id<Tabla>()` 
+(se puede emplear cualquier variable de la correspondiente tabla; 
+multiple conditions are combined with `&`, see e.g. `dplyr::filter()`) 
+con la función `get.idDocs()`.
+
+### Funciones get
+
+- `get.idAuthors()`: buscar id (códigos) de autores
+
+    Buscar un autor concreto:
+      
+    ```{r }
+    idAuthor <- get.idAuthors(db, AF == "Cao, Ricardo")
+    idAuthor
+    ```
+      
+    Buscar en nombres de autores:
+      
+    ```{r }
+    idAuthors <- get.idAuthors(db, grepl('Cao', AF))
+    idAuthors
+    ```
+
+- `get.idAreas()`: Devuelve códigos de las áreas
+
+    ```{r }
+    get.idAreas(db, SC == 'Mathematics')
+    get.idAreas(db, SC == 'Mathematics' | SC == 'Computer Science')
+    ```
+
+- `get.idCategories()`: códigos de las categorías
+
+    ```{r }
+    get.idCategories(db, grepl('Mathematics', WC))
+    ```
+
+- `get.idJournals()` códigos de las revistas
+
+    ```{r }
+    ijss <- get.idJournals(db, SO == 'JOURNAL OF STATISTICAL SOFTWARE')
+    ijss
+    knitr::kable(db$Journals[ijss, ], caption = "JSS")
+    get.idJournals(db, JI == 'J. Stat. Softw.')
+    ```
+
+### Obtener documentos (de autores, revistas, ...)
+
+Los indices anteriores se pueden combinar en `get.idDocs()`
+
+```{r }
+idocs <- get.idDocs(db, idAuthors = idAuthor)
+idocs
+```
+
+Los índices de documentos se pueden utilizar como filtro p.e. en `summary.wos.db()`.
+
+### Sumarios filtrados
+
+Obtener sumario de autores:
+
+```{r }
+summary(db, idocs)
+```
+
+Obtener sumario de autores por años:
+
+```{r }
+summary_year(db, idocs)
+```
+
+
+Indices de autores
+------------------
+
+Obtener índices de múltiples autores
+
+```{r }
+TC.authors(db, idAuthors)
+```
+

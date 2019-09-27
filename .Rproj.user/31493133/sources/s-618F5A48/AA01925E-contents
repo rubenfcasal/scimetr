@@ -1,0 +1,226 @@
+
+Simulación de Distribuciones Multidimensionales
+===============================================
+
+Simulación de distribuciones multidimensionales discretas
+---------------------------------------------------------
+
+### Métodos de codificación o etiquetado para variables discretas
+
+En el caso de una distribución $d$-dimensional discreta 
+el procedimiento habitual es simular una variable aleatoria discreta
+unidimensional equivalente. 
+Este tipo de procedimientos son conocidos como métodos de etiquetado o
+codificación y la idea básica consistiría en construir un
+indice unidimensional equivalente al indice multidimensional.
+
+Si la variable discreta multidimensional tiene soporte finito, este tipo de recodificación
+se puede hacer de forma automática en `R` cambiando simplemente el indexado
+(internamente un objeto `matrix` o `array` ya está almacenado como un vector y
+`R` permite un indexado multidimensional a partir del atributo `dim`).
+
+
+```{r }
+z <- 1:10
+xy <- matrix(z, ncol = 2)
+xy
+as.vector(xy)
+```
+
+Si la variable discreta multidimensional no tiene soporte finito
+(no se podría guardar la f.m.p. en una tabla), se podrían emplear
+métodos de codificación más avanzados (ver sección 6.3 del libro de R. Cao).
+
+
+
+### Simulación de una variable discreta bidimensional
+
+Consideramos datos recogidos en un estudio de mejora de calidad en una fábrica de semiconductores. 
+Se obtuvo una muestra de obleas que se clasificaron dependiendo de si se encontraron partículas 
+en la matriz que producía la oblea y de si la calidad de oblea era buena
+(para más detalles Hall, 1994. Analysis of defectivity of semiconductor wafers by contigency table. 
+Proceedings of the Institute of Environmental Sciences 1, 177-183).
+
+```{r }
+n <- c(320, 14, 80, 36)
+particulas <- gl(2, 1, 4, labels = c("no","si"))
+calidad <- gl(2, 2, labels = c("buena", "mala"))
+df <- data.frame(n, particulas, calidad)
+df
+```
+
+En lugar de estar en el formato de un conjunto de datos (`data.frame`)
+puede que los datos estén en formato de tabla (`table`, `matrix`):
+
+```{r }
+tabla <- xtabs(n ~ calidad + particulas)
+tabla
+knitr::kable(tabla)
+```
+
+Lo podemos convertir directamente a `data.frame`:
+
+```{r }
+as.data.frame(tabla)
+```
+
+En este caso definimos las probabilidades a partir de las frecuencias:
+
+```{r }
+df$p <- df$n/sum(df$n)
+df
+```
+
+En formato tabla:
+
+```{r }
+pij <- tabla/sum(tabla)
+pij
+```
+
+Para simular la variable bidimensional consideramos una variable 
+unidimensional de índices:
+
+```{r }
+z <- 1:nrow(df)
+z
+```
+
+Con probabilidades:
+
+```{r }
+pz <- df$p
+pz
+```
+
+Si las probabilidades estuviesen en una matriz, las convertiríamos a un 
+vector con:
+
+```{r }
+as.vector(pij)
+```
+
+
+Si simulamos la variable unidimensional:
+
+```{r }
+set.seed(1)
+nsim <- 20
+rz <- sample(z, nsim, replace = TRUE, prob = pz)
+```
+
+Podríamos obtener simulaciones bidimensionales, por ejemplo:
+
+```{r }
+etiquetas <- as.matrix(df[c('particulas', 'calidad')])
+rxy <- etiquetas[rz, ]
+head(rxy)
+```
+Alternativamente, si queremos trabajar con data.frames:
+```{r }
+etiquetas <- df[c('particulas', 'calidad')]
+rxy <- etiquetas[rz, ]
+head(rxy)
+# Si se quieren eliminar las etiquetas de las filas:
+row.names(rxy) <- NULL
+head(rxy)
+```
+
+
+### Simulación de tablas de contingencia
+
+El código anterior puede ser empleado para simular tablas de contingencia. 
+Aunque en estos casos se suele fijar el total de la tabla (o incluso las frecuencias marginales). 
+En este caso, sólo habría que fijar el nº de simulaciones al total de la tabla:
+
+```{r }
+nsim <- sum(n)
+set.seed(1)
+rz <- sample(z, nsim, replace = TRUE, prob = pz)
+rtable <- table(rz) # Tabla de frecuencias unidimensional
+matrix(rtable, ncol = 2) # Tabla de frecuencias bidimensional
+```
+
+Aunque puede ser preferible emplear directamente `rmultinom`
+si se van a generar muchas:
+
+```{r }
+ntsim <- 1000
+rtablas <- rmultinom(ntsim, sum(n), pz)
+rtablas[ , 1:5] # Las cinco primeras simulaciones
+```
+
+Por ejemplo, si se quiere simular bajo independencia, 
+estimando las probabilidades a partir de la tabla:
+
+```{r }
+tabla
+```
+
+Consideraríamos como probabilidades:
+
+```{r }
+pind <- (rowSums(tabla) %o% colSums(tabla))/(sum(tabla)^2)
+matrix(pind, nrow = nrow(tabla))
+rtablas <- rmultinom(ntsim, sum(n), pind)
+rtablas[ , 1:5] # Las cinco primeras simulaciones
+```
+
+Para realizar el contraste de independencia:
+
+```{r }
+res <- chisq.test(tabla)
+res
+```
+
+
+```{exercise}
+```
+
+Aproximar por simulación la distribución (exacta) 
+del estadístico ji-cuadrado bajo independencia.
+
+```{r }
+simstat <- apply(rtablas, 2, function(x){chisq.test(matrix(x,nrow=nrow(tabla)))$statistic})
+hist(simstat, freq = FALSE, breaks = 'FD')
+# Distribución asintótica (aproximación ji-cuadrado)
+curve(dchisq(x, res$parameter), add = TRUE) 
+```
+
+
+## Ejercicios propuestos
+
+
+```{exercise}
+```
+
+Dar un algoritmo basado en el método de aceptación-rechazo
+(considerando como densidad auxiliar una uniforme) que permita
+generar observaciones de una variable aleatoria bidimensional
+$\left( X,Y\right)$ con función de densidad: 
+$$f(x,y)=\left\{ 
+\begin{array}{cl}
+\frac{3}{16}\left( 2-\left( x^2+y^2\right) \right)  & \text{si }x\in
+\lbrack -1,1]\text{ e }y\in \lbrack -1,1] \\ 
+0 & \text{en otro caso}
+\end{array}
+\right.$$
+
+
+```{exercise}
+```
+
+Considerando la variable aleatoria bidimensional del ejercicio
+anterior y teniendo en cuenta que la densidad marginal de la
+variable $X$ es:
+$$f_{X}(x)=\left\{ 
+\begin{array}{cl}
+\frac{1}{8}\left( 5-3x^2\right)  & \text{si }x\in \lbrack -1,1] \\ 
+0 & \text{en otro caso}
+\end{array}
+\right.$$
+Describir brevemente un algoritmo para la simulación del
+vector aleatorio basado en el método de las distribuciones
+condicionadas (asumir que se dispone de un algoritmo para generar
+observaciones de las distribuciones unidimensionales de interés).
+

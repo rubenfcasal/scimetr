@@ -1,0 +1,26 @@
+{
+    "dialog-state" : {
+        "caseSensitive" : false,
+        "filePatterns" : [
+            "*.r",
+            "*.R",
+            "*.rnw",
+            "*.Rnw",
+            "*.rmd",
+            "*.Rmd",
+            "*.rmarkdown",
+            "*.Rmarkdown",
+            "*.rhtml",
+            "*.Rhtml",
+            "*.rd",
+            "*.Rd",
+            "*.h",
+            "*.hpp",
+            "*.c",
+            "*.cpp"
+        ],
+        "path" : "C:/Dropbox (GMODES)/__New/__scimetr_package/scimetr/R",
+        "query" : "scale_y_continuous",
+        "regex" : false
+    }
+}

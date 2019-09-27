@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1569538869161.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "940799306",
+    "id" : "731DF7B8",
+    "lastKnownWriteTime" : 1569544392,
+    "last_content_update" : 1569544392141,
+    "path" : "C:/Dropbox (GMODES)/__New/__scimetr_package/scimetr/R/scimetr_package.R",
+    "project_path" : "R/scimetr_package.R",
+    "properties" : {
+        "cursorPosition" : "230,24",
+        "docOutlineVisible" : "0",
+        "scrollLine" : "218"
+    },
+    "relative_order" : 6,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
