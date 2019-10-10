@@ -39,6 +39,7 @@ ImportSources.wos <- function(path = '.', pattern = '*.txt', other = TRUE){
     wosdf <- wosdf[ind, ]
     # nwos <- nrow(wosdf)
   }
+  attr(wosdf, "variable.labels") <- attr(wosdf2, "variable.labels")
   return(wosdf)
   # PENDENTE: añadir clase wos.data a data.frame
 }
@@ -260,6 +261,7 @@ CreateDB.wos <- function(wosdf, label = "", print = interactive()) {
   res <- wosdf %>% group_by(idj) %>% summarise(idd = first(idd))
   Journals <- wosdf %>% select(idj, SO:LA, PU:EI, J9, JI)
   Journals <- Journals[res$idd, ]
+  attr(Journals, "variable.labels") <- NULL
   # str(Journals)
 
 
@@ -301,6 +303,7 @@ CreateDB.wos <- function(wosdf, label = "", print = interactive()) {
               Categories = Categories, CatDoc = CatDoc, Areas = Areas, AreaDoc = AreaDoc,
               Addresses = Addresses, AddAutDoc = AddAutDoc, Journals = Journals,
               label = label)
+  attr(res, "variable.labels") <- attr(wosdf2, "variable.labels")
   oldClass(res) <- "wos.db"
   return(res)
 }
@@ -319,6 +322,11 @@ print.wos.db <- function(x, ...) {
   str(x, 1)
 }
 
+scale_y_log_2 <- function (base = exp(1), from = 0) {
+  trans <- function(x) log(x, base) - from
+  inv <- function(x) base^(x + from)
+  scales::trans_new("scale_y_log_2", trans, inv, scales::log_breaks(base = base), domain = c(base^from, Inf))
+}
 
 #' @rdname CreateDB.wos
 #' @method plot wos.db
@@ -362,9 +370,10 @@ plot.wos.db <- function(x, filter, which = 1:3,
   if(any(show[c(1,3)])) docs <- if(filtered) x$Docs[filter, ] else x$Docs
   if(show[1])   # Authors per document
     print(ggplot(x$Docs, aes(an, fill=I("blue"))) + geom_histogram() +
-      labs(x = "Authors per document") + ylim(0.5, NA) +
+      labs(x = "Authors per document") +
       scale_y_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),
                     labels = scales::number_format(accuracy = accuracy)) +
+      # scale_y_continuous(trans = scale_y_log_2(base=10, from=-1), limits=c(0.1, NA)) +
       annotation_logticks(sides = "l")
     )
     # print(qplot(x$Docs$an, geom="histogram", xlab = "Authors per document", fill=I("blue"),log="y"))
@@ -375,7 +384,7 @@ plot.wos.db <- function(x, filter, which = 1:3,
                 if(filtered) ida[idd %in% filter] else ida)
     autdoc <- data.frame(ida = as.numeric(table(ida)))
     print(ggplot(autdoc, aes(ida, fill=I("blue"))) + geom_histogram() +
-      labs(x = "Documents per author") + ylim(0.5, NA) +
+      labs(x = "Documents per author") +
       scale_y_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),
                     labels = scales::number_format(accuracy = accuracy)) +
       annotation_logticks(sides = "l")
@@ -384,7 +393,7 @@ plot.wos.db <- function(x, filter, which = 1:3,
     }
   if(show[3])   # Times cited
     print(ggplot(docs, aes(TC, fill=I("blue"))) + geom_histogram() +
-            labs(x = "Times cited") + ylim(0.5, NA) +
+            labs(x = "Times cited") +
             scale_y_log10(breaks = scales::trans_breaks("log10", function(x) 10^x),
                           labels = scales::number_format(accuracy = accuracy)) +
             annotation_logticks(sides = "l")

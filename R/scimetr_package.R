@@ -13,8 +13,8 @@
 #'
 #' This package implements tools for quantitative research in scientometrics and bibliometrics.
 #' It provides routines for importing bibliographic data from
-#' Thomson Reuters' Web of Knowledge (http://www.webofknowledge.com) and performing bibliometric analysis.
-#' For more information visit https://rubenfcasal.github.io/scimetr/articles/scimetr.html.
+#' Thomson Reuters' Web of Knowledge (<http://www.webofknowledge.com>) and performing bibliometric analysis.
+#' For more information visit <https://rubenfcasal.github.io/scimetr/articles/scimetr.html>.
 #' @name scimetr-package
 #' @aliases scimetr
 #' @docType package

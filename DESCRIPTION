@@ -1,8 +1,8 @@
 Package: scimetr
 Type: Package
 Title: Analysis of Scientific Publication Data with R
-Version: 0.2.3
-Date: 2019-09-27
+Version: 0.2.4
+Date: 2019-10-02
 Authors@R: c(
     person("Ruben", "Fernandez-Casal", role = c("aut", "cre"),
     email = "rubenfcasal@gmail.com"),
