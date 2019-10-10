@@ -1,0 +1,83 @@
+---
+title: "Análisis bibliométrico con R"
+author: "UDC Ranking's Group"
+date: '`r paste("scimetr", packageVersion("scimetr"),":", Sys.Date())`'
+output: 
+  rmarkdown::html_vignette:
+    toc: yes
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Análisis bibliométrico con R}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Paquetes para análisis bibliométrico
+
+- [CITAN](https://cran.r-project.org/web/packages/CITAN/index.html):
+  CITation ANalysis Toolpack.
+
+    Gagolewski, M. (2011). Bibliometric impact assessment with R and the CITAN package,
+    Journal of Informetrics, 5(4), pp. 678-692, 
+    DOI: [10.1016/j.joi.2011.06.006](https://doi.org/10.1016/j.joi.2011.06.006),
+    [revised version](https://www.gagolewski.com/publications/2011citan.pdf).
+
+- [bibliometrix](http://www.bibliometrix.org): An R-Tool for Comprehensive Science Mapping Analysis.
+
+    Aria, M. & Cuccurullo, C. (2017). bibliometrix: An R-tool for comprehensive science mapping analysis,
+    Journal of Informetrics, 11(4), pp 959-975, Elsevier, 
+    DOI: [10.1016/j.joi.2017.08.007](https://doi.org/10.1016/j.joi.2017.08.007).
+
+- [scimetr](https://rubenfcasal.github.io/scimetr/index.html): 
+  Analysis of Scientific Publication Data with R.
+
+
+## Paquetes para descarga de datos
+
+- [wosr](https://vt-arc.github.io/wosr/index.html): 
+  Clients to the 'Web of Science' and 'InCites' [APIs](https://developer.clarivate.com/apis).
+
+- [rwos](https://github.com/juba/rwos): 
+  R interface with [Web of Science API Lite](https://developer.clarivate.com/apis/woslite).
+
+- [rscopus](https://cran.r-project.org/web/packages/rscopus/index.html): 
+  [Scopus Database API](https://dev.elsevier.com/sc_apis.html) Interface.
+
+- ...
+
+
+## ropensci: Transforming science through open data and software
+
+Seleccionando el filtro *Literature* en [ropensci/packages](https://ropensci.org/packages) 
+se obtiene un listado de paquetes que pueden ser de utilidad en este campo.
+Entre ellos:
+
+- [aRxiv](https://docs.ropensci.org/aRxiv): Interface to the arXiv API.
+
+- [rcrossref](https://docs.ropensci.org/rcrossref): R interface to various CrossRef APIs.
+
+- [crminer](https://docs.ropensci.org/crminer): Fetch 'Scholary' Full Text from 'Crossref'.
+
+- [europepmc](https://ropensci.github.io/europepmc): 
+  R Interface to the Europe PubMed Central RESTful Web Service.
+
+- [fulltext](https://ropenscilabs.github.io/fulltext-book): 
+  Full Text of 'Scholarly' Articles Across Many Data Sources.
+
+- [IEEER](https://github.com/ropensci/IEEER): Interface to the IEEE Xplore Gateway.
+	
+- [jstor](https://ropensci.github.io/jstor): Read Data from JSTOR/DfR.
+
+- [rorcid](https://ropensci.github.io/rorcid): Interface to the 'Orcid.org' API.
+
+- [rplos](https://docs.ropensci.org/rplos): R client for the PLoS Journals API.
+
+
+## Otros paquetes/herramientas
+
+- [Diderot](https://cran.r-project.org/web/packages/Diderot/index.html)
+
+- https://github.com/topics/bibliometrics?l=r
+
+- ...
+

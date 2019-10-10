@@ -1,0 +1,97 @@
+---
+title: "Descarga de datos de la Web of Science"
+author: "UDC Ranking's Group"
+date: '`r paste("scimetr", packageVersion("scimetr"),":", Sys.Date())`'
+# resource_files:
+#   - wos1.png
+#   - wos2.png
+#   - wos3.png
+output: 
+  rmarkdown::html_vignette:
+    toc: yes
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{Descarga de datos de la Web of Science}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment=NA, fig.height=5, fig.width=7, fig.align = 'center', out.width="80%")
+# chunk options: results='hold', fig.show = 'hold'
+
+# https://github.com/r-lib/pkgdown/issues/1027
+embed_png <- function(path, dpi = NULL) {
+  meta <- attr(png::readPNG(path, native = TRUE, info = TRUE), "info")
+  if (!is.null(dpi)) meta$dpi <- rep(dpi, 2)
+  knitr::asis_output(paste0(
+    "<img src='", path, "'",
+    " width=", round(meta$dim[1] / (meta$dpi[1] / 96)),
+    " height=", round(meta$dim[2] / (meta$dpi[2] / 96)),
+    " />"
+  ))
+}
+```
+
+Acceder a la página web de búsqueda de *Clarivate Analytics Web of Science*
+(WoS): [*http://www.webofknowledge.com*](http://www.webofknowledge.com), 
+[*http://wos.fecyt.es*](http://wos.fecyt.es).
+
+Seleccionar la base de datos *Web of Science Core Collection* (Colección
+principal de WoS) en el desplegable superior, desplegar más ajustes
+(*More settings*) y seleccionar únicamente los tres primeros índices de citas (si se sigue el criterio del [IUNE](http://www.iune.es)):
+
+```{r echo=FALSE}
+# ![](wos1.png){width="80%"}
+knitr::include_graphics("wos1.png")
+```
+
+<br>
+
+Establecer los campos de búsqueda (básica o avanzada) y pulsar en
+*Search*. 
+
+Si se desea descargar la producción científica vinculada a una
+universidad se puede emplear el campo *Organization-Enhaced* (*OG*,
+Organización-Consolidada). Se puede buscar el nombre específico de la
+universidad en *Select available organizations from the Index*, los de
+las universidades que conforman el Sistema Universitario de Galicia
+(SUG) son:
+
+-   UDC: Universidade da Coruna
+
+-   USC: University of Santiago De Compostela
+
+-   UVI: University of Vigo
+
+Adicionalmente se puede especificar un rango de años.
+
+Una vez que se obtiene el listado de resultados, seleccionar *Export...* y
+*Other File Formats* (habrá que hacer esto repetidamente si el
+número de registros es superior a 500, el límite por defecto para la
+descarga de archivos).
+
+
+```{r echo=FALSE}
+# ![](wos2.png){width="80%"}
+knitr::include_graphics("wos2.png")
+```
+
+<br>
+
+En la ventana emergente establecer el rango de registros (teniendo en
+cuenta el límite de 500 y que en el último paso habrá que poner el total
+exacto de registros en el límite superior):
+
+
+```{r echo=FALSE}
+# ![](wos3.png){width="80%"}
+knitr::include_graphics("wos3.png")
+```
+
+<br>
+
+Al pulsar en *Export* se descargará un archivo de texto (*savedrecs.txt*
+por defecto) con los datos de las publicaciones. Sería recomendable
+irlos guardando en un subdirectorio, renombrando los archivos
+adecuadamente.

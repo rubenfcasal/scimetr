@@ -21,6 +21,19 @@ knitr::opts_chunk$set(cache = FALSE, fig.height=4, fig.width=7,
 # options(digits = 5)
 ```
 
+This vignette (a working draft, in Spanish) tries to illustrate the use of the `scimetr` package ...
+
+```{r }
+library(scimetr)
+```
+
+Este paquete implementa herramientas para la investigación en cienciometría y bibliometría. Actualmente incluye rutinas para importar datos bibliográficos de 
+[*Clarivate Analytics Web of Science*](http://www.webofknowledge.com) (WoS) 
+y realizar análisis bibliométricos. 
+
+Un listado de otros paquetes de utilidad para el análisis de este tipo de
+datos está disponible [aquí](https://rubenfcasal.github.io/scimetr/articles/docs/R_packages.html).
+
 Instalación
 -----------
 
@@ -30,31 +43,60 @@ Para instalar el paquete sería recomendable en primer lugar instalar las depend
 install.packages(c('dplyr', 'lazyeval', 'stringr', 'ggplot2', 'openxlsx', 'tidyr'))
 ```
 
-Como de momento no está disponible en CRAN, 
-habría que instalar la versión de desarrollo en GitHub.
+Como de momento no está disponible en CRAN, habría que instalar 
+la versión de desarrollo en GitHub (en el repositorio
+[rubenfcasal/scimetr](https://github.com/rubenfcasal/scimetr)).
 En Windows bastaría con instalar la versión binaria del paquete *scimetr_X.Y.Z.zip*
-(disponible [aqui](https://github.com/rubenfcasal/scimetr/tree/master/docs)), 
+(disponible [aquí](https://github.com/rubenfcasal/scimetr/tree/master/docs)), 
 alternativamente se puede instalar directamente de GitHub:
 ```{r eval=FALSE}
 # install.packages("devtools")
 devtools::install_github("rubenfcasal/scimetr")
 ```
 
-Una vez instalado ya podríamos cargar el paquete:
-
-```{r }
-library(scimetr)
-```
-
+Una vez instalado ya podríamos cargar el paquete.
 
 Carga de datos
 --------------
 
+En primer lugar habría que descargar los datos de publicaciones de
+[WoS](http://www.webofknowledge.com)) en formato texto, 
+para lo que se pueden seguir los pasos descritos
+[aquí](https://rubenfcasal.github.io/scimetr/articles/docs/WoS_export.html).
+
+
+### Cargar datos de directorio
+
+Se pueden cargar automáticamente los archivos WoS
+(que por defecto tienen una limitación de 500 registros) de un subdirectorio:
+
+```{r eval=FALSE}
+dir("UDC_2008-2017 (01-02-2019)", pattern='*.txt')
+```
+```{r echo=FALSE}
+# dput(dir("UDC_2008-2017 (01-02-2019)", pattern='*.txt'))
+c("savedrecs01.txt", "savedrecs02.txt", "savedrecs03.txt", "savedrecs04.txt", 
+"savedrecs05.txt", "savedrecs06.txt", "savedrecs07.txt", "savedrecs08.txt", 
+"savedrecs09.txt", "savedrecs10.txt", "savedrecs11.txt", "savedrecs12.txt", 
+"savedrecs13.txt", "savedrecs14.txt", "savedrecs15.txt")
+```
+
+Para combinar los ficheros en un `data.frame` se emplea la función 
+`ImportSources.wos()`:
+
+```{r ,eval=FALSE}
+wos.txt <- ImportSources.wos("UDC_2008-2017 (01-02-2019)", other = FALSE)
+```
+
+A continuación habrá que crear la base de datos con la función `CreateDB.wos()`,
+como se muestra más adelante.
+
 ### Datos de ejemplo
 
 En el paquete se incluyen dos conjuntos de datos de ejemplo 
-correspondientes a la búsqueda en WoS
-por el campo Organización-Nombre preferido de la UDC 
+(obtenidos empleando la función `ImportSources.wos()`) 
+correspondientes a la búsqueda en WoS 
+por el campo Organización-Consolidada de la UDC 
 (Organization-Enhaced: OG = Universidade da Coruna):
 
 - `wosdf`: año 2015.
@@ -69,40 +111,21 @@ variable.labels <- attr(wosdf, "variable.labels")
 knitr::kable(as.data.frame(variable.labels)) # caption = "Variable labels"
 ```
 
-Se puede crear una base de datos con la función `CreateDB.wos()`:
+Creación de la base de datos
+----------------------------
+
+Para crear la base de datos se emplea la función `CreateDB.wos()`:
 
 ```{r wosdf2, cache=TRUE}
 db <- CreateDB.wos(wosdf2, label = "Mathematics_UDC_2008-2017 (01-02-2019)")
 str(db, 1)
 ```
 
-### Cargar datos de directorio
-
-Se pueden cargar automáticamente los archivos wos
-(tienen una limitación de 500 registros) de un subdirectorio:
-
-```{r eval=FALSE}
-dir("UDC_2008-2017 (01-02-2019)", pattern='*.txt')
-```
-```{r echo=FALSE}
-# dput(dir("UDC_2008-2017 (01-02-2019)", pattern='*.txt'))
-c("savedrecs01.txt", "savedrecs02.txt", "savedrecs03.txt", "savedrecs04.txt", 
-"savedrecs05.txt", "savedrecs06.txt", "savedrecs07.txt", "savedrecs08.txt", 
-"savedrecs09.txt", "savedrecs10.txt", "savedrecs11.txt", "savedrecs12.txt", 
-"savedrecs13.txt", "savedrecs14.txt", "savedrecs15.txt")
-```
-
-
-Se pueden combinar los ficheros y crear la correspondiente base de datos con los siguientes comandos:
-
-```{r ,eval=FALSE}
-wos.txt <- ImportSources.wos("UDC_2008-2017 (01-02-2019)", other = FALSE)
-db.txt <- CreateDB.wos(wos.txt)
-```
-
 
 Sumarios
 --------
+
+Se pueden realizar sumarios globales o por años...
 
 ### Sumario `summary.wos.db()`
 
@@ -209,13 +232,13 @@ Los índices de documentos se pueden utilizar como filtro p.e. en `summary.wos.d
 
 ### Sumarios filtrados
 
-Obtener sumario de autores:
+Obtener sumario de autor(es):
 
 ```{r }
 summary(db, idocs)
 ```
 
-Obtener sumario de autores por años:
+Obtener sumario de autor(es) por años:
 
 ```{r }
 summary_year(db, idocs)
@@ -230,4 +253,20 @@ Obtener índices de múltiples autores
 ```{r }
 TC.authors(db, idAuthors)
 ```
+
+Trabajo futuro
+--------------
+
+- Descarga de datos empleando la [API de WoS](https://developer.clarivate.com/apis)
+  (al estilo del paquete [wosr](https://vt-arc.github.io/wosr/index.html))
+  
+- Descarga y análisis de datos de [Scopus](https://www.scopus.com): 
+  empleando descarga de archivos
+  (al estilo del paquete   
+  [CITAN](https://cran.r-project.org/web/packages/CITAN/index.html)) 
+  o la [API de Scopus](https://dev.elsevier.com/sc_apis.html)
+  (al estilo del paquete 
+  [rscopus](https://cran.r-project.org/web/packages/rscopus/index.html)).
+  
+- Implementar análisis estadísticos "avanzados".  
 
