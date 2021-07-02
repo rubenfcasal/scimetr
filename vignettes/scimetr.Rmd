@@ -1,5 +1,5 @@
 ---
-title: "Analysis of Scientific Publication Data with scimetr"
+title: "Introduction to the scimetr Package"
 author: "UDC Ranking's Group"
 date: '`r paste("scimetr", packageVersion("scimetr"),":", Sys.Date())`'
 output: 
@@ -14,7 +14,7 @@ vignette: >
 
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(cache = FALSE, fig.height=4, fig.width=7, 
+knitr::opts_chunk$set(fig.height=4, fig.width=7, 
                       fig.align = 'center', out.width = '100%')
 # knitr::spin("scimetr.R", knit = FALSE)
 # knitr::purl("scimetr.Rmd", documentation = 2)
@@ -40,7 +40,7 @@ Instalación
 Para instalar el paquete sería recomendable en primer lugar instalar las dependencias:
 
 ```{r dependencies, eval=FALSE}
-install.packages(c('dplyr', 'lazyeval', 'stringr', 'ggplot2', 'openxlsx', 'tidyr'))
+install.packages(c('dplyr', 'dbplyr','RSQLite', 'lazyeval', 'stringr', 'ggplot2', 'openxlsx', 'tidyr'))
 ```
 
 Como de momento no está disponible en CRAN, habría que instalar 
@@ -59,10 +59,12 @@ Una vez instalado ya podríamos cargar el paquete.
 Carga de datos
 --------------
 
-En primer lugar habría que descargar los datos de publicaciones de
-[WoS](http://www.webofknowledge.com)) en formato texto, 
-para lo que se pueden seguir los pasos descritos
-[aquí](https://rubenfcasal.github.io/scimetr/articles/docs/WoS_export.html).
+Nos centraremos únicamente en la importación de los datos de publicaciones de [WoS](http://www.webofknowledge.com)) en formato de texto.
+En primer lugar habría que descargar los correspondientes ficheros de la web de WoS, por ejemplo siguiendo los pasos descritos [aquí](https://rubenfcasal.github.io/scimetr/articles/docs/WoS_export.html).
+
+
+Alternativamente se puede crear una base de datos empleando la [API de WoS](https://developer.clarivate.com/apis) para posteriormente importarla a R empleando la función `ImportDB.wos()`. 
+Para ello habría que disponer de acceso a esta API y seguir los pasos descritos [aquí](https://rubenfcasal.github.io/scimetr/articles/docs/wos_bd.html).
 
 
 ### Cargar datos de directorio
@@ -210,13 +212,13 @@ con la función `get.idDocs()`.
     get.idCategories(db, grepl('Mathematics', WC))
     ```
 
-- `get.idJournals()` códigos de las revistas
+- `get.idSources()` códigos de las fuentes (revistas, libros o colecciones)
 
     ```{r }
-    ijss <- get.idJournals(db, SO == 'JOURNAL OF STATISTICAL SOFTWARE')
+    ijss <- get.idSources(db, SO == 'JOURNAL OF STATISTICAL SOFTWARE')
     ijss
     knitr::kable(db$Journals[ijss, ], caption = "JSS")
-    get.idJournals(db, JI == 'J. Stat. Softw.')
+    # get.idSources(db, JI == 'J. Stat. Softw.')
     ```
 
 ### Obtener documentos (de autores, revistas, ...)
@@ -256,17 +258,14 @@ TC.authors(db, idAuthors)
 
 Trabajo futuro
 --------------
-
-- Descarga de datos empleando la [API de WoS](https://developer.clarivate.com/apis)
-  (al estilo del paquete [wosr](https://vt-arc.github.io/wosr/index.html))
   
 - Descarga y análisis de datos de [Scopus](https://www.scopus.com): 
   empleando descarga de archivos
   (al estilo del paquete   
-  [CITAN](https://cran.r-project.org/web/packages/CITAN/index.html)) 
+  [CITAN](https://CRAN.R-project.org/package=CITAN)) 
   o la [API de Scopus](https://dev.elsevier.com/sc_apis.html)
   (al estilo del paquete 
-  [rscopus](https://cran.r-project.org/web/packages/rscopus/index.html)).
+  [rscopus](https://CRAN.R-project.org/package=rscopus)).
   
 - Implementar análisis estadísticos "avanzados".  
 

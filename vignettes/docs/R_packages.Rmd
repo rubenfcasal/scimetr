@@ -14,7 +14,7 @@ vignette: >
 
 ## Paquetes para análisis bibliométrico
 
-- [CITAN](https://cran.r-project.org/web/packages/CITAN/index.html):
+- [CITAN](https://CRAN.R-project.org/package=CITAN):
   CITation ANalysis Toolpack.
 
     Gagolewski, M. (2011). Bibliometric impact assessment with R and the CITAN package,
@@ -40,7 +40,7 @@ vignette: >
 - [rwos](https://github.com/juba/rwos): 
   R interface with [Web of Science API Lite](https://developer.clarivate.com/apis/woslite).
 
-- [rscopus](https://cran.r-project.org/web/packages/rscopus/index.html): 
+- [rscopus](https://CRAN.R-project.org/package=rscopus): 
   [Scopus Database API](https://dev.elsevier.com/sc_apis.html) Interface.
 
 - ...

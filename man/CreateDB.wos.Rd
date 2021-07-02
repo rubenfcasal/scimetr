@@ -11,14 +11,25 @@ CreateDB.wos(wosdf, label = "", print = interactive())
 
 \method{print}{wos.db}(x, ...)
 
-\method{plot}{wos.db}(x, filter, which = 1:3, plot.summary = FALSE,
-  which.summary = 1:5, nmax = 10, plot.summary.year = FALSE,
-  which.summary.year = 1:3, accuracy = 0.1, ask = (length(which) +
-  plot.summary * length(which.summary) + plot.summary.year *
-  length(which.summary.year) > 1) && dev.interactive(), ...)
+\method{plot}{wos.db}(
+  x,
+  filter,
+  which = 1:3,
+  plot.summary = FALSE,
+  which.summary = 1:5,
+  nmax = 10,
+  plot.summary.year = FALSE,
+  which.summary.year = 1:3,
+  accuracy = 0.1,
+  ask = (length(which) + plot.summary * length(which.summary) + plot.summary.year *
+    length(which.summary.year) > 1) && dev.interactive(),
+  ...
+)
 }
 \arguments{
 \item{wosdf}{data.frame with WoS data... (as returned by \code{\link{ImportSources.wos}}).}
+
+\item{label}{character string describing the data.}
 
 \item{print}{logical; if \code{TRUE} the progress is printed.}
 
@@ -41,7 +52,7 @@ specify a subset of the numbers \code{1:3}.}
 
 \item{which.summary.year}{indices of the required plots in \code{\link{plot.summary.year}}.}
 
-\item{accuracy}{numerical scalar; see \code{\link{scales::number_format}(accuracy=)}.}
+\item{accuracy}{numerical scalar; see \code{\link[scales]{label_number}(accuracy=.)}.}
 
 \item{ask}{logical; if \code{TRUE}, the user is asked before each plot,
 see \code{\link{par}(ask=.)}.}
@@ -52,7 +63,7 @@ A \code{list} with the folowing \code{data.frame}s:
 \describe{
   \item{Docs}{}
 }
-Authors AutDoc Categories CatDoc Areas AreaDoc Addresses AddAutDoc Journals
+Authors AutDoc Categories CatDoc Areas AreaDoc Addresses AddAutDoc Sources
 }
 \description{
 \code{CreateDB.wos} converts a \code{data.frame} with WoS variables (see \code{\link{wosdf}}) into...

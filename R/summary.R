@@ -13,7 +13,7 @@
 #' @param TC.index citation indexes.
 #' @param nmax number of top levels.
 #' @param ...	further arguments passed to or from other methods.
-#' @seealso \code{\link{wos_CreateDB}}.
+#' @seealso \code{\link{CreateDB.wos}}.
 #' @export
 summary.wos.db <- function(object, filter, TC.index = c("H", "G"), nmax = 10, ...) {
   # object=db; filter=idocs; TC.index = c("H", "G"); nmax = 10
@@ -21,6 +21,7 @@ summary.wos.db <- function(object, filter, TC.index = c("H", "G"), nmax = 10, ..
   # OJO CON EL FILTRO...
   # stopifnot(is.numeric(filter))
   filtered <- !missing(filter)
+  # object=wos.dbi; filtered=FALSE; TC.index = c("H", "G"); nmax = 10
   docs <- if(filtered) object$Docs[filter, ] else object$Docs
   # Tipo de documentos
   doctypes <- as.matrix(table(droplevels(docs$DT)))
@@ -28,19 +29,19 @@ summary.wos.db <- function(object, filter, TC.index = c("H", "G"), nmax = 10, ..
   # Citas
   TC <- docs$TC
   TC.index <- match.arg(TC.index, several.ok = TRUE)
-  index <- NULL
+  ind.tc <- NULL
   if(length(TC.index)) {
     TC <- sort(TC, decreasing = TRUE)
-    index <- list()
+    ind.tc <- list()
     if(!sum(TC)) {
-      if ("H" %in% TC.index) index$H <- 0
-      if ("G" %in% TC.index) index$G <- 0
+      if ("H" %in% TC.index) ind.tc$H <- 0
+      if ("G" %in% TC.index) ind.tc$G <- 0
     } else {
       pos <- seq_along(TC) # 1:length(TC)
-      if ("H" %in% TC.index) index$H <- max(which(TC >= pos))
-      if ("G" %in% TC.index) index$G <- max(which(pos^2 <= cumsum(TC)))
+      if ("H" %in% TC.index) ind.tc$H <- max(which(TC >= pos))
+      if ("G" %in% TC.index) ind.tc$G <- max(which(pos^2 <= cumsum(TC)))
     }
-    # oldClass(index) <- c("summaryDefault", "table")
+    # oldClass(ind.tc) <- c("summaryDefault", "table")
 
   }
   # Documentos por autor
@@ -68,7 +69,9 @@ summary.wos.db <- function(object, filter, TC.index = c("H", "G"), nmax = 10, ..
                if(filtered) idra[idd %in% filter] else idra)
   top.area <- ftable(idra, object$Areas$SC, nmax = nmax)
   # Top 10 Journals
-  top.jour <- ftable(docs$idj, object$Journals$JI, nmax = nmax)
+  ind.jour <- match(docs$ids,  object$Sources$ids)
+  top.jour <- with(object$Sources,
+                   ftable(docs$ids[PT[ind.jour] == "Journal"], JI, nmax = nmax))
   # Top 10 Countries
   aux <- object$Addresses %>% dplyr::select(idd, Country)
   if(filtered) aux <- aux %>% dplyr::filter(idd %in% filter)
@@ -82,7 +85,7 @@ summary.wos.db <- function(object, filter, TC.index = c("H", "G"), nmax = 10, ..
                  doctypes = doctypes,
                  summary.an = with(docs, summary(an)),
                  summary.autdoc= summary(autdoc),
-                 summary.TC = summary(TC), TC.index = index,
+                 summary.TC = summary(TC), TC.index = ind.tc,
                  top = list(cat = top.cat, area = top.area, jour = top.jour, coun = top.coun)
   )
   oldClass(result) <- "summary.wos.db"
@@ -126,7 +129,7 @@ print.summary.wos.db <- function(x, ...)  {
 }
 
 #' @rdname summary.wos.db
-#' @param db Object of \code{\link{class}} \code{wos.db}, as returned by \code{\link{wos_CreateDB}}.
+#' @param db Object of \code{\link{class}} \code{wos.db}, as returned by \code{\link{CreateDB.wos}}.
 #' @param idAuthors optional; author identifiers
 #' @export
 # PENDIENTE: Hacer version simplificada de summary
@@ -142,7 +145,7 @@ TC.authors <- function(db, idAuthors) {
 #' specify a subset of the numbers \code{1:5}.
 #' @param pie logical; if \code{TRUE}, pie charts are drawn.
 #' @param others logical; if \code{FALSE}, only \code{nmax} top levels categories are shown.
-#' @param accuracy numerical scalar; see \code{\link{scales::number_format}(accuracy=)}.
+#' @param accuracy numerical scalar; see \code{\link[scales]{label_number}(accuracy=.)}.
 #' @param ask	logical; if \code{TRUE}, the user is asked before each plot,
 #' see \code{\link{par}(ask=.)}.
 #' @export
@@ -153,6 +156,7 @@ plot.summary.wos.db <- function(x, which = 1:5,
                         # ask = prod(par("mfcol")) < length(which) && dev.interactive(),
                         ask = length(which) > 1 && dev.interactive(),
                         ...) {
+  # x <- summary(wos.db); which = 1:5; pie = FALSE; others = !pie; accuracy = 0.1
   nmax <- x$nmax
   ndf <- if(others) nmax + 1 else nmax
   show <- rep(FALSE, 5)
@@ -169,13 +173,13 @@ plot.summary.wos.db <- function(x, which = 1:5,
       geom_bar(stat = "identity") + coord_flip() + labs(x = "Types") +
       scale_y_continuous(labels = scales::number_format(accuracy = accuracy))
     else
-      ggplot(df.doc, aes(x = "", y = Documents, fill = Types)) +
+      ggplot(df.doc, aes(x = "", y = Documents, fill = Types)) + labs(x = "") +
       geom_bar(width = 1, stat = "identity") + coord_polar("y", start = 0)
     print(pobj)
   }
   if(show[2]) {
     df <- as.data.frame(x$top$cat)
-    df <- df[1:ndf, c(1,3)]
+    df <- df[1:min(ndf, nrow(df)), c(1,3)]
     names(df) <- c("Categories", "Documents")
     pobj <- if (!pie)
       ggplot(data = df, aes(x = Categories, y = Documents)) +
@@ -185,13 +189,13 @@ plot.summary.wos.db <- function(x, which = 1:5,
                     labels = scales::number_format(accuracy = accuracy))
       # + annotation_logticks(sides = "l")
     else
-      ggplot(df, aes(x = "", y = Documents, fill = Categories)) +
+      ggplot(df, aes(x = "", y = Documents, fill = Categories)) + labs(x = "") +
       geom_bar(width = 1, stat = "identity") + coord_polar("y", start = 0)
    print(pobj)
   }
   if(show[3]) {
     df <- as.data.frame(x$top$area)
-    df <- df[1:ndf, c(1,3)]
+    df <- df[1:min(ndf, nrow(df)), c(1,3)]
     names(df) <- c("Areas", "Documents")
     pobj <- if (!pie)
       ggplot(data = df, aes(x = Areas, y = Documents)) +
@@ -201,13 +205,13 @@ plot.summary.wos.db <- function(x, which = 1:5,
                     labels = scales::number_format(accuracy = accuracy))
       # + annotation_logticks(sides = "l")
     else
-      ggplot(df, aes(x = "", y = Documents, fill = Areas)) +
+      ggplot(df, aes(x = "", y = Documents, fill = Areas)) + labs(x = "") +
       geom_bar(width = 1, stat = "identity") + coord_polar("y", start = 0)
     print(pobj)
   }
   if(show[4]) {
     df <- as.data.frame(x$top$jour)
-    df <- df[1:ndf, c(1,3)]
+    df <- df[1:min(ndf, nrow(df)), c(1,3)]
     names(df) <- c("Journals", "Documents")
     pobj <- if (!pie)
       ggplot(data = df, aes(x = Journals, y = Documents)) +
@@ -217,13 +221,13 @@ plot.summary.wos.db <- function(x, which = 1:5,
                     labels = scales::number_format(accuracy = accuracy))
       # + annotation_logticks(sides = "l")
     else
-      ggplot(df, aes(x = "", y = Documents, fill = Journals)) +
+      ggplot(df, aes(x = "", y = Documents, fill = Journals)) + labs(x = "") +
       geom_bar(width = 1, stat = "identity") + coord_polar("y", start = 0)
     print(pobj)
   }
   if(show[5]) {
     df <- as.data.frame(x$top$coun)
-    df <- df[1:ndf, c(1,3)]
+    df <- df[1:min(ndf, nrow(df)), c(1,3)]
     names(df) <- c("Countries", "Documents")
     pobj <- if (!pie)
       ggplot(data = df, aes(x = Countries, y = Documents)) +
@@ -233,7 +237,7 @@ plot.summary.wos.db <- function(x, which = 1:5,
                     labels = scales::number_format(accuracy = accuracy))
       # + annotation_logticks(sides = "l")
     else
-      ggplot(df, aes(x = "", y = Documents, fill = Countries)) +
+      ggplot(df, aes(x = "", y = Documents, fill = Countries)) + labs(x = "") +
       geom_bar(width = 1, stat = "identity") + coord_polar("y", start = 0)
     print(pobj)
   }

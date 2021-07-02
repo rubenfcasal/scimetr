@@ -5,8 +5,15 @@
 \alias{.get.idDocs2}
 \title{scimetr internal and secondary functions}
 \usage{
-.get.idDocs2(db, idAuthors, idCategories, idAreas, idAddresses, idJournals,
-  indices = TRUE)
+.get.idDocs2(
+  db,
+  idAuthors,
+  idCategories,
+  idAreas,
+  idAddresses,
+  idSources,
+  indices = TRUE
+)
 }
 \description{
 Listed below are supporting functions for the major methods in scimetr.

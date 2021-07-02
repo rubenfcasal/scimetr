@@ -4,7 +4,8 @@
 \name{wosdf}
 \alias{wosdf}
 \title{UDC WoS Core Collection 2015 data}
-\format{A data frame with 856 observations on the following 62 variables:
+\format{
+A data frame with 856 observations on the following 62 variables:
 \describe{
   \item{PT}{Publication type.}
   \item{AU}{Author.}
@@ -68,7 +69,8 @@
   \item{GA}{Document delivery number.}
   \item{UT}{Access number.}
   \item{PM}{Pub Med ID.}
-}}
+}
+}
 \source{
 Thomson Reuters' Web of Science: \cr
 \url{http://www.webofknowledge.com}.

@@ -4,7 +4,8 @@
 \name{wosdf2}
 \alias{wosdf2}
 \title{Mathematics UDC WoS Core Collection 2008-2017 data}
-\format{A data frame with 389 observations on the following 62 variables:
+\format{
+A data frame with 389 observations on the following 62 variables:
 \describe{
   \item{PT}{Publication type.}
   \item{AU}{Author.}
@@ -68,7 +69,8 @@
   \item{GA}{Document delivery number.}
   \item{UT}{Access number.}
   \item{PM}{Pub Med ID.}
-}}
+}
+}
 \source{
 Thomson Reuters' Web of Science: \cr
 \url{http://www.webofknowledge.com}.

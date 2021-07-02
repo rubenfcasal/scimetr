@@ -4,14 +4,18 @@
 \alias{ImportSources.wos}
 \title{Import bibliographic data downloaded from Web of Science (WoS).}
 \usage{
-ImportSources.wos(path = ".", pattern = "*.txt", other = TRUE)
+ImportSources.wos(
+  path = ".",
+  pattern = "*.txt",
+  other = c("include", "ignore", "split")
+)
 }
 \arguments{
 \item{path}{to a subdir...}
 
 \item{pattern}{file pattern (= '*.txt' by default)}
 
-\item{other}{Guardar otros documentos (= TRUE by default; Other FALSE, file.path?)}
+\item{other}{Guardar otros documentos "include", "ignore", "split", pendiente: cambiar split por path}
 }
 \value{
 A \code{data.frame} with columns corresponding to WoS variables.

@@ -6,10 +6,10 @@
 \alias{get.idAddresses}
 \alias{get.idAreas}
 \alias{get.idCategories}
-\alias{get.idJournals}
+\alias{get.idSources}
 \title{Get table identifiers}
 \usage{
-get.idDocs(db, idAuthors, idCategories, idAreas, idAddresses, idJournals)
+get.idDocs(db, idAuthors, idCategories, idAreas, idAddresses, idSources)
 
 get.idAuthors(db, ...)
 
@@ -19,10 +19,10 @@ get.idAreas(db, ...)
 
 get.idCategories(db, ...)
 
-get.idJournals(db, ...)
+get.idSources(db, ...)
 }
 \arguments{
-\item{db}{Object of \code{\link{class}} \code{wos.db}, as returned by \code{\link{wos_CreateDB}}.}
+\item{db}{Object of \code{\link{class}} \code{wos.db}, as returned by \code{\link{CreateDB.wos}}.}
 
 \item{idAuthors}{optional; author identifiers}
 
@@ -32,7 +32,7 @@ get.idJournals(db, ...)
 
 \item{idAddresses}{optional; addresses identifiers}
 
-\item{idJournals}{optional; journals identifiers}
+\item{idSources}{optional; sources identifiers}
 
 \item{...}{Logical predicates. Multiple conditions are combined with & (see
 \code{\link[dplyr]{filter}})}
@@ -40,8 +40,8 @@ get.idJournals(db, ...)
 \description{
 \code{get.idDocs} returns the document identifiers (values of the \code{db$Docs$idd} variable)
 corresponding to identifiers of authors (values of \code{db$Authors$ids}), categories (...), areas (...),
-addresses (...) and/or journals (...). Multiple conditions are combined with &.
+addresses (...) and/or sources (...). Multiple conditions are combined with &.
 }
 \seealso{
-\code{\link{wos_CreateDB}}, \code{\link[dplyr]{filter}}.
+\code{\link{CreateDB.wos}}, \code{\link[dplyr]{filter}}.
 }

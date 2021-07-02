@@ -4,8 +4,13 @@
 \alias{match_authors}
 \title{Approximate Authors' Names Matching}
 \usage{
-match_authors(authors, table, weight = c(family = 0.9, name = 0.1),
-  max.dist = 0.2, attr.dist = FALSE)
+match_authors(
+  authors,
+  table,
+  weight = c(family = 0.9, name = 0.1),
+  max.dist = 0.2,
+  attr.dist = FALSE
+)
 }
 \arguments{
 \item{authors}{author names to be approximately matched.}

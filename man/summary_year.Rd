@@ -10,8 +10,13 @@ summary_year(object, filter, ...)
 
 \method{print}{summary.year}(x, ...)
 
-\method{plot}{summary.year}(x, which = 1:3, boxplot = FALSE,
-  ask = length(which) > 1 && dev.interactive(), ...)
+\method{plot}{summary.year}(
+  x,
+  which = 1:3,
+  boxplot = FALSE,
+  ask = length(which) > 1 && dev.interactive(),
+  ...
+)
 }
 \arguments{
 \item{object}{an object for which a summary is desired.}
@@ -34,5 +39,5 @@ see \code{\link{par}(ask=.)}.}
 \code{summary_year} returns a summary per year...
 }
 \seealso{
-\code{\link{wos_CreateDB}}.
+\code{\link{CreateDB.wos}}.
 }

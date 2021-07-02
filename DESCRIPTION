@@ -1,8 +1,8 @@
 Package: scimetr
 Type: Package
 Title: Analysis of Scientific Publication Data with R
-Version: 0.2.4
-Date: 2019-10-02
+Version: 0.3.3
+Date: 2021-05-31
 Authors@R: c(
     person("Ruben", "Fernandez-Casal", role = c("aut", "cre"),
     email = "rubenfcasal@gmail.com"),
@@ -13,27 +13,37 @@ Authors@R: c(
     person("Javier", "Tarrio-Saavedra", role = c("aut"),
     email = "javier.tarrio@udc.es"),
     person("Julian", "Costa-Bouzas", role = c("aut"),
-    email = "julian.costa.bouzas@udc.es")
+    email = "julian.costa.bouzas@udc.es"),
+    person("Yesica", "Fernandez-Ramos", role = c("ctb"),
+    email = "yesica.ramos@udc.es"),
+    person("Guillermo", "Lopez-Taboada", role = c("ctb"),
+    email = "guillermo.lopez.taboada@udc.es")
     )
 Description: This package implements tools for quantitative research
     in scientometrics and bibliometrics. It provides routines for importing
-    bibliographic data from Thomson Reuters' Web of Science (<http://
-    www.webofknowledge.com>) and performing bibliometric analysis.
+    bibliographic data from Thomson Reuters' Web of Science 
+    (<https://www.webofknowledge.com>) and performing bibliometric analysis.
     For more information visit 
     <https://rubenfcasal.github.io/scimetr/articles/scimetr.html>.
 Depends:
-    R (>= 2.14.0),
+    R (>= 3.5.0),
     graphics
 Imports:
     dplyr,
-    lazyeval,
+    dbplyr,
+    DBI,
+    RSQLite,
     stringr,
     scales,
     ggplot2
 Suggests:
     openxlsx,
-    tidyr
+    tidyr,
+    knitr
 License: GPL (>= 2)
+URL: https://github.com/rubenfcasal/scimetr
+BugReports: https://github.com/rubenfcasal/scimetr/issues
 Encoding: UTF-8
+VignetteBuilder: knitr
 LazyData: true
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1

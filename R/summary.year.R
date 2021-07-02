@@ -4,7 +4,7 @@
 #' @param object an object for which a summary is desired.
 #' @param filter vector of document identifiers (usually a result of \code{\link{get.idDocs}}).
 #' @param ...	further arguments passed to or from other methods.
-#' @seealso \code{\link{wos_CreateDB}}.
+#' @seealso \code{\link{CreateDB.wos}}.
 #' @export
 # PENDIENTE: RESULTADOS COMO TABLAS
 summary_year <- function(object, filter, ...) {

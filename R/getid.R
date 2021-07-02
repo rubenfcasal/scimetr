@@ -9,20 +9,20 @@
 #'
 #' \code{get.idDocs} returns the document identifiers (values of the \code{db$Docs$idd} variable)
 #' corresponding to identifiers of authors (values of \code{db$Authors$ids}), categories (...), areas (...),
-#' addresses (...) and/or journals (...). Multiple conditions are combined with &.
-#' @param db Object of \code{\link{class}} \code{wos.db}, as returned by \code{\link{wos_CreateDB}}.
+#' addresses (...) and/or sources (...). Multiple conditions are combined with &.
+#' @param db Object of \code{\link{class}} \code{wos.db}, as returned by \code{\link{CreateDB.wos}}.
 #' @param idAuthors optional; author identifiers
 #' @param idCategories optional; categories identifiers
 #' @param idAreas optional; areas identifiers
 #' @param idAddresses optional; addresses identifiers
-#' @param idJournals optional; journals identifiers
-#' @seealso \code{\link{wos_CreateDB}}, \code{\link[dplyr]{filter}}.
+#' @param idSources optional; sources identifiers
+#' @seealso \code{\link{CreateDB.wos}}, \code{\link[dplyr]{filter}}.
 #' @export
-get.idDocs <- function(db, idAuthors, idCategories, idAreas, idAddresses, idJournals) {
+get.idDocs <- function(db, idAuthors, idCategories, idAreas, idAddresses, idSources) {
 # ---------------------------------------
   idDocs <- db$Docs$idd
-  if(!missing(idJournals)) {
-    idDocs <- idDocs[db$Docs$idj %in% idJournals]
+  if(!missing(idSources)) {
+    idDocs <- idDocs[db$Docs$ids %in% idSources]
   }
   if(!missing(idAuthors)) {
     idDocs <- idDocs[idDocs %in% with(db$AutDoc, idd[ida %in% idAuthors])]
@@ -46,7 +46,7 @@ get.idDocs <- function(db, idAuthors, idCategories, idAreas, idAddresses, idJour
 #' @export
 get.idAuthors <- function(db, ...) {
 # ---------------------------------------
-  Authors <- db$Authors %>% filter_(.dots = lazyeval::lazy_dots(...)) %>% select(ida, AF)
+  Authors <- dplyr::filter(db$Authors, ...)
   result <- Authors$ida
   names(result) <- Authors$AF
   return(result)
@@ -56,7 +56,7 @@ get.idAuthors <- function(db, ...) {
 #' @export
 get.idAddresses <- function(db, ...) {
 # ---------------------------------------
-  Addresses <- db$Addresses %>% filter_(.dots = lazyeval::lazy_dots(...))
+  Addresses <- dplyr::filter(db$Addresses , ...)
   return(Addresses$idad)
 }
 
@@ -65,7 +65,7 @@ get.idAddresses <- function(db, ...) {
 #' @export
 get.idAreas <- function(db, ...) {
 # ---------------------------------------
-  Areas <- db$Areas %>% filter_(.dots = lazyeval::lazy_dots(...))
+  Areas <- dplyr::filter(db$Areas, ...)
   result <- Areas$idra
   names(result) <- Areas$SC
   return(result)
@@ -75,7 +75,7 @@ get.idAreas <- function(db, ...) {
 #' @export
 get.idCategories <- function(db, ...) {
 # ---------------------------------------
-  Categories <- db$Categories %>% filter_(.dots = lazyeval::lazy_dots(...))
+  Categories <- dplyr::filter(db$Categories, ...)
   result <- Categories$idc
   names(result) <- Categories$WC
   return(result)
@@ -84,11 +84,12 @@ get.idCategories <- function(db, ...) {
 
 #' @rdname get.idDocs
 #' @export
-get.idJournals <- function(db, ...) {
+get.idSources <- function(db, ...) {
 # ---------------------------------------
-  Journals <- db$Journals %>% filter_(.dots = lazyeval::lazy_dots(...))
-  result <- Journals$idj
-  names(result) <- Journals$SO
+  Sources <- dplyr::filter(db$Sources, ...)
+  result <- Sources$ids
+  # PENDIENTE: Establecer nombre fuente dependiendo de ST?
+  # names(result) <- Sources$SO
   return(result)
 }
 
@@ -100,10 +101,10 @@ get.idJournals <- function(db, ...) {
 #' @title scimetr internal and secondary functions
 #' @description Listed below are supporting functions for the major methods in scimetr.
 #' @keywords internal
-.get.idDocs2 <- function(db, idAuthors, idCategories, idAreas, idAddresses, idJournals,
+.get.idDocs2 <- function(db, idAuthors, idCategories, idAreas, idAddresses, idSources,
                         indices = TRUE) {
   ifalse <- logical(nrow(db$Docs))
-  idDocs <- if(missing(idJournals)) !ifalse else db$Docs$idj %in% idJournals
+  idDocs <- if(missing(idSources)) !ifalse else db$Docs$ids %in% idSources
   if(!missing(idAuthors)) {
     index <- ifalse
     index[with(db$AutDoc, idd[ida %in% idAuthors])] <- TRUE

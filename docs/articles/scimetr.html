@@ -5,19 +5,20 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Analysis of Scientific Publication Data with scimetr • scimetr</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Analysis of Scientific Publication Data with scimetr">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<title>Introduction to the scimetr Package • scimetr</title>
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to the scimetr Package">
+<meta property="og:description" content="scimetr">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scimetr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
       </span>
     </div>
 
@@ -38,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -59,12 +60,22 @@
       <a href="../articles/docs/R_packages.html">Análisis bibliométrico con R</a>
     </li>
     <li>
+      <a href="../articles/docs/wos_bd.html">Creación de la BD empleando la API de WoS</a>
+    </li>
+    <li>
       <a href="../articles/docs/WoS_export.html">Descarga de datos de la Web of Science</a>
     </li>
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/rubenfcasal/scimetr/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -73,15 +84,16 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Analysis of Scientific Publication Data with scimetr</h1>
+      <h1 data-toc-skip>Introduction to the scimetr Package</h1>
                         <h4 class="author">UDC Ranking’s Group</h4>
             
-            <h4 class="date">scimetr 0.2.4 : 2019-10-10</h4>
+            <h4 class="date">scimetr 0.3.3 : 2021-07-02</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/rubenfcasal/scimetr/blob/master/vignettes/scimetr.Rmd"><code>vignettes/scimetr.Rmd</code></a></small>
       <div class="hidden name"><code>scimetr.Rmd</code></div>
 
     </div>
@@ -89,40 +101,40 @@
     
     
 <p>This vignette (a working draft, in Spanish) tries to illustrate the use of the <code>scimetr</code> package …</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(scimetr)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">scimetr</span>)</pre></body></html></div>
 <pre><code>##  scimetr: Analysis of Scientific Publication Data with R,
-##  version 0.2.4 (built on 2019-10-02).
-##  Copyright (C) UDC Ranking's Group 2017-2019.
+##  version 0.3.3 (built on 2021-05-31).
+##  Copyright (C) UDC Rankings Group 2017-2021.
 ##  Type `help(scimetr)` for an overview of the package or
 ##  visit https://rubenfcasal.github.io/scimetr.</code></pre>
 <p>Este paquete implementa herramientas para la investigación en cienciometría y bibliometría. Actualmente incluye rutinas para importar datos bibliográficos de <a href="http://www.webofknowledge.com"><em>Clarivate Analytics Web of Science</em></a> (WoS) y realizar análisis bibliométricos.</p>
 <p>Un listado de otros paquetes de utilidad para el análisis de este tipo de datos está disponible <a href="https://rubenfcasal.github.io/scimetr/articles/docs/R_packages.html">aquí</a>.</p>
-<div id="instalacion" class="section level2">
+<div id="instalación" class="section level2">
 <h2 class="hasAnchor">
-<a href="#instalacion" class="anchor"></a>Instalación</h2>
+<a href="#instalaci%C3%B3n" class="anchor"></a>Instalación</h2>
 <p>Para instalar el paquete sería recomendable en primer lugar instalar las dependencias:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">'dplyr'</span>, <span class="st">'lazyeval'</span>, <span class="st">'stringr'</span>, <span class="st">'ggplot2'</span>, <span class="st">'openxlsx'</span>, <span class="st">'tidyr'</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'dplyr'</span>, <span class="st">'dbplyr'</span>,<span class="st">'RSQLite'</span>, <span class="st">'lazyeval'</span>, <span class="st">'stringr'</span>, <span class="st">'ggplot2'</span>, <span class="st">'openxlsx'</span>, <span class="st">'tidyr'</span>))</pre></body></html></div>
 <p>Como de momento no está disponible en CRAN, habría que instalar la versión de desarrollo en GitHub (en el repositorio <a href="https://github.com/rubenfcasal/scimetr">rubenfcasal/scimetr</a>). En Windows bastaría con instalar la versión binaria del paquete <em>scimetr_X.Y.Z.zip</em> (disponible <a href="https://github.com/rubenfcasal/scimetr/tree/master/docs">aquí</a>), alternativamente se puede instalar directamente de GitHub:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># install.packages("devtools")</span></a>
-<a class="sourceLine" id="cb4-2" title="2">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"rubenfcasal/scimetr"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># install.packages("devtools")</span>
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"rubenfcasal/scimetr"</span>)</pre></body></html></div>
 <p>Una vez instalado ya podríamos cargar el paquete.</p>
 </div>
 <div id="carga-de-datos" class="section level2">
 <h2 class="hasAnchor">
 <a href="#carga-de-datos" class="anchor"></a>Carga de datos</h2>
-<p>En primer lugar habría que descargar los datos de publicaciones de <a href="http://www.webofknowledge.com">WoS</a>) en formato texto, para lo que se pueden seguir los pasos descritos <a href="https://rubenfcasal.github.io/scimetr/articles/docs/WoS_export.html">aquí</a>.</p>
+<p>Nos centraremos únicamente en la importación de los datos de publicaciones de <a href="http://www.webofknowledge.com">WoS</a>) en formato de texto. En primer lugar habría que descargar los correspondientes ficheros de la web de WoS, por ejemplo siguiendo los pasos descritos <a href="https://rubenfcasal.github.io/scimetr/articles/docs/WoS_export.html">aquí</a>.</p>
+<p>Alternativamente se puede crear una base de datos empleando la <a href="https://developer.clarivate.com/apis">API de WoS</a> para posteriormente importarla a R empleando la función <code><a href="../reference/ImportDB.wos.html">ImportDB.wos()</a></code>. Para ello habría que disponer de acceso a esta API y seguir los pasos descritos <a href="https://rubenfcasal.github.io/scimetr/articles/docs/wos_bd.html">aquí</a>.</p>
 <div id="cargar-datos-de-directorio" class="section level3">
 <h3 class="hasAnchor">
 <a href="#cargar-datos-de-directorio" class="anchor"></a>Cargar datos de directorio</h3>
 <p>Se pueden cargar automáticamente los archivos WoS (que por defecto tienen una limitación de 500 registros) de un subdirectorio:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/list.files">dir</a></span>(<span class="st">"UDC_2008-2017 (01-02-2019)"</span>, <span class="dt">pattern=</span><span class="st">'*.txt'</span>)</a></code></pre></div>
-<pre><code>##  [1] "savedrecs01.txt" "savedrecs02.txt" "savedrecs03.txt"
-##  [4] "savedrecs04.txt" "savedrecs05.txt" "savedrecs06.txt"
-##  [7] "savedrecs07.txt" "savedrecs08.txt" "savedrecs09.txt"
-## [10] "savedrecs10.txt" "savedrecs11.txt" "savedrecs12.txt"
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span>(<span class="st">"UDC_2008-2017 (01-02-2019)"</span>, <span class="kw">pattern</span><span class="kw">=</span><span class="st">'*.txt'</span>)</pre></body></html></div>
+<pre><code>##  [1] "savedrecs01.txt" "savedrecs02.txt" "savedrecs03.txt" "savedrecs04.txt"
+##  [5] "savedrecs05.txt" "savedrecs06.txt" "savedrecs07.txt" "savedrecs08.txt"
+##  [9] "savedrecs09.txt" "savedrecs10.txt" "savedrecs11.txt" "savedrecs12.txt"
 ## [13] "savedrecs13.txt" "savedrecs14.txt" "savedrecs15.txt"</code></pre>
 <p>Para combinar los ficheros en un <code>data.frame</code> se emplea la función <code><a href="../reference/ImportSources.wos.html">ImportSources.wos()</a></code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">wos.txt &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ImportSources.wos.html">ImportSources.wos</a></span>(<span class="st">"UDC_2008-2017 (01-02-2019)"</span>, <span class="dt">other =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">wos.txt</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/ImportSources.wos.html">ImportSources.wos</a></span>(<span class="st">"UDC_2008-2017 (01-02-2019)"</span>, <span class="kw">other</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
 <p>A continuación habrá que crear la base de datos con la función <code><a href="../reference/CreateDB.wos.html">CreateDB.wos()</a></code>, como se muestra más adelante.</p>
 </div>
 <div id="datos-de-ejemplo" class="section level3">
@@ -134,9 +146,9 @@
 <li><p><code>wosdf2</code>: área de investigación ‘Mathematics’, años 2008-2017.</p></li>
 </ul>
 <p>Variables WoS:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># View(wosdf2) # En RStudio...</span></a>
-<a class="sourceLine" id="cb8-2" title="2">variable.labels &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/attr">attr</a></span>(wosdf, <span class="st">"variable.labels"</span>)</a>
-<a class="sourceLine" id="cb8-3" title="3">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/as.data.frame">as.data.frame</a></span>(variable.labels)) <span class="co"># caption = "Variable labels"</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># View(wosdf2) # En RStudio...</span>
+<span class="no">variable.labels</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(<span class="no">wosdf</span>, <span class="st">"variable.labels"</span>)
+<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">variable.labels</span>)) <span class="co"># caption = "Variable labels"</span></pre></body></html></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -395,15 +407,15 @@
 </table>
 </div>
 </div>
-<div id="creacion-de-la-base-de-datos" class="section level2">
+<div id="creación-de-la-base-de-datos" class="section level2">
 <h2 class="hasAnchor">
-<a href="#creacion-de-la-base-de-datos" class="anchor"></a>Creación de la base de datos</h2>
+<a href="#creaci%C3%B3n-de-la-base-de-datos" class="anchor"></a>Creación de la base de datos</h2>
 <p>Para crear la base de datos se emplea la función <code><a href="../reference/CreateDB.wos.html">CreateDB.wos()</a></code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">db &lt;-<span class="st"> </span><span class="kw"><a href="../reference/CreateDB.wos.html">CreateDB.wos</a></span>(wosdf2, <span class="dt">label =</span> <span class="st">"Mathematics_UDC_2008-2017 (01-02-2019)"</span>)</a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(db, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">db</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/CreateDB.wos.html">CreateDB.wos</a></span>(<span class="no">wosdf2</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Mathematics_UDC_2008-2017 (01-02-2019)"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">db</span>, <span class="fl">1</span>)</pre></body></html></div>
 <pre><code>## List of 11
-##  $ Docs      :'data.frame':  389 obs. of  26 variables:
-##  $ Authors   :'data.frame':  611 obs. of  4 variables:
+##  $ Docs      :'data.frame':  389 obs. of  25 variables:
+##  $ Authors   :'data.frame':  610 obs. of  4 variables:
 ##  $ AutDoc    :'data.frame':  1260 obs. of  2 variables:
 ##  $ Categories:'data.frame':  46 obs. of  2 variables:
 ##  $ CatDoc    :'data.frame':  866 obs. of  2 variables:
@@ -411,7 +423,7 @@
 ##  $ AreaDoc   :'data.frame':  771 obs. of  2 variables:
 ##  $ Addresses :'data.frame':  896 obs. of  5 variables:
 ##  $ AddAutDoc :'data.frame':  1328 obs. of  3 variables:
-##  $ Journals  :'data.frame':  150 obs. of  12 variables:
+##  $ Sources   :'data.frame':  150 obs. of  14 variables:
 ##  $ label     : chr "Mathematics_UDC_2008-2017 (01-02-2019)"
 ##  - attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
 ##   ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
@@ -423,22 +435,22 @@
 <p>Se pueden realizar sumarios globales o por años…</p>
 <div id="sumario-summary-wos-db" class="section level3">
 <h3 class="hasAnchor">
-<a href="#sumario-summary-wos-db" class="anchor"></a>Sumario <code><a href="../reference/summary.wos.db.html">summary.wos.db()</a></code>
+<a href="#sumario-summary-wos-db" class="anchor"></a>Sumario <code>summary.wos.db()</code>
 </h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">res1 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(db)</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/options">options</a></span>(<span class="dt">digits =</span> <span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb11-3" title="3">res1</a></code></pre></div>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">res1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">db</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="kw">digits</span> <span class="kw">=</span> <span class="fl">5</span>)
+<span class="no">res1</span></pre></body></html></div>
 <pre><code>## Number of documents: 389 
-## Authors: 611 
+## Authors: 610 
 ## Period: 2008 - 2017 
 ## 
 ## Document types:
-##                    Documents
-## Article                  360
-## Correction                 1
-## Editorial Material         5
-## Proceedings Paper         16
-## Review                     7
+##                            Documents
+## Article                          360
+## Article; Proceedings Paper        16
+## Correction                         1
+## Editorial Material                 5
+## Review                             7
 ## 
 ## Number of authors per document:
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -446,7 +458,7 @@
 ## 
 ## Number of documents per author:
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    1.00    1.00    1.00    2.06    2.00   29.00 
+##    1.00    1.00    1.00    2.07    2.00   29.00 
 ## 
 ## Number of times cited:
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -492,10 +504,10 @@
 ## Rev. Int. Metod. Numer. Calc. Dise.        11
 ## J. Comput. Appl. Math.                     10
 ## Comput. Stat. Data Anal.                    9
-## Appl. Numer. Math.                          9
 ## Int. J. Numer. Methods Fluids               9
-## Int. J. Numer. Methods Eng.                 8
+## Appl. Numer. Math.                          9
 ## J. Nonparametr. Stat.                       8
+## Int. J. Numer. Methods Eng.                 8
 ## Others                                    274
 ## 
 ## Top Countries:
@@ -512,12 +524,12 @@
 ## Belgium         7
 ## Others         52</code></pre>
 </div>
-<div id="sumario-por-anos-summary_year" class="section level3">
+<div id="sumario-por-años-summary_year" class="section level3">
 <h3 class="hasAnchor">
-<a href="#sumario-por-anos-summary_year" class="anchor"></a>Sumario por años <code><a href="../reference/summary_year.html">summary_year()</a></code>
+<a href="#sumario-por-a%C3%B1os-summary_year" class="anchor"></a>Sumario por años <code>summary_year()</code>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">res2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/summary_year.html">summary_year</a></span>(db)</a>
-<a class="sourceLine" id="cb13-2" title="2">res2</a></code></pre></div>
+<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">res2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/summary_year.html">summary_year</a></span>(<span class="no">db</span>)
+<span class="no">res2</span></pre></body></html></div>
 <pre><code>## 
 ## Annual Scientific Production:
 ## 
@@ -562,40 +574,40 @@
 ##  2017    55  1.6176    1.0</code></pre>
 </div>
 </div>
-<div id="graficos" class="section level2">
+<div id="gráficos" class="section level2">
 <h2 class="hasAnchor">
-<a href="#graficos" class="anchor"></a>Gráficos</h2>
+<a href="#gr%C3%A1ficos" class="anchor"></a>Gráficos</h2>
 <p>Se emplea la librería <a href="https://ggplot2.tidyverse.org"><code>ggplot2</code></a>…</p>
-<div id="graficos-de-la-base-de-datos-plot-wos-db" class="section level3">
+<div id="gráficos-de-la-base-de-datos-plot-wos-db" class="section level3">
 <h3 class="hasAnchor">
-<a href="#graficos-de-la-base-de-datos-plot-wos-db" class="anchor"></a>Gráficos de la base de datos <code><a href="../reference/CreateDB.wos.html">plot.wos.db()</a></code>
+<a href="#gr%C3%A1ficos-de-la-base-de-datos-plot-wos-db" class="anchor"></a>Gráficos de la base de datos <code>plot.wos.db()</code>
 </h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(db)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">db</span>)</pre></body></html></div>
 <p><img src="scimetr_files/figure-html/plotdb-1.png" width="100%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/plotdb-2.png" width="100%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/plotdb-3.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
-<div id="graficos-sumario-plot-summary-wos-db" class="section level3">
+<div id="gráficos-sumario-plot-summary-wos-db" class="section level3">
 <h3 class="hasAnchor">
-<a href="#graficos-sumario-plot-summary-wos-db" class="anchor"></a>Gráficos sumario <code><a href="../reference/summary.wos.db.html">plot.summary.wos.db()</a></code>
+<a href="#gr%C3%A1ficos-sumario-plot-summary-wos-db" class="anchor"></a>Gráficos sumario <code>plot.summary.wos.db()</code>
 </h3>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(res1)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">res1</span>)</pre></body></html></div>
 <p><img src="scimetr_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-2.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-3.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-4.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-5.png" width="100%" style="display: block; margin: auto auto auto 0;"></p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(res1, <span class="dt">pie =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">res1</span>, <span class="kw">pie</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <p><img src="scimetr_files/figure-html/unnamed-chunk-8-6.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-7.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-8.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-9.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-10.png" width="100%" style="display: block; margin: auto auto auto 0;"></p>
 </div>
-<div id="graficos-sumario-por-anos-plot-summary-year" class="section level3">
+<div id="gráficos-sumario-por-años-plot-summary-year" class="section level3">
 <h3 class="hasAnchor">
-<a href="#graficos-sumario-por-anos-plot-summary-year" class="anchor"></a>Gráficos sumario por años <code><a href="../reference/summary_year.html">plot.summary.year()</a></code>
+<a href="#gr%C3%A1ficos-sumario-por-a%C3%B1os-plot-summary-year" class="anchor"></a>Gráficos sumario por años <code>plot.summary.year()</code>
 </h3>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(res2)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">res2</span>)</pre></body></html></div>
 <p><img src="scimetr_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-9-2.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-9-3.png" width="100%" style="display: block; margin: auto auto auto 0;"></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/plot">plot</a></span>(res2, <span class="dt">boxplot =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">res2</span>, <span class="kw">boxplot</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
 <p><img src="scimetr_files/figure-html/unnamed-chunk-9-4.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-9-5.png" width="100%" style="display: block; margin: auto auto auto 0;"></p>
 </div>
 </div>
 <div id="filtrado" class="section level2">
 <h2 class="hasAnchor">
 <a href="#filtrado" class="anchor"></a>Filtrado</h2>
-<p>Se combinan las funciones <code>get.id&lt;Tabla&gt;()</code> (se puede emplear cualquier variable de la correspondiente tabla; multiple conditions are combined with <code>&amp;</code>, see e.g. <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code>) con la función <code><a href="../reference/get.idDocs.html">get.idDocs()</a></code>.</p>
+<p>Se combinan las funciones <code>get.id&lt;Tabla&gt;()</code> (se puede emplear cualquier variable de la correspondiente tabla; multiple conditions are combined with <code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code>, see e.g. <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code>) con la función <code><a href="../reference/get.idDocs.html">get.idDocs()</a></code>.</p>
 <div id="funciones-get" class="section level3">
 <h3 class="hasAnchor">
 <a href="#funciones-get" class="anchor"></a>Funciones get</h3>
@@ -603,28 +615,28 @@
 <li>
 <p><code><a href="../reference/get.idDocs.html">get.idAuthors()</a></code>: buscar id (códigos) de autores</p>
 <p>Buscar un autor concreto:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">idAuthor &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get.idDocs.html">get.idAuthors</a></span>(db, AF <span class="op">==</span><span class="st"> "Cao, Ricardo"</span>)</a>
-<a class="sourceLine" id="cb20-2" title="2">idAuthor</a></code></pre></div>
+<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">idAuthor</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idAuthors</a></span>(<span class="no">db</span>, <span class="no">AF</span> <span class="kw">==</span> <span class="st">"Cao, Ricardo"</span>)
+<span class="no">idAuthor</span></pre></body></html></div>
 <pre><code>## Cao, Ricardo 
 ##           16</code></pre>
 <p>Buscar en nombres de autores:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">idAuthors &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get.idDocs.html">get.idAuthors</a></span>(db, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">'Cao'</span>, AF))</a>
-<a class="sourceLine" id="cb22-2" title="2">idAuthors</a></code></pre></div>
+<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">idAuthors</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idAuthors</a></span>(<span class="no">db</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">'Cao'</span>, <span class="no">AF</span>))
+<span class="no">idAuthors</span></pre></body></html></div>
 <pre><code>##           Cao, Ricardo Cao-Rial, Maria Teresa 
 ##                     16                     69</code></pre>
 </li>
 <li>
 <p><code><a href="../reference/get.idDocs.html">get.idAreas()</a></code>: Devuelve códigos de las áreas</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw"><a href="../reference/get.idDocs.html">get.idAreas</a></span>(db, SC <span class="op">==</span><span class="st"> 'Mathematics'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="fu"><a href="../reference/get.idDocs.html">get.idAreas</a></span>(<span class="no">db</span>, <span class="no">SC</span> <span class="kw">==</span> <span class="st">'Mathematics'</span>)</pre></body></html></div>
 <pre><code>## Mathematics 
 ##          16</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw"><a href="../reference/get.idDocs.html">get.idAreas</a></span>(db, SC <span class="op">==</span><span class="st"> 'Mathematics'</span> <span class="op">|</span><span class="st"> </span>SC <span class="op">==</span><span class="st"> 'Computer Science'</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu"><a href="../reference/get.idDocs.html">get.idAreas</a></span>(<span class="no">db</span>, <span class="no">SC</span> <span class="kw">==</span> <span class="st">'Mathematics'</span> <span class="kw">|</span> <span class="no">SC</span> <span class="kw">==</span> <span class="st">'Computer Science'</span>)</pre></body></html></div>
 <pre><code>## Computer Science      Mathematics 
 ##                7               16</code></pre>
 </li>
 <li>
 <p><code><a href="../reference/get.idDocs.html">get.idCategories()</a></code>: códigos de las categorías</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw"><a href="../reference/get.idDocs.html">get.idCategories</a></span>(db, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">'Mathematics'</span>, WC))</a></code></pre></div>
+<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="fu"><a href="../reference/get.idDocs.html">get.idCategories</a></span>(<span class="no">db</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">'Mathematics'</span>, <span class="no">WC</span>))</pre></body></html></div>
 <pre><code>##                                 Mathematics 
 ##                                          28 
 ##                        Mathematics, Applied 
@@ -633,48 +645,16 @@
 ##                                          30</code></pre>
 </li>
 <li>
-<p><code><a href="../reference/get.idDocs.html">get.idJournals()</a></code> códigos de las revistas</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">ijss &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get.idDocs.html">get.idJournals</a></span>(db, SO <span class="op">==</span><span class="st"> 'JOURNAL OF STATISTICAL SOFTWARE'</span>)</a>
-<a class="sourceLine" id="cb30-2" title="2">ijss</a></code></pre></div>
-<pre><code>## JOURNAL OF STATISTICAL SOFTWARE 
-##                             134</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">knitr<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(db<span class="op">$</span>Journals[ijss, ], <span class="dt">caption =</span> <span class="st">"JSS"</span>)</a></code></pre></div>
-<table class="table">
-<caption>JSS</caption>
-<thead><tr class="header">
-<th></th>
-<th align="right">idj</th>
-<th align="left">SO</th>
-<th align="left">SE</th>
-<th align="left">BS</th>
-<th align="left">LA</th>
-<th align="left">PU</th>
-<th align="left">PI</th>
-<th align="left">PA</th>
-<th align="left">SN</th>
-<th align="left">EI</th>
-<th align="left">J9</th>
-<th align="left">JI</th>
-</tr></thead>
-<tbody><tr class="odd">
-<td>2796</td>
-<td align="right">134</td>
-<td align="left">JOURNAL OF STATISTICAL SOFTWARE</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">English</td>
-<td align="left">JOURNAL STATISTICAL SOFTWARE</td>
-<td align="left">LOS ANGELES</td>
-<td align="left">UCLA DEPT STATISTICS, 8130 MATH SCIENCES BLDG, BOX 951554, LOS ANGELES, CA 90095-1554 USA</td>
-<td align="left">1548-7660</td>
-<td align="left"></td>
-<td align="left">J STAT SOFTW</td>
-<td align="left">J. Stat. Softw.</td>
-</tr></tbody>
-</table>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw"><a href="../reference/get.idDocs.html">get.idJournals</a></span>(db, JI <span class="op">==</span><span class="st"> 'J. Stat. Softw.'</span>)</a></code></pre></div>
-<pre><code>## JOURNAL OF STATISTICAL SOFTWARE 
-##                             134</code></pre>
+<p><code><a href="../reference/get.idDocs.html">get.idSources()</a></code> códigos de las fuentes (revistas, libros o colecciones)</p>
+<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="no">ijss</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idSources</a></span>(<span class="no">db</span>, <span class="no">SO</span> <span class="kw">==</span> <span class="st">'JOURNAL OF STATISTICAL SOFTWARE'</span>)
+<span class="no">ijss</span></pre></body></html></div>
+<pre><code>## [1] 70</code></pre>
+<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">db</span>$<span class="no">Journals</span>[<span class="no">ijss</span>, ], <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"JSS"</span>)</pre></body></html></div>
+<pre><code>## Warning in kable_markdown(x, padding = padding, ...): The table should have a
+## header (column names)</code></pre>
+<p>Table: JSS</p>
+<p>|| || || ||</p>
+<div class="sourceCode" id="cb34"><html><body><pre class="r"># get.idSources(db, JI == 'J. Stat. Softw.')</pre></body></html></div>
 </li>
 </ul>
 </div>
@@ -682,26 +662,26 @@
 <h3 class="hasAnchor">
 <a href="#obtener-documentos-de-autores-revistas" class="anchor"></a>Obtener documentos (de autores, revistas, …)</h3>
 <p>Los indices anteriores se pueden combinar en <code><a href="../reference/get.idDocs.html">get.idDocs()</a></code></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1">idocs &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get.idDocs.html">get.idDocs</a></span>(db, <span class="dt">idAuthors =</span> idAuthor)</a>
-<a class="sourceLine" id="cb35-2" title="2">idocs</a></code></pre></div>
-<pre><code>##  [1]  10  16  23  33  40  56 128 183 187 196 210 220 269 286 295 312 315
-## [18] 332 340 346 347 350 359 362 372 375 384 385</code></pre>
+<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">idocs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idDocs</a></span>(<span class="no">db</span>, <span class="kw">idAuthors</span> <span class="kw">=</span> <span class="no">idAuthor</span>)
+<span class="no">idocs</span></pre></body></html></div>
+<pre><code>##  [1]  10  16  23  33  40  56 128 183 187 196 210 220 269 286 295 312 315 332 340
+## [20] 346 347 350 359 362 372 375 384 385</code></pre>
 <p>Los índices de documentos se pueden utilizar como filtro p.e. en <code><a href="../reference/summary.wos.db.html">summary.wos.db()</a></code>.</p>
 </div>
 <div id="sumarios-filtrados" class="section level3">
 <h3 class="hasAnchor">
 <a href="#sumarios-filtrados" class="anchor"></a>Sumarios filtrados</h3>
 <p>Obtener sumario de autor(es):</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(db, idocs)</a></code></pre></div>
+<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">db</span>, <span class="no">idocs</span>)</pre></body></html></div>
 <pre><code>## Number of documents: 28 
 ## Authors: 40 
 ## Period: 2008 - 2017 
 ## 
 ## Document types:
-##                    Documents
-## Article                   26
-## Editorial Material         1
-## Proceedings Paper          1
+##                            Documents
+## Article                           26
+## Article; Proceedings Paper         1
+## Editorial Material                 1
 ## 
 ## Number of authors per document:
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -748,18 +728,18 @@
 ## Others                                             1
 ## 
 ## Top Journals:
-##                          Documents
-## J. Nonparametr. Stat.            4
-## Comput. Stat. Data Anal.         3
-## Comput. Stat.                    3
-## Ann. Inst. Stat. Math.           2
-## Test                             2
-## Stat. Neerl.                     1
-## J. Multivar. Anal.               1
-## J. Time Ser. Anal.               1
-## Stat. Probab. Lett.              1
-## J. Appl. Stat.                   1
-## Others                           9
+##                               Documents
+## J. Nonparametr. Stat.                 4
+## Comput. Stat. Data Anal.              3
+## Comput. Stat.                         3
+## Test                                  2
+## Ann. Inst. Stat. Math.                2
+## J. Chemometr.                         1
+## J. Time Ser. Anal.                    1
+## Stat. Probab. Lett.                   1
+## SORT-Stat. Oper. Res. Trans.          1
+## Stat. Appl. Genet. Mol. Biol.         1
+## Others                                9
 ## 
 ## Top Countries:
 ##           Documents
@@ -773,7 +753,7 @@
 ## Mexico            1
 ## Norway            1</code></pre>
 <p>Obtener sumario de autor(es) por años:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="kw"><a href="../reference/summary_year.html">summary_year</a></span>(db, idocs)</a></code></pre></div>
+<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="fu"><a href="../reference/summary_year.html">summary_year</a></span>(<span class="no">db</span>, <span class="no">idocs</span>)</pre></body></html></div>
 <pre><code>## 
 ## Annual Scientific Production:
 ## 
@@ -819,7 +799,7 @@
 <h2 class="hasAnchor">
 <a href="#indices-de-autores" class="anchor"></a>Indices de autores</h2>
 <p>Obtener índices de múltiples autores</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="kw"><a href="../reference/summary.wos.db.html">TC.authors</a></span>(db, idAuthors)</a></code></pre></div>
+<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="fu"><a href="../reference/summary.wos.db.html">TC.authors</a></span>(<span class="no">db</span>, <span class="no">idAuthors</span>)</pre></body></html></div>
 <pre><code>##                        H G
 ## Cao, Ricardo           5 7
 ## Cao-Rial, Maria Teresa 1 1</code></pre>
@@ -828,31 +808,20 @@
 <h2 class="hasAnchor">
 <a href="#trabajo-futuro" class="anchor"></a>Trabajo futuro</h2>
 <ul>
-<li><p>Descarga de datos empleando la <a href="https://developer.clarivate.com/apis">API de WoS</a> (al estilo del paquete <a href="https://vt-arc.github.io/wosr/index.html">wosr</a>)</p></li>
-<li><p>Descarga y análisis de datos de <a href="https://www.scopus.com">Scopus</a>: empleando descarga de archivos (al estilo del paquete<br><a href="https://cran.r-project.org/web/packages/CITAN/index.html">CITAN</a>) o la <a href="https://dev.elsevier.com/sc_apis.html">API de Scopus</a> (al estilo del paquete <a href="https://cran.r-project.org/web/packages/rscopus/index.html">rscopus</a>).</p></li>
+<li><p>Descarga y análisis de datos de <a href="https://www.scopus.com">Scopus</a>: empleando descarga de archivos (al estilo del paquete<br><a href="https://CRAN.R-project.org/package=CITAN">CITAN</a>) o la <a href="https://dev.elsevier.com/sc_apis.html">API de Scopus</a> (al estilo del paquete <a href="https://CRAN.R-project.org/package=rscopus">rscopus</a>).</p></li>
 <li><p>Implementar análisis estadísticos “avanzados”.</p></li>
 </ul>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li><a href="#instalacion">Instalación</a></li>
-      <li><a href="#carga-de-datos">Carga de datos</a></li>
-      <li><a href="#creacion-de-la-base-de-datos">Creación de la base de datos</a></li>
-      <li><a href="#sumarios">Sumarios</a></li>
-      <li><a href="#graficos">Gráficos</a></li>
-      <li><a href="#filtrado">Filtrado</a></li>
-      <li><a href="#indices-de-autores">Indices de autores</a></li>
-      <li><a href="#trabajo-futuro">Trabajo futuro</a></li>
-      </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
@@ -860,12 +829,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

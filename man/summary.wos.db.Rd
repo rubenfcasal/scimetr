@@ -7,16 +7,21 @@
 \alias{plot.summary.wos.db}
 \title{WoS DB Summaries}
 \usage{
-\method{summary}{wos.db}(object, filter, TC.index = c("H", "G"),
-  nmax = 10, ...)
+\method{summary}{wos.db}(object, filter, TC.index = c("H", "G"), nmax = 10, ...)
 
 \method{print}{summary.wos.db}(x, ...)
 
 TC.authors(db, idAuthors)
 
-\method{plot}{summary.wos.db}(x, which = 1:5, pie = FALSE,
-  others = !pie, accuracy = 0.1, ask = length(which) > 1 &&
-  dev.interactive(), ...)
+\method{plot}{summary.wos.db}(
+  x,
+  which = 1:5,
+  pie = FALSE,
+  others = !pie,
+  accuracy = 0.1,
+  ask = length(which) > 1 && dev.interactive(),
+  ...
+)
 }
 \arguments{
 \item{object}{an object for which a summary is desired.}
@@ -31,7 +36,7 @@ TC.authors(db, idAuthors)
 
 \item{x}{an object used to select a method.}
 
-\item{db}{Object of \code{\link{class}} \code{wos.db}, as returned by \code{\link{wos_CreateDB}}.}
+\item{db}{Object of \code{\link{class}} \code{wos.db}, as returned by \code{\link{CreateDB.wos}}.}
 
 \item{idAuthors}{optional; author identifiers}
 
@@ -42,7 +47,7 @@ specify a subset of the numbers \code{1:5}.}
 
 \item{others}{logical; if \code{FALSE}, only \code{nmax} top levels categories are shown.}
 
-\item{accuracy}{numerical scalar; see \code{\link{scales::number_format}(accuracy=)}.}
+\item{accuracy}{numerical scalar; see \code{\link[scales]{label_number}(accuracy=.)}.}
 
 \item{ask}{logical; if \code{TRUE}, the user is asked before each plot,
 see \code{\link{par}(ask=.)}.}
@@ -51,5 +56,5 @@ see \code{\link{par}(ask=.)}.}
 \code{summary} methods for \code{wos.db}-class...
 }
 \seealso{
-\code{\link{wos_CreateDB}}.
+\code{\link{CreateDB.wos}}.
 }

@@ -9,6 +9,7 @@ outer_list <- function(X, Y, FUN, ...) {
   matrix(res, nrow = nX, dimnames = list(names(X), names(Y)))
 }
 
+# Proporción de veces que el primero no está en el segundo
 #' @keywords internal
 dist_names <- function(X, Y) {
   nX <- length(X)
@@ -16,9 +17,20 @@ dist_names <- function(X, Y) {
   x <- rep(X, nY)
   y <- rep(Y, each = nX)
   res <- mapply(function(a, t) mean(a %in% t), x, y)
-  res <- matrix(res, nrow = nX, dimnames = list(X, Y))
+  res <- matrix(1 - res, nrow = nX, dimnames = list(X, Y))
   return(res)
 }
+
+# No tiene en cuenta family name, first name
+#' @keywords internal
+adist_names <- function(names, table) {
+  snames <- lapply(str_split(str_remove(names, ','), ' |-'), toupper)
+  stable <- lapply(str_split(str_remove(table, ','), ' |-'), toupper)
+  res <- dist_names(snames, stable)
+  dimnames(res) <- list(names, table)
+  return(res)
+}
+
 
 #' @keywords internal
 authors.short <- function(authors) {
@@ -28,6 +40,7 @@ authors.short <- function(authors) {
             lapply(str_split(sauthors[, 2], ' |-'), function(x) substr(x, 1, 1))
   return(list(family = family, name = name))
 }
+
 
 #' Approximate Authors' Names Distances
 #'
@@ -45,10 +58,11 @@ adist_authors <- function(authors, table, weight = c(family = 0.9, name = 0.1)) 
   stable <- authors.short(table)
   family.match <- dist_names(sauthors$family, stable$family)
   name.match <- dist_names(sauthors$name, stable$name)
-  res <- 1 - weight[1]*family.match + weight[2]*name.match
-  dimnames(res) = list(authors, table)
+  res <- weight[1]*family.match + weight[2]*name.match
+  dimnames(res) <- list(authors, table)
   return(res)
 }
+
 
 #' Approximate Authors' Names Matching
 #'

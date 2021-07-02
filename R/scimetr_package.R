@@ -1,6 +1,6 @@
 # PENDIENTE:
 #  - Categorías dentro de misma área de investigación?
-#  - Categorías y áreas de investigación son por Journals?
+#  - Categorías y áreas de investigación son por Sources?
 # Otros:
 # Número de ResearcherID e Identificador ORCID por autor
 # Cargar etiquetas de campo (english...)
@@ -13,7 +13,7 @@
 #'
 #' This package implements tools for quantitative research in scientometrics and bibliometrics.
 #' It provides routines for importing bibliographic data from
-#' Thomson Reuters' Web of Knowledge (<http://www.webofknowledge.com>) and performing bibliometric analysis.
+#' Thomson Reuters' Web of Knowledge (<https://www.webofknowledge.com>) and performing bibliometric analysis.
 #' For more information visit <https://rubenfcasal.github.io/scimetr/articles/scimetr.html>.
 #' @name scimetr-package
 #' @aliases scimetr
@@ -23,10 +23,11 @@
 #' @import ggplot2
 #' @import stringr
 #' @importFrom scales trans_breaks
-#' @importFrom lazyeval lazy_dots
 #' @importFrom stats reorder median
 #' @importFrom utils str read.delim setTxtProgressBar txtProgressBar
 #' @importFrom grDevices dev.interactive devAskNewPage
+#' @importFrom DBI dbConnect dbDisconnect dbListTables
+#' @importFrom RSQLite SQLite
 NULL
 
 
@@ -207,15 +208,16 @@ NULL
 
 ## quiets concerns of R CMD check re: the .'s that appear in pipelines
 if(getRversion() >= "2.15.1")
-    utils::globalVariables(c(".", "idd", "ida", "idj", "an", "Country",
+    utils::globalVariables(c(".", "idd", "ida", "ids", "an", "Country",
     "PT", "AU", "BA", "BE", "GP", "AF", "BF", "CA", "TI", "SO",
     "SE", "BS", "LA", "DT", "CT", "CY", "CL", "SP", "HO", "DE", "ID",
     "AB", "C1", "RP", "EM", "RI", "OI", "FU", "FX", "CR", "NR", "TC",
     "Z9", "U1", "U2", "PU", "PI", "PA", "SN", "EI", "BN", "J9", "JI",
     "PD", "PY", "VL", "IS", "PN", "SU", "SI", "MA", "BP", "EP", "AR",
     "DI", "D2", "PG", "WC", "SC", "GA", "UT", "PM",
-    "Types", "Documents", "Categories", "Areas", "Journals", "Countries",
-    "Authors", "Years"))
+    "ISS", "MC", "MP", "PC", "RD", "ST", "TD", "year",
+    "Types", "Documents", "Categories", "Areas", "Sources", "Journals",
+    "Countries", "Authors", "Years", ".wos.variable.labels"))
 
 
 #--------------------------------------------------------------------
@@ -227,7 +229,7 @@ if(getRversion() >= "2.15.1")
   packageStartupMessage(
     paste0(" scimetr: ", pkg.info["Title"], ",\n"),
     paste0(" version ", pkg.info["Version"], " (built on ", pkg.info["Date"], ").\n"),
-    " Copyright (C) UDC Ranking\'s Group 2017-2019.\n",
+    " Copyright (C) UDC Rankings Group 2017-2021.\n",
     " Type `help(scimetr)` for an overview of the package or\n",
     " visit https://rubenfcasal.github.io/scimetr.\n")
 }
