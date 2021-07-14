@@ -1,5 +1,5 @@
 ## ----setup, include=FALSE-----------------------------------------------------
-knitr::opts_chunk$set(fig.height=4, fig.width=7, 
+knitr::opts_chunk$set(fig.height = 4, fig.width =7, 
                       fig.align = 'center', out.width = '100%')
 # knitr::spin("scimetr.R", knit = FALSE)
 # knitr::purl("scimetr.Rmd", documentation = 2)
@@ -9,7 +9,7 @@ knitr::opts_chunk$set(fig.height=4, fig.width=7,
 library(scimetr)
 
 ## ----dependencies, eval=FALSE-------------------------------------------------
-#  install.packages(c('dplyr', 'dbplyr','RSQLite', 'lazyeval', 'stringr', 'ggplot2', 'openxlsx', 'tidyr'))
+#  install.packages(c('dplyr', 'dbplyr','RSQLite', 'lazyeval', 'stringr', 'ggplot2', 'tidyr'))
 
 ## ----eval=FALSE---------------------------------------------------------------
 #  # install.packages("devtools")

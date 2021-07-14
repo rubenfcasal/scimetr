@@ -37,8 +37,8 @@ Imports:
     scales,
     ggplot2
 Suggests:
-    openxlsx,
     tidyr,
+    rmarkdown,
     knitr
 License: GPL (>= 2)
 URL: https://github.com/rubenfcasal/scimetr

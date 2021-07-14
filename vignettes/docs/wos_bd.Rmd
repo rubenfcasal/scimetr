@@ -7,7 +7,7 @@ output:
     toc: yes
     toc_depth: 2
 vignette: >
-  %\VignetteIndexEntry{Análisis bibliométrico con R}
+  %\VignetteIndexEntry{Creación de la BD empleando la API de WoS}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

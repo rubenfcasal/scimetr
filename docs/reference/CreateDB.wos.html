@@ -80,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -112,7 +112,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/rubenfcasal/scimetr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -138,26 +138,26 @@
     <p><code>CreateDB.wos</code> converts a <code>data.frame</code> with WoS variables (see <code><a href='wosdf.html'>wosdf</a></code>) into...</p>
     </div>
 
-    <pre class="usage"><span class='fu'>CreateDB.wos</span>(<span class='no'>wosdf</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>print</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span>())
+    <pre class="usage"><span class='fu'>CreateDB.wos</span><span class='op'>(</span><span class='va'>wosdf</span>, label <span class='op'>=</span> <span class='st'>""</span>, print <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/interactive.html'>interactive</a></span><span class='op'>(</span><span class='op'>)</span><span class='op'>)</span>
 
 <span class='co'># S3 method for wos.db</span>
-<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>x</span>, <span class='no'>...</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span>
 
 <span class='co'># S3 method for wos.db</span>
-<span class='fu'><a href='https://rdrr.io/r/base/plot.html'>plot</a></span>(
-  <span class='no'>x</span>,
-  <span class='no'>filter</span>,
-  <span class='kw'>which</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>,
-  <span class='kw'>plot.summary</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>which.summary</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>5</span>,
-  <span class='kw'>nmax</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>plot.summary.year</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>which.summary.year</span> <span class='kw'>=</span> <span class='fl'>1</span>:<span class='fl'>3</span>,
-  <span class='kw'>accuracy</span> <span class='kw'>=</span> <span class='fl'>0.1</span>,
-  <span class='kw'>ask</span> <span class='kw'>=</span> (<span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>which</span>) + <span class='no'>plot.summary</span> * <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>which.summary</span>) + <span class='no'>plot.summary.year</span> *
-    <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>which.summary.year</span>) <span class='kw'>&gt;</span> <span class='fl'>1</span>) <span class='kw'>&amp;&amp;</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/dev.interactive.html'>dev.interactive</a></span>(),
-  <span class='no'>...</span>
-)</pre>
+<span class='fu'><a href='https://rdrr.io/r/graphics/plot.default.html'>plot</a></span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  <span class='va'>filter</span>,
+  which <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,
+  plot.summary <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  which.summary <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>5</span>,
+  nmax <span class='op'>=</span> <span class='fl'>10</span>,
+  plot.summary.year <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  which.summary.year <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span>,
+  accuracy <span class='op'>=</span> <span class='fl'>0.1</span>,
+  ask <span class='op'>=</span> <span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>which</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>plot.summary</span> <span class='op'>*</span> <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>which.summary</span><span class='op'>)</span> <span class='op'>+</span> <span class='va'>plot.summary.year</span> <span class='op'>*</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>which.summary.year</span><span class='op'>)</span> <span class='op'>&gt;</span> <span class='fl'>1</span><span class='op'>)</span> <span class='op'>&amp;&amp;</span> <span class='fu'><a href='https://rdrr.io/r/grDevices/dev.interactive.html'>dev.interactive</a></span><span class='op'>(</span><span class='op'>)</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -225,7 +225,7 @@ see <code><a href='https://rdrr.io/r/graphics/par.html'>par</a>(ask=.)</code>.</
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>An S3 object of <code><a href='https://rdrr.io/r/base/class.html'>class</a></code> <code>wos.db</code>.
-A <code>list</code> with the folowing <code>data.frame</code>s:</p><dl'>
+A <code>list</code> with the folowing <code>data.frame</code>s:</p><dl>
   <dt>Docs</dt><dd><p></p></dd>
 
 </dl><p>Authors AutDoc Categories CatDoc Areas AreaDoc Addresses AddAutDoc Sources</p>
@@ -236,9 +236,12 @@ A <code>list</code> with the folowing <code>data.frame</code>s:</p><dl'>
 <p><code><a href='summary.wos.db.html'>plot.summary.wos.db</a></code>, <code><a href='summary_year.html'>plot.summary.year</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>db</span> <span class='kw'>&lt;-</span> <span class='fu'>CreateDB.wos</span>(<span class='no'>wosdf</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span>(<span class='no'>db</span>, <span class='fl'>1</span>)</div><div class='output co'>#&gt; List of 11
+    <pre class="examples"><div class='input'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='fu'>CreateDB.wos</span><span class='op'>(</span><span class='va'>wosdf</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='fl'>1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; List of 11
 #&gt;  $ Docs      :'data.frame':	856 obs. of  25 variables:
+#&gt;   ..- attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
+#&gt;   .. ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
 #&gt;  $ Authors   :'data.frame':	4053 obs. of  4 variables:
 #&gt;  $ AutDoc    :'data.frame':	5511 obs. of  2 variables:
 #&gt;  $ Categories:'data.frame':	189 obs. of  2 variables:
@@ -251,8 +254,11 @@ A <code>list</code> with the folowing <code>data.frame</code>s:</p><dl'>
 #&gt;  $ label     : chr ""
 #&gt;  - attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
 #&gt;   ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
-#&gt;  - attr(*, "class")= chr "wos.db"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span>(<span class='no'>db</span>)</div><div class='output co'>#&gt; List of 11
+#&gt;  - attr(*, "class")= chr "wos.db"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>db</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; List of 11
 #&gt;  $ Docs      :'data.frame':	856 obs. of  25 variables:
+#&gt;   ..- attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
+#&gt;   .. ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
 #&gt;  $ Authors   :'data.frame':	4053 obs. of  4 variables:
 #&gt;  $ AutDoc    :'data.frame':	5511 obs. of  2 variables:
 #&gt;  $ Categories:'data.frame':	189 obs. of  2 variables:
@@ -265,7 +271,8 @@ A <code>list</code> with the folowing <code>data.frame</code>s:</p><dl'>
 #&gt;  $ label     : chr ""
 #&gt;  - attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
 #&gt;   ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
-#&gt;  - attr(*, "class")= chr "wos.db"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span>(<span class='no'>db</span>)</div><div class='output co'>#&gt; Number of documents: 856 
+#&gt;  - attr(*, "class")= chr "wos.db"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>db</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Number of documents: 856 
 #&gt; Authors: 4053 
 #&gt; Period: 2015 
 #&gt; 
@@ -367,7 +374,7 @@ A <code>list</code> with the folowing <code>data.frame</code>s:</p><dl'>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

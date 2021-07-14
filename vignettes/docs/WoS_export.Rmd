@@ -2,10 +2,10 @@
 title: "Descarga de datos de la Web of Science"
 author: "UDC Ranking's Group"
 date: '`r paste("scimetr", packageVersion("scimetr"),":", Sys.Date())`'
-# resource_files:
-#   - wos1.png
-#   - wos2.png
-#   - wos3.png
+resource_files:
+  - wos1.png
+  - wos2.png
+  - wos3.png
 output: 
   rmarkdown::html_vignette:
     toc: yes
@@ -44,6 +44,7 @@ principal de WoS) en el desplegable superior, desplegar más ajustes
 ```{r echo=FALSE}
 # ![](wos1.png){width="80%"}
 knitr::include_graphics("wos1.png")
+# embed_png("wos1.png")
 ```
 
 <br>
@@ -75,6 +76,7 @@ descarga de archivos).
 ```{r echo=FALSE}
 # ![](wos2.png){width="80%"}
 knitr::include_graphics("wos2.png")
+# embed_png("wos2.png")
 ```
 
 <br>

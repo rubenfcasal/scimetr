@@ -39,7 +39,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -71,7 +71,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/rubenfcasal/scimetr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -85,13 +85,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="scimetr_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to the scimetr Package</h1>
                         <h4 class="author">UDC Ranking’s Group</h4>
             
-            <h4 class="date">scimetr 0.3.3 : 2021-07-02</h4>
+            <h4 class="date">scimetr 0.3.3 : 2021-07-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenfcasal/scimetr/blob/master/vignettes/scimetr.Rmd"><code>vignettes/scimetr.Rmd</code></a></small>
       <div class="hidden name"><code>scimetr.Rmd</code></div>
@@ -101,7 +101,8 @@
     
     
 <p>This vignette (a working draft, in Spanish) tries to illustrate the use of the <code>scimetr</code> package …</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">scimetr</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rubenfcasal/scimetr">scimetr</a></span><span class="op">)</span></code></pre></div>
 <pre><code>##  scimetr: Analysis of Scientific Publication Data with R,
 ##  version 0.3.3 (built on 2021-05-31).
 ##  Copyright (C) UDC Rankings Group 2017-2021.
@@ -113,10 +114,12 @@
 <h2 class="hasAnchor">
 <a href="#instalaci%C3%B3n" class="anchor"></a>Instalación</h2>
 <p>Para instalar el paquete sería recomendable en primer lugar instalar las dependencias:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">'dplyr'</span>, <span class="st">'dbplyr'</span>,<span class="st">'RSQLite'</span>, <span class="st">'lazyeval'</span>, <span class="st">'stringr'</span>, <span class="st">'ggplot2'</span>, <span class="st">'openxlsx'</span>, <span class="st">'tidyr'</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'dplyr'</span>, <span class="st">'dbplyr'</span>,<span class="st">'RSQLite'</span>, <span class="st">'lazyeval'</span>, <span class="st">'stringr'</span>, <span class="st">'ggplot2'</span>, <span class="st">'tidyr'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Como de momento no está disponible en CRAN, habría que instalar la versión de desarrollo en GitHub (en el repositorio <a href="https://github.com/rubenfcasal/scimetr">rubenfcasal/scimetr</a>). En Windows bastaría con instalar la versión binaria del paquete <em>scimetr_X.Y.Z.zip</em> (disponible <a href="https://github.com/rubenfcasal/scimetr/tree/master/docs">aquí</a>), alternativamente se puede instalar directamente de GitHub:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"rubenfcasal/scimetr"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"rubenfcasal/scimetr"</span><span class="op">)</span></code></pre></div>
 <p>Una vez instalado ya podríamos cargar el paquete.</p>
 </div>
 <div id="carga-de-datos" class="section level2">
@@ -128,13 +131,15 @@
 <h3 class="hasAnchor">
 <a href="#cargar-datos-de-directorio" class="anchor"></a>Cargar datos de directorio</h3>
 <p>Se pueden cargar automáticamente los archivos WoS (que por defecto tienen una limitación de 500 registros) de un subdirectorio:</p>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span>(<span class="st">"UDC_2008-2017 (01-02-2019)"</span>, <span class="kw">pattern</span><span class="kw">=</span><span class="st">'*.txt'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/list.files.html">dir</a></span><span class="op">(</span><span class="st">"UDC_2008-2017 (01-02-2019)"</span>, pattern<span class="op">=</span><span class="st">'*.txt'</span><span class="op">)</span></code></pre></div>
 <pre><code>##  [1] "savedrecs01.txt" "savedrecs02.txt" "savedrecs03.txt" "savedrecs04.txt"
 ##  [5] "savedrecs05.txt" "savedrecs06.txt" "savedrecs07.txt" "savedrecs08.txt"
 ##  [9] "savedrecs09.txt" "savedrecs10.txt" "savedrecs11.txt" "savedrecs12.txt"
 ## [13] "savedrecs13.txt" "savedrecs14.txt" "savedrecs15.txt"</code></pre>
 <p>Para combinar los ficheros en un <code>data.frame</code> se emplea la función <code><a href="../reference/ImportSources.wos.html">ImportSources.wos()</a></code>:</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">wos.txt</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/ImportSources.wos.html">ImportSources.wos</a></span>(<span class="st">"UDC_2008-2017 (01-02-2019)"</span>, <span class="kw">other</span> <span class="kw">=</span> <span class="fl">FALSE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">wos.txt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ImportSources.wos.html">ImportSources.wos</a></span><span class="op">(</span><span class="st">"UDC_2008-2017 (01-02-2019)"</span>, other <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>A continuación habrá que crear la base de datos con la función <code><a href="../reference/CreateDB.wos.html">CreateDB.wos()</a></code>, como se muestra más adelante.</p>
 </div>
 <div id="datos-de-ejemplo" class="section level3">
@@ -146,261 +151,262 @@
 <li><p><code>wosdf2</code>: área de investigación ‘Mathematics’, años 2008-2017.</p></li>
 </ul>
 <p>Variables WoS:</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="co"># View(wosdf2) # En RStudio...</span>
-<span class="no">variable.labels</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span>(<span class="no">wosdf</span>, <span class="st">"variable.labels"</span>)
-<span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(<span class="no">variable.labels</span>)) <span class="co"># caption = "Variable labels"</span></pre></body></html></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># View(wosdf2) # En RStudio...</span>
+<span class="va">variable.labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html">attr</a></span><span class="op">(</span><span class="va">wosdf</span>, <span class="st">"variable.labels"</span><span class="op">)</span>
+<span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">variable.labels</span><span class="op">)</span><span class="op">)</span> <span class="co"># caption = "Variable labels"</span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="left">variable.labels</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td>PT</td>
+<td align="left">PT</td>
 <td align="left">Publication type</td>
 </tr>
 <tr class="even">
-<td>AU</td>
+<td align="left">AU</td>
 <td align="left">Author</td>
 </tr>
 <tr class="odd">
-<td>BA</td>
+<td align="left">BA</td>
 <td align="left">Book authors</td>
 </tr>
 <tr class="even">
-<td>BE</td>
+<td align="left">BE</td>
 <td align="left">Editor</td>
 </tr>
 <tr class="odd">
-<td>GP</td>
+<td align="left">GP</td>
 <td align="left">Group author</td>
 </tr>
 <tr class="even">
-<td>AF</td>
+<td align="left">AF</td>
 <td align="left">Author full</td>
 </tr>
 <tr class="odd">
-<td>BF</td>
+<td align="left">BF</td>
 <td align="left">Book authors fullname</td>
 </tr>
 <tr class="even">
-<td>CA</td>
+<td align="left">CA</td>
 <td align="left">Corporate author</td>
 </tr>
 <tr class="odd">
-<td>TI</td>
+<td align="left">TI</td>
 <td align="left">Title</td>
 </tr>
 <tr class="even">
-<td>SO</td>
+<td align="left">SO</td>
 <td align="left">Publication name</td>
 </tr>
 <tr class="odd">
-<td>SE</td>
+<td align="left">SE</td>
 <td align="left">Series title</td>
 </tr>
 <tr class="even">
-<td>BS</td>
+<td align="left">BS</td>
 <td align="left">Book series</td>
 </tr>
 <tr class="odd">
-<td>LA</td>
+<td align="left">LA</td>
 <td align="left">Language</td>
 </tr>
 <tr class="even">
-<td>DT</td>
+<td align="left">DT</td>
 <td align="left">Document type</td>
 </tr>
 <tr class="odd">
-<td>CT</td>
+<td align="left">CT</td>
 <td align="left">Conference title</td>
 </tr>
 <tr class="even">
-<td>CY</td>
+<td align="left">CY</td>
 <td align="left">Conference year</td>
 </tr>
 <tr class="odd">
-<td>CL</td>
+<td align="left">CL</td>
 <td align="left">Conference place</td>
 </tr>
 <tr class="even">
-<td>SP</td>
+<td align="left">SP</td>
 <td align="left">Conference sponsors</td>
 </tr>
 <tr class="odd">
-<td>HO</td>
+<td align="left">HO</td>
 <td align="left">Conference host</td>
 </tr>
 <tr class="even">
-<td>DE</td>
+<td align="left">DE</td>
 <td align="left">Keywords</td>
 </tr>
 <tr class="odd">
-<td>ID</td>
+<td align="left">ID</td>
 <td align="left">Keywords Plus</td>
 </tr>
 <tr class="even">
-<td>AB</td>
+<td align="left">AB</td>
 <td align="left">Abstract</td>
 </tr>
 <tr class="odd">
-<td>C1</td>
+<td align="left">C1</td>
 <td align="left">Addresses</td>
 </tr>
 <tr class="even">
-<td>RP</td>
+<td align="left">RP</td>
 <td align="left">Reprint author</td>
 </tr>
 <tr class="odd">
-<td>EM</td>
+<td align="left">EM</td>
 <td align="left">Author email</td>
 </tr>
 <tr class="even">
-<td>RI</td>
+<td align="left">RI</td>
 <td align="left">Researcher id numbers</td>
 </tr>
 <tr class="odd">
-<td>OI</td>
+<td align="left">OI</td>
 <td align="left">Orcid numbers</td>
 </tr>
 <tr class="even">
-<td>FU</td>
+<td align="left">FU</td>
 <td align="left">Funding agency and grant number</td>
 </tr>
 <tr class="odd">
-<td>FX</td>
+<td align="left">FX</td>
 <td align="left">Funding text</td>
 </tr>
 <tr class="even">
-<td>CR</td>
+<td align="left">CR</td>
 <td align="left">Cited references</td>
 </tr>
 <tr class="odd">
-<td>NR</td>
+<td align="left">NR</td>
 <td align="left">Number of cited references</td>
 </tr>
 <tr class="even">
-<td>TC</td>
+<td align="left">TC</td>
 <td align="left">Times cited</td>
 </tr>
 <tr class="odd">
-<td>Z9</td>
+<td align="left">Z9</td>
 <td align="left">Total times cited count</td>
 </tr>
 <tr class="even">
-<td>U1</td>
+<td align="left">U1</td>
 <td align="left">Usage Count (Last 180 Days)</td>
 </tr>
 <tr class="odd">
-<td>U2</td>
+<td align="left">U2</td>
 <td align="left">Usage Count (Since 2013)</td>
 </tr>
 <tr class="even">
-<td>PU</td>
+<td align="left">PU</td>
 <td align="left">Publisher</td>
 </tr>
 <tr class="odd">
-<td>PI</td>
+<td align="left">PI</td>
 <td align="left">Publisher city</td>
 </tr>
 <tr class="even">
-<td>PA</td>
+<td align="left">PA</td>
 <td align="left">Publisher address</td>
 </tr>
 <tr class="odd">
-<td>SN</td>
+<td align="left">SN</td>
 <td align="left">ISSN</td>
 </tr>
 <tr class="even">
-<td>EI</td>
+<td align="left">EI</td>
 <td align="left">eISSN</td>
 </tr>
 <tr class="odd">
-<td>BN</td>
+<td align="left">BN</td>
 <td align="left">ISBN</td>
 </tr>
 <tr class="even">
-<td>J9</td>
+<td align="left">J9</td>
 <td align="left">Journal.ISI</td>
 </tr>
 <tr class="odd">
-<td>JI</td>
+<td align="left">JI</td>
 <td align="left">Journal.ISO</td>
 </tr>
 <tr class="even">
-<td>PD</td>
+<td align="left">PD</td>
 <td align="left">Publication date</td>
 </tr>
 <tr class="odd">
-<td>PY</td>
+<td align="left">PY</td>
 <td align="left">Year published</td>
 </tr>
 <tr class="even">
-<td>VL</td>
+<td align="left">VL</td>
 <td align="left">Volume</td>
 </tr>
 <tr class="odd">
-<td>IS</td>
+<td align="left">IS</td>
 <td align="left">Issue</td>
 </tr>
 <tr class="even">
-<td>PN</td>
+<td align="left">PN</td>
 <td align="left">Part number</td>
 </tr>
 <tr class="odd">
-<td>SU</td>
+<td align="left">SU</td>
 <td align="left">Supplement</td>
 </tr>
 <tr class="even">
-<td>SI</td>
+<td align="left">SI</td>
 <td align="left">Special issue</td>
 </tr>
 <tr class="odd">
-<td>MA</td>
+<td align="left">MA</td>
 <td align="left">Meeting abstract</td>
 </tr>
 <tr class="even">
-<td>BP</td>
+<td align="left">BP</td>
 <td align="left">Beginning page</td>
 </tr>
 <tr class="odd">
-<td>EP</td>
+<td align="left">EP</td>
 <td align="left">Ending page</td>
 </tr>
 <tr class="even">
-<td>AR</td>
+<td align="left">AR</td>
 <td align="left">Article number</td>
 </tr>
 <tr class="odd">
-<td>DI</td>
+<td align="left">DI</td>
 <td align="left">DOI</td>
 </tr>
 <tr class="even">
-<td>D2</td>
+<td align="left">D2</td>
 <td align="left">Book DOI</td>
 </tr>
 <tr class="odd">
-<td>PG</td>
+<td align="left">PG</td>
 <td align="left">Page count</td>
 </tr>
 <tr class="even">
-<td>WC</td>
+<td align="left">WC</td>
 <td align="left">WOS category</td>
 </tr>
 <tr class="odd">
-<td>SC</td>
+<td align="left">SC</td>
 <td align="left">Research areas</td>
 </tr>
 <tr class="even">
-<td>GA</td>
+<td align="left">GA</td>
 <td align="left">Document delivery number</td>
 </tr>
 <tr class="odd">
-<td>UT</td>
+<td align="left">UT</td>
 <td align="left">Access number</td>
 </tr>
 <tr class="even">
-<td>PM</td>
+<td align="left">PM</td>
 <td align="left">Pub Med ID</td>
 </tr>
 </tbody>
@@ -411,10 +417,13 @@
 <h2 class="hasAnchor">
 <a href="#creaci%C3%B3n-de-la-base-de-datos" class="anchor"></a>Creación de la base de datos</h2>
 <p>Para crear la base de datos se emplea la función <code><a href="../reference/CreateDB.wos.html">CreateDB.wos()</a></code>:</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">db</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/CreateDB.wos.html">CreateDB.wos</a></span>(<span class="no">wosdf2</span>, <span class="kw">label</span> <span class="kw">=</span> <span class="st">"Mathematics_UDC_2008-2017 (01-02-2019)"</span>)
-<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">db</span>, <span class="fl">1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CreateDB.wos.html">CreateDB.wos</a></span><span class="op">(</span><span class="va">wosdf2</span>, label <span class="op">=</span> <span class="st">"Mathematics_UDC_2008-2017 (01-02-2019)"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">db</span>, <span class="fl">1</span><span class="op">)</span></code></pre></div>
 <pre><code>## List of 11
 ##  $ Docs      :'data.frame':  389 obs. of  25 variables:
+##   ..- attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
+##   .. ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
 ##  $ Authors   :'data.frame':  610 obs. of  4 variables:
 ##  $ AutDoc    :'data.frame':  1260 obs. of  2 variables:
 ##  $ Categories:'data.frame':  46 obs. of  2 variables:
@@ -437,9 +446,10 @@
 <h3 class="hasAnchor">
 <a href="#sumario-summary-wos-db" class="anchor"></a>Sumario <code>summary.wos.db()</code>
 </h3>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">res1</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">db</span>)
-<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span>(<span class="kw">digits</span> <span class="kw">=</span> <span class="fl">5</span>)
-<span class="no">res1</span></pre></body></html></div>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">db</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
+<span class="va">res1</span></code></pre></div>
 <pre><code>## Number of documents: 389 
 ## Authors: 610 
 ## Period: 2008 - 2017 
@@ -528,8 +538,9 @@
 <h3 class="hasAnchor">
 <a href="#sumario-por-a%C3%B1os-summary_year" class="anchor"></a>Sumario por años <code>summary_year()</code>
 </h3>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">res2</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/summary_year.html">summary_year</a></span>(<span class="no">db</span>)
-<span class="no">res2</span></pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/summary_year.html">summary_year</a></span><span class="op">(</span><span class="va">db</span><span class="op">)</span>
+<span class="va">res2</span></code></pre></div>
 <pre><code>## 
 ## Annual Scientific Production:
 ## 
@@ -547,31 +558,31 @@
 ## 
 ## Annual Authors per Document:
 ## 
-##          Avg Median
-##  2008 2.8810    3.0
-##  2009 3.3214    3.0
-##  2010 3.3500    3.0
-##  2011 3.3784    3.0
-##  2012 2.8182    2.5
-##  2013 3.3750    3.0
-##  2014 3.2368    3.0
-##  2015 3.0513    3.0
-##  2016 3.5745    3.0
-##  2017 3.4706    3.0
+##            Avg Median
+##  2008 2.880952    3.0
+##  2009 3.321429    3.0
+##  2010 3.350000    3.0
+##  2011 3.378378    3.0
+##  2012 2.818182    2.5
+##  2013 3.375000    3.0
+##  2014 3.236842    3.0
+##  2015 3.051282    3.0
+##  2016 3.574468    3.0
+##  2017 3.470588    3.0
 ## 
 ## Annual Times Cited:
 ## 
-##       Cites     Avg Median
-##  2008   755 17.9762    5.0
-##  2009   265  9.4643    6.0
-##  2010   410 10.2500    5.0
-##  2011  1422 38.4324    5.0
-##  2012   335  7.6136    3.5
-##  2013   271  6.7750    4.0
-##  2014   336  8.8421    3.5
-##  2015   215  5.5128    2.0
-##  2016   192  4.0851    2.0
-##  2017    55  1.6176    1.0</code></pre>
+##       Cites       Avg Median
+##  2008   755 17.976190    5.0
+##  2009   265  9.464286    6.0
+##  2010   410 10.250000    5.0
+##  2011  1422 38.432432    5.0
+##  2012   335  7.613636    3.5
+##  2013   271  6.775000    4.0
+##  2014   336  8.842105    3.5
+##  2015   215  5.512821    2.0
+##  2016   192  4.085106    2.0
+##  2017    55  1.617647    1.0</code></pre>
 </div>
 </div>
 <div id="gráficos" class="section level2">
@@ -582,25 +593,30 @@
 <h3 class="hasAnchor">
 <a href="#gr%C3%A1ficos-de-la-base-de-datos-plot-wos-db" class="anchor"></a>Gráficos de la base de datos <code>plot.wos.db()</code>
 </h3>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">db</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">db</span><span class="op">)</span></code></pre></div>
 <p><img src="scimetr_files/figure-html/plotdb-1.png" width="100%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/plotdb-2.png" width="100%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/plotdb-3.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
 <div id="gráficos-sumario-plot-summary-wos-db" class="section level3">
 <h3 class="hasAnchor">
 <a href="#gr%C3%A1ficos-sumario-plot-summary-wos-db" class="anchor"></a>Gráficos sumario <code>plot.summary.wos.db()</code>
 </h3>
-<div class="sourceCode" id="cb16"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">res1</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">res1</span><span class="op">)</span></code></pre></div>
 <p><img src="scimetr_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-2.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-3.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-4.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-5.png" width="100%" style="display: block; margin: auto auto auto 0;"></p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">res1</span>, <span class="kw">pie</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">res1</span>, pie <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="scimetr_files/figure-html/unnamed-chunk-8-6.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-7.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-8.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-9.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-10.png" width="100%" style="display: block; margin: auto auto auto 0;"></p>
 </div>
 <div id="gráficos-sumario-por-años-plot-summary-year" class="section level3">
 <h3 class="hasAnchor">
 <a href="#gr%C3%A1ficos-sumario-por-a%C3%B1os-plot-summary-year" class="anchor"></a>Gráficos sumario por años <code>plot.summary.year()</code>
 </h3>
-<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">res2</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">res2</span><span class="op">)</span></code></pre></div>
 <p><img src="scimetr_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-9-2.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-9-3.png" width="100%" style="display: block; margin: auto auto auto 0;"></p>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="no">res2</span>, <span class="kw">boxplot</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html">plot</a></span><span class="op">(</span><span class="va">res2</span>, boxplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <p><img src="scimetr_files/figure-html/unnamed-chunk-9-4.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-9-5.png" width="100%" style="display: block; margin: auto auto auto 0;"></p>
 </div>
 </div>
@@ -615,28 +631,33 @@
 <li>
 <p><code><a href="../reference/get.idDocs.html">get.idAuthors()</a></code>: buscar id (códigos) de autores</p>
 <p>Buscar un autor concreto:</p>
-<div class="sourceCode" id="cb20"><html><body><pre class="r"><span class="no">idAuthor</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idAuthors</a></span>(<span class="no">db</span>, <span class="no">AF</span> <span class="kw">==</span> <span class="st">"Cao, Ricardo"</span>)
-<span class="no">idAuthor</span></pre></body></html></div>
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">idAuthor</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idAuthors</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">AF</span> <span class="op">==</span> <span class="st">"Cao, Ricardo"</span><span class="op">)</span>
+<span class="va">idAuthor</span></code></pre></div>
 <pre><code>## Cao, Ricardo 
 ##           16</code></pre>
 <p>Buscar en nombres de autores:</p>
-<div class="sourceCode" id="cb22"><html><body><pre class="r"><span class="no">idAuthors</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idAuthors</a></span>(<span class="no">db</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">'Cao'</span>, <span class="no">AF</span>))
-<span class="no">idAuthors</span></pre></body></html></div>
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">idAuthors</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idAuthors</a></span><span class="op">(</span><span class="va">db</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">'Cao'</span>, <span class="va">AF</span><span class="op">)</span><span class="op">)</span>
+<span class="va">idAuthors</span></code></pre></div>
 <pre><code>##           Cao, Ricardo Cao-Rial, Maria Teresa 
 ##                     16                     69</code></pre>
 </li>
 <li>
 <p><code><a href="../reference/get.idDocs.html">get.idAreas()</a></code>: Devuelve códigos de las áreas</p>
-<div class="sourceCode" id="cb24"><html><body><pre class="r"><span class="fu"><a href="../reference/get.idDocs.html">get.idAreas</a></span>(<span class="no">db</span>, <span class="no">SC</span> <span class="kw">==</span> <span class="st">'Mathematics'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get.idDocs.html">get.idAreas</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">SC</span> <span class="op">==</span> <span class="st">'Mathematics'</span><span class="op">)</span></code></pre></div>
 <pre><code>## Mathematics 
 ##          16</code></pre>
-<div class="sourceCode" id="cb26"><html><body><pre class="r"><span class="fu"><a href="../reference/get.idDocs.html">get.idAreas</a></span>(<span class="no">db</span>, <span class="no">SC</span> <span class="kw">==</span> <span class="st">'Mathematics'</span> <span class="kw">|</span> <span class="no">SC</span> <span class="kw">==</span> <span class="st">'Computer Science'</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get.idDocs.html">get.idAreas</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">SC</span> <span class="op">==</span> <span class="st">'Mathematics'</span> <span class="op">|</span> <span class="va">SC</span> <span class="op">==</span> <span class="st">'Computer Science'</span><span class="op">)</span></code></pre></div>
 <pre><code>## Computer Science      Mathematics 
 ##                7               16</code></pre>
 </li>
 <li>
 <p><code><a href="../reference/get.idDocs.html">get.idCategories()</a></code>: códigos de las categorías</p>
-<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="fu"><a href="../reference/get.idDocs.html">get.idCategories</a></span>(<span class="no">db</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">'Mathematics'</span>, <span class="no">WC</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/get.idDocs.html">get.idCategories</a></span><span class="op">(</span><span class="va">db</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">'Mathematics'</span>, <span class="va">WC</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>##                                 Mathematics 
 ##                                          28 
 ##                        Mathematics, Applied 
@@ -646,15 +667,16 @@
 </li>
 <li>
 <p><code><a href="../reference/get.idDocs.html">get.idSources()</a></code> códigos de las fuentes (revistas, libros o colecciones)</p>
-<div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="no">ijss</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idSources</a></span>(<span class="no">db</span>, <span class="no">SO</span> <span class="kw">==</span> <span class="st">'JOURNAL OF STATISTICAL SOFTWARE'</span>)
-<span class="no">ijss</span></pre></body></html></div>
+<div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ijss</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idSources</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">SO</span> <span class="op">==</span> <span class="st">'JOURNAL OF STATISTICAL SOFTWARE'</span><span class="op">)</span>
+<span class="va">ijss</span></code></pre></div>
 <pre><code>## [1] 70</code></pre>
-<div class="sourceCode" id="cb32"><html><body><pre class="r"><span class="kw pkg">knitr</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="no">db</span>$<span class="no">Journals</span>[<span class="no">ijss</span>, ], <span class="kw">caption</span> <span class="kw">=</span> <span class="st">"JSS"</span>)</pre></body></html></div>
-<pre><code>## Warning in kable_markdown(x, padding = padding, ...): The table should have a
-## header (column names)</code></pre>
+<div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="va">db</span><span class="op">$</span><span class="va">Journals</span><span class="op">[</span><span class="va">ijss</span>, <span class="op">]</span>, caption <span class="op">=</span> <span class="st">"JSS"</span><span class="op">)</span></code></pre></div>
 <p>Table: JSS</p>
 <p>|| || || ||</p>
-<div class="sourceCode" id="cb34"><html><body><pre class="r"># get.idSources(db, JI == 'J. Stat. Softw.')</pre></body></html></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># get.idSources(db, JI == 'J. Stat. Softw.')</span></code></pre></div>
 </li>
 </ul>
 </div>
@@ -662,8 +684,9 @@
 <h3 class="hasAnchor">
 <a href="#obtener-documentos-de-autores-revistas" class="anchor"></a>Obtener documentos (de autores, revistas, …)</h3>
 <p>Los indices anteriores se pueden combinar en <code><a href="../reference/get.idDocs.html">get.idDocs()</a></code></p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="no">idocs</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idDocs</a></span>(<span class="no">db</span>, <span class="kw">idAuthors</span> <span class="kw">=</span> <span class="no">idAuthor</span>)
-<span class="no">idocs</span></pre></body></html></div>
+<div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">idocs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idDocs</a></span><span class="op">(</span><span class="va">db</span>, idAuthors <span class="op">=</span> <span class="va">idAuthor</span><span class="op">)</span>
+<span class="va">idocs</span></code></pre></div>
 <pre><code>##  [1]  10  16  23  33  40  56 128 183 187 196 210 220 269 286 295 312 315 332 340
 ## [20] 346 347 350 359 362 372 375 384 385</code></pre>
 <p>Los índices de documentos se pueden utilizar como filtro p.e. en <code><a href="../reference/summary.wos.db.html">summary.wos.db()</a></code>.</p>
@@ -672,7 +695,8 @@
 <h3 class="hasAnchor">
 <a href="#sumarios-filtrados" class="anchor"></a>Sumarios filtrados</h3>
 <p>Obtener sumario de autor(es):</p>
-<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span>(<span class="no">db</span>, <span class="no">idocs</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">idocs</span><span class="op">)</span></code></pre></div>
 <pre><code>## Number of documents: 28 
 ## Authors: 40 
 ## Period: 2008 - 2017 
@@ -685,7 +709,7 @@
 ## 
 ## Number of authors per document:
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##    2.00    2.00    3.00    3.14    4.00    6.00 
+##   2.000   2.000   3.000   3.143   4.000   6.000 
 ## 
 ## Number of documents per author:
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
@@ -753,7 +777,8 @@
 ## Mexico            1
 ## Norway            1</code></pre>
 <p>Obtener sumario de autor(es) por años:</p>
-<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="fu"><a href="../reference/summary_year.html">summary_year</a></span>(<span class="no">db</span>, <span class="no">idocs</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/summary_year.html">summary_year</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">idocs</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Annual Scientific Production:
 ## 
@@ -770,36 +795,37 @@
 ## 
 ## Annual Authors per Document:
 ## 
-##          Avg Median
-##  2008 2.4286    2.0
-##  2009 3.7500    3.5
-##  2010 3.5000    3.5
-##  2011 4.0000    4.0
-##  2012 3.0000    3.0
-##  2013 3.6667    4.0
-##  2014 2.0000    2.0
-##  2016 2.5000    2.5
-##  2017 3.5000    3.5
+##            Avg Median
+##  2008 2.428571    2.0
+##  2009 3.750000    3.5
+##  2010 3.500000    3.5
+##  2011 4.000000    4.0
+##  2012 3.000000    3.0
+##  2013 3.666667    4.0
+##  2014 2.000000    2.0
+##  2016 2.500000    2.5
+##  2017 3.500000    3.5
 ## 
 ## Annual Times Cited:
 ## 
-##       Cites    Avg Median
-##  2008    42 6.0000    6.0
-##  2009    20 5.0000    3.0
-##  2010     9 2.2500    2.0
-##  2011     1 1.0000    1.0
-##  2012     1 0.5000    0.5
-##  2013     8 2.6667    2.0
-##  2014     4 4.0000    4.0
-##  2016     3 1.5000    1.5
-##  2017     3 0.7500    0.5</code></pre>
+##       Cites      Avg Median
+##  2008    42 6.000000    6.0
+##  2009    20 5.000000    3.0
+##  2010     9 2.250000    2.0
+##  2011     1 1.000000    1.0
+##  2012     1 0.500000    0.5
+##  2013     8 2.666667    2.0
+##  2014     4 4.000000    4.0
+##  2016     3 1.500000    1.5
+##  2017     3 0.750000    0.5</code></pre>
 </div>
 </div>
 <div id="indices-de-autores" class="section level2">
 <h2 class="hasAnchor">
 <a href="#indices-de-autores" class="anchor"></a>Indices de autores</h2>
 <p>Obtener índices de múltiples autores</p>
-<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="fu"><a href="../reference/summary.wos.db.html">TC.authors</a></span>(<span class="no">db</span>, <span class="no">idAuthors</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/summary.wos.db.html">TC.authors</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">idAuthors</span><span class="op">)</span></code></pre></div>
 <pre><code>##                        H G
 ## Cao, Ricardo           5 7
 ## Cao-Rial, Maria Teresa 1 1</code></pre>
@@ -829,7 +855,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
