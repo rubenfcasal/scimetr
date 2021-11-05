@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scimetr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
       </span>
     </div>
 
@@ -175,129 +175,132 @@ A <code>list</code> with the folowing <code>data.frame</code>s:</p><dl>
     <div class='dont-index'><p><code><a href='wosdf.html'>wosdf</a></code>, , <code><a href='ImportSources.wos.html'>ImportSources.wos</a></code>, <code><a href='CreateDB.wos.html'>CreateDB.wos</a></code>.</p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='fu'><a href='CreateDB.wos.html'>CreateDB.wos</a></span><span class='op'>(</span><span class='va'>wosdf</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='fl'>1</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; List of 11
-#&gt;  $ Docs      :'data.frame':	856 obs. of  25 variables:
-#&gt;   ..- attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
-#&gt;   .. ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
-#&gt;  $ Authors   :'data.frame':	4053 obs. of  4 variables:
-#&gt;  $ AutDoc    :'data.frame':	5511 obs. of  2 variables:
-#&gt;  $ Categories:'data.frame':	189 obs. of  2 variables:
-#&gt;  $ CatDoc    :'data.frame':	1495 obs. of  2 variables:
-#&gt;  $ Areas     :'data.frame':	121 obs. of  2 variables:
-#&gt;  $ AreaDoc   :'data.frame':	1364 obs. of  2 variables:
-#&gt;  $ Addresses :'data.frame':	3655 obs. of  5 variables:
-#&gt;  $ AddAutDoc :'data.frame':	7751 obs. of  3 variables:
-#&gt;  $ Sources   :'data.frame':	520 obs. of  14 variables:
-#&gt;  $ label     : chr ""
-#&gt;  - attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
-#&gt;   ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
-#&gt;  - attr(*, "class")= chr "wos.db"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>db</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; List of 11
-#&gt;  $ Docs      :'data.frame':	856 obs. of  25 variables:
-#&gt;   ..- attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
-#&gt;   .. ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
-#&gt;  $ Authors   :'data.frame':	4053 obs. of  4 variables:
-#&gt;  $ AutDoc    :'data.frame':	5511 obs. of  2 variables:
-#&gt;  $ Categories:'data.frame':	189 obs. of  2 variables:
-#&gt;  $ CatDoc    :'data.frame':	1495 obs. of  2 variables:
-#&gt;  $ Areas     :'data.frame':	121 obs. of  2 variables:
-#&gt;  $ AreaDoc   :'data.frame':	1364 obs. of  2 variables:
-#&gt;  $ Addresses :'data.frame':	3655 obs. of  5 variables:
-#&gt;  $ AddAutDoc :'data.frame':	7751 obs. of  3 variables:
-#&gt;  $ Sources   :'data.frame':	520 obs. of  14 variables:
-#&gt;  $ label     : chr ""
-#&gt;  - attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...
-#&gt;   ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...
-#&gt;  - attr(*, "class")= chr "wos.db"</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>db</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Number of documents: 856 
-#&gt; Authors: 4053 
-#&gt; Period: 2015 
-#&gt; 
-#&gt; Document types:
-#&gt;                            Documents
-#&gt; Article                          618
-#&gt; Article; Proceedings Paper        28
-#&gt; Book Review                        7
-#&gt; Correction                         4
-#&gt; Editorial Material                22
-#&gt; Letter                            24
-#&gt; Meeting Abstract                 114
-#&gt; News Item                          2
-#&gt; Review                            37
-#&gt; 
-#&gt; Number of authors per document:
-#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#&gt;   1.000   3.000   5.000   6.438   8.000  98.000 
-#&gt; 
-#&gt; Number of documents per author:
-#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#&gt;    1.00    1.00    1.00    1.36    1.00   16.00 
-#&gt; 
-#&gt; Number of times cited:
-#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-#&gt;   0.000   0.000   1.000   2.071   3.000  28.000 
-#&gt; 
-#&gt; Indexes:
-#&gt;  H  G 
-#&gt; 14 17 
-#&gt; 
-#&gt; Top Categories:
-#&gt;                                           Documents
-#&gt; Rheumatology                                     48
-#&gt; Cardiac &amp; Cardiovascular Systems                 40
-#&gt; Environmental Sciences                           39
-#&gt; Engineering, Civil                               35
-#&gt; Plant Sciences                                   31
-#&gt; Surgery                                          31
-#&gt; Oncology                                         26
-#&gt; Respiratory System                               26
-#&gt; Chemistry, Analytical                            25
-#&gt; Computer Science, Artificial Intelligence        25
-#&gt; Others                                         1169
-#&gt; 
-#&gt; Top Areas:
-#&gt;                                    Documents
-#&gt; Engineering                               87
-#&gt; Chemistry                                 84
-#&gt; Computer Science                          65
-#&gt; Environmental Sciences &amp; Ecology          50
-#&gt; Rheumatology                              48
-#&gt; Cardiovascular System &amp; Cardiology        43
-#&gt; Mathematics                               38
-#&gt; Biochemistry &amp; Molecular Biology          32
-#&gt; Business &amp; Economics                      32
-#&gt; Plant Sciences                            31
-#&gt; Others                                   854
-#&gt; 
-#&gt; Top Journals:
-#&gt;                               Documents
-#&gt; Arthritis Rheumatol.                 21
-#&gt; Osteoarthritis Cartilage             14
-#&gt; PLoS One                             10
-#&gt; Rev. Esp. Cardiol.                   10
-#&gt; Inorg. Chem.                          9
-#&gt; J. Heart Lung Transplant.             9
-#&gt; Commun. Soil Sci. Plant Anal.         9
-#&gt; Eur. J. Phycol.                       9
-#&gt; Constr. Build. Mater.                 8
-#&gt; Sci. Total Environ.                   6
-#&gt; Others                              751
-#&gt; 
-#&gt; Top Countries:
-#&gt;             Documents
-#&gt; Spain             855
-#&gt; USA                71
-#&gt; UK                 62
-#&gt; France             51
-#&gt; Portugal           49
-#&gt; Italy              38
-#&gt; Germany            34
-#&gt; Belgium            24
-#&gt; Netherlands        23
-#&gt; Brazil             15
-#&gt; Others            236</div></pre>
+    <pre class="examples"><span class='r-in'><span class='va'>db</span> <span class='op'>&lt;-</span> <span class='fu'><a href='CreateDB.wos.html'>CreateDB.wos</a></span><span class='op'>(</span><span class='va'>wosdf</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/str.html'>str</a></span><span class='op'>(</span><span class='va'>db</span>, <span class='fl'>1</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ Docs      :'data.frame':	856 obs. of  25 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   .. ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ Authors   :'data.frame':	4053 obs. of  4 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ AutDoc    :'data.frame':	5511 obs. of  2 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ Categories:'data.frame':	189 obs. of  2 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ CatDoc    :'data.frame':	1495 obs. of  2 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ Areas     :'data.frame':	121 obs. of  2 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ AreaDoc   :'data.frame':	1364 obs. of  2 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ Addresses :'data.frame':	3655 obs. of  5 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ AddAutDoc :'data.frame':	7751 obs. of  3 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ Sources   :'data.frame':	520 obs. of  14 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ label     : chr ""</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  - attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  - attr(*, "class")= chr "wos.db"</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/print.html'>print</a></span><span class='op'>(</span><span class='va'>db</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> List of 11</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ Docs      :'data.frame':	856 obs. of  25 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   .. ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ Authors   :'data.frame':	4053 obs. of  4 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ AutDoc    :'data.frame':	5511 obs. of  2 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ Categories:'data.frame':	189 obs. of  2 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ CatDoc    :'data.frame':	1495 obs. of  2 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ Areas     :'data.frame':	121 obs. of  2 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ AreaDoc   :'data.frame':	1364 obs. of  2 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ Addresses :'data.frame':	3655 obs. of  5 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ AddAutDoc :'data.frame':	7751 obs. of  3 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ Sources   :'data.frame':	520 obs. of  14 variables:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  $ label     : chr ""</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  - attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  - attr(*, "class")= chr "wos.db"</span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/base/summary.html'>summary</a></span><span class='op'>(</span><span class='va'>db</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of documents: 856 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Authors: 4053 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Period: 2015 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Document types:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                            Documents</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Article                          618</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Article; Proceedings Paper        28</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Book Review                        7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Correction                         4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Editorial Material                22</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Letter                            24</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Meeting Abstract                 114</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> News Item                          2</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Review                            37</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of authors per document:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   1.000   3.000   5.000   6.438   8.000  98.000 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of documents per author:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    1.00    1.00    1.00    1.36    1.00   16.00 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Number of times cited:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>   0.000   0.000   1.000   2.071   3.000  28.000 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Indexes:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  H  G </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14 17 </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Top Categories:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                           Documents</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Rheumatology                                     48</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cardiac &amp; Cardiovascular Systems                 40</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Environmental Sciences                           39</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Engineering, Civil                               35</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Plant Sciences                                   31</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Surgery                                          31</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Oncology                                         26</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Respiratory System                               26</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chemistry, Analytical                            25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Computer Science, Artificial Intelligence        25</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Others                                         1169</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Top Areas:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                    Documents</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Engineering                               87</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Chemistry                                 84</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Computer Science                          65</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Environmental Sciences &amp; Ecology          50</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Rheumatology                              48</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Cardiovascular System &amp; Cardiology        43</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Mathematics                               38</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Biochemistry &amp; Molecular Biology          32</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Business &amp; Economics                      32</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Plant Sciences                            31</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Others                                   854</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Top Journals:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                               Documents</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Arthritis Rheumatol.                 21</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Osteoarthritis Cartilage             14</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> PLoS One                             10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Rev. Esp. Cardiol.                   10</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Inorg. Chem.                          9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> J. Heart Lung Transplant.             9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Commun. Soil Sci. Plant Anal.         9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Eur. J. Phycol.                       9</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Constr. Build. Mater.                 8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Sci. Total Environ.                   6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Others                              751</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Top Countries:</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>             Documents</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Spain             855</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> USA                71</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> UK                 62</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> France             51</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Portugal           49</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Italy              38</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Germany            34</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Belgium            24</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Netherlands        23</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Brazil             15</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Others            236</span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

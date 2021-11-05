@@ -19,7 +19,7 @@ summary_year <- function(object, filter, ...) {
 
   # Authors per document per year
 
-  AuDoc.PY <- docs %>% group_by(PY)  %>% summarise(avg = mean(an), med = median(an))
+  AuDoc.PY <- docs %>% group_by(PY)  %>% summarise(avg = mean(an), med = median(an)) %>% na.omit()
   names(AuDoc.PY) <- c("", "Avg", "Median")
 
   # # Documents per author per year
@@ -36,7 +36,7 @@ summary_year <- function(object, filter, ...) {
   # rownames(DocAu.PY)=NULL
   # names(DocAu.PY) <- c("", "Avg", "Median")
   # Times cited
-  TC.PY <- docs %>% group_by(PY)  %>% summarise(n = sum(TC), avg = mean(TC), med = median(TC))
+  TC.PY <- docs %>% group_by(PY)  %>% summarise(n = sum(TC), avg = mean(TC), med = median(TC)) %>% na.omit()
   names(TC.PY) <- c("", "Cites", "Avg", "Median")
 
 

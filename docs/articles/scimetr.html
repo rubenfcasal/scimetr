@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scimetr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
       </span>
     </div>
 
@@ -85,13 +85,13 @@
 
       
 
-      </header><script src="scimetr_files/header-attrs-2.9/header-attrs.js"></script><div class="row">
+      </header><script src="scimetr_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to the scimetr Package</h1>
                         <h4 class="author">UDC Ranking’s Group</h4>
             
-            <h4 class="date">scimetr 0.3.3 : 2021-07-14</h4>
+            <h4 class="date">scimetr 0.3.4 : 2021-11-05</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenfcasal/scimetr/blob/master/vignettes/scimetr.Rmd"><code>vignettes/scimetr.Rmd</code></a></small>
       <div class="hidden name"><code>scimetr.Rmd</code></div>
@@ -104,7 +104,7 @@
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rubenfcasal/scimetr">scimetr</a></span><span class="op">)</span></code></pre></div>
 <pre><code>##  scimetr: Analysis of Scientific Publication Data with R,
-##  version 0.3.3 (built on 2021-05-31).
+##  version 0.3.4 (built on 2021-11-05).
 ##  Copyright (C) UDC Rankings Group 2017-2021.
 ##  Type `help(scimetr)` for an overview of the package or
 ##  visit https://rubenfcasal.github.io/scimetr.</code></pre>
@@ -114,12 +114,11 @@
 <h2 class="hasAnchor">
 <a href="#instalaci%C3%B3n" class="anchor"></a>Instalación</h2>
 <p>Para instalar el paquete sería recomendable en primer lugar instalar las dependencias:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">'dplyr'</span>, <span class="st">'dbplyr'</span>,<span class="st">'RSQLite'</span>, <span class="st">'lazyeval'</span>, <span class="st">'stringr'</span>, <span class="st">'ggplot2'</span>, <span class="st">'tidyr'</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">'dplyr'</span>, <span class="st">'dbplyr'</span>,<span class="st">'RSQLite'</span>, <span class="st">'lazyeval'</span>, <span class="st">'stringr'</span>, <span class="st">'ggplot2'</span>, <span class="st">'tidyr'</span>. <span class="st">'rmarkdown'</span>))</span></code></pre></div>
 <p>Como de momento no está disponible en CRAN, habría que instalar la versión de desarrollo en GitHub (en el repositorio <a href="https://github.com/rubenfcasal/scimetr">rubenfcasal/scimetr</a>). En Windows bastaría con instalar la versión binaria del paquete <em>scimetr_X.Y.Z.zip</em> (disponible <a href="https://github.com/rubenfcasal/scimetr/tree/master/docs">aquí</a>), alternativamente se puede instalar directamente de GitHub:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"rubenfcasal/scimetr"</span><span class="op">)</span></code></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"rubenfcasal/scimetr"</span><span class="op">)</span></code></pre></div>
 <p>Una vez instalado ya podríamos cargar el paquete.</p>
 </div>
 <div id="carga-de-datos" class="section level2">
@@ -623,7 +622,7 @@
 <div id="filtrado" class="section level2">
 <h2 class="hasAnchor">
 <a href="#filtrado" class="anchor"></a>Filtrado</h2>
-<p>Se combinan las funciones <code>get.id&lt;Tabla&gt;()</code> (se puede emplear cualquier variable de la correspondiente tabla; multiple conditions are combined with <code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code>, see e.g. <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code>) con la función <code><a href="../reference/get.idDocs.html">get.idDocs()</a></code>.</p>
+<p>Se combinan las funciones <code>get.id&lt;Tabla&gt;()</code> (se puede emplear cualquier variable de la correspondiente tabla; multiple conditions are combined with <code>&amp;</code>, see e.g. <code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code>) con la función <code><a href="../reference/get.idDocs.html">get.idDocs()</a></code>.</p>
 <div id="funciones-get" class="section level3">
 <h3 class="hasAnchor">
 <a href="#funciones-get" class="anchor"></a>Funciones get</h3>

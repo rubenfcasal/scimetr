@@ -9,7 +9,7 @@ knitr::opts_chunk$set(fig.height = 4, fig.width =7,
 library(scimetr)
 
 ## ----dependencies, eval=FALSE-------------------------------------------------
-#  install.packages(c('dplyr', 'dbplyr','RSQLite', 'lazyeval', 'stringr', 'ggplot2', 'tidyr'))
+#  install.packages(c('dplyr', 'dbplyr','RSQLite', 'lazyeval', 'stringr', 'ggplot2', 'tidyr'. 'rmarkdown'))
 
 ## ----eval=FALSE---------------------------------------------------------------
 #  # install.packages("devtools")

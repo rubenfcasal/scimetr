@@ -16,7 +16,7 @@
 #' @seealso \code{\link{CreateDB.wos}}.
 #' @export
 summary.wos.db <- function(object, filter, TC.index = c("H", "G"), nmax = 10, ...) {
-  # object=db; filter=idocs; TC.index = c("H", "G"); nmax = 10
+  # object=db; filter=idocs; TC.index = c("H", "G"); nmax = 10; docs <- object$Docs
   # OJO: supone que Docs esta ordenado por idd
   # OJO CON EL FILTRO...
   # stopifnot(is.numeric(filter))
@@ -42,7 +42,7 @@ summary.wos.db <- function(object, filter, TC.index = c("H", "G"), nmax = 10, ..
       if ("G" %in% TC.index) ind.tc$G <- max(which(pos^2 <= cumsum(TC)))
     }
     # oldClass(ind.tc) <- c("summaryDefault", "table")
-
+    
   }
   # Documentos por autor
   ida <- with(object$AutDoc,
@@ -68,6 +68,7 @@ summary.wos.db <- function(object, filter, TC.index = c("H", "G"), nmax = 10, ..
   idra <- with(object$AreaDoc,
                if(filtered) idra[idd %in% filter] else idra)
   top.area <- ftable(idra, object$Areas$SC, nmax = nmax)
+  
   # Top 10 Journals
   ind.jour <- match(docs$ids,  object$Sources$ids)
   top.jour <- with(object$Sources,
@@ -80,7 +81,7 @@ summary.wos.db <- function(object, filter, TC.index = c("H", "G"), nmax = 10, ..
   dimnames(top.coun)[[2]] <- "Documents"
   oldClass(top.coun) <- "table"
   # Result
-  result <- list(ndocs = nrow(docs), naut = length(autdoc), yrange = range(docs$PY), nmax = nmax,
+  result <- list(ndocs = nrow(docs), naut = length(autdoc), yrange = range(docs$PY, na.rm = TRUE), nmax = nmax,
                  # doctypes = with(docs, table(DT, PT)),
                  doctypes = doctypes,
                  summary.an = with(docs, summary(an)),
