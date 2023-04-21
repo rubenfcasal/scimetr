@@ -36,7 +36,7 @@ adist_names <- function(names, table) {
 authors.short <- function(authors) {
   sauthors <- str_split(authors, ', ', simplify = TRUE)
   family <- lapply(str_split(sauthors[, 1], ' |-'), function(x) toupper(x))
-  name <- if (nrow(sauthors) == 1) "" else
+  name <- if (ncol(sauthors) == 1) as.list(rep("", nrow(sauthors))) else
             lapply(str_split(sauthors[, 2], ' |-'), function(x) substr(x, 1, 1))
   return(list(family = family, name = name))
 }

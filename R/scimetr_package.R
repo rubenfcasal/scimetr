@@ -229,7 +229,7 @@ if(getRversion() >= "2.15.1")
   packageStartupMessage(
     paste0(" scimetr: ", pkg.info["Title"], ",\n"),
     paste0(" version ", pkg.info["Version"], " (built on ", pkg.info["Date"], ").\n"),
-    " Copyright (C) UDC Rankings Group 2017-2021.\n",
+    paste0(" Copyright (C) UDC Rankings Group 2017-", format(as.Date(pkg.info["Date"]), "%Y"), ".\n"),
     " Type `help(scimetr)` for an overview of the package or\n",
     " visit https://rubenfcasal.github.io/scimetr.\n")
 }

@@ -26,7 +26,7 @@ c("savedrecs01.txt", "savedrecs02.txt", "savedrecs03.txt", "savedrecs04.txt",
 "savedrecs13.txt", "savedrecs14.txt", "savedrecs15.txt")
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  wos.txt <- ImportSources.wos("UDC_2008-2017 (01-02-2019)", other = FALSE)
+#  wos.txt <- ImportSources.wos("UDC_2008-2017 (01-02-2019)", other = "ignore")
 
 ## -----------------------------------------------------------------------------
 # View(wosdf2) # En RStudio...

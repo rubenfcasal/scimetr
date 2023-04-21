@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">scimetr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.6</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../../articles/scimetr.html">Get started</a>
 </li>
@@ -50,7 +46,7 @@
   <a href="../../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -67,10 +63,13 @@
     </li>
   </ul>
 </li>
+<li>
+  <a href="../../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/rubenfcasal/scimetr/">
+  <a href="https://github.com/rubenfcasal/scimetr/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -85,68 +84,94 @@
 
       
 
-      </header><script src="R_packages_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Análisis bibliométrico con R</h1>
-                        <h4 class="author">UDC Ranking’s Group</h4>
+                        <h4 data-toc-skip class="author">UDC Ranking’s
+Group</h4>
             
-            <h4 class="date">scimetr 0.3.4 : 2021-11-05</h4>
+            <h4 data-toc-skip class="date">scimetr 0.3.6 :
+2023-04-21</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/rubenfcasal/scimetr/blob/master/vignettes/docs/R_packages.Rmd"><code>vignettes/docs/R_packages.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/rubenfcasal/scimetr/blob/HEAD/vignettes/docs/R_packages.Rmd" class="external-link"><code>vignettes/docs/R_packages.Rmd</code></a></small>
       <div class="hidden name"><code>R_packages.Rmd</code></div>
 
     </div>
 
     
     
-<div id="paquetes-para-análisis-bibliométrico" class="section level2">
-<h2 class="hasAnchor">
-<a href="#paquetes-para-an%C3%A1lisis-bibliom%C3%A9trico" class="anchor"></a>Paquetes para análisis bibliométrico</h2>
+<div class="section level2">
+<h2 id="paquetes-para-análisis-bibliométrico">Paquetes para análisis bibliométrico<a class="anchor" aria-label="anchor" href="#paquetes-para-an%C3%A1lisis-bibliom%C3%A9trico"></a>
+</h2>
 <ul>
 <li>
-<p><a href="https://CRAN.R-project.org/package=CITAN">CITAN</a>: CITation ANalysis Toolpack.</p>
-<p>Gagolewski, M. (2011). Bibliometric impact assessment with R and the CITAN package, Journal of Informetrics, 5(4), pp. 678-692, DOI: <a href="https://doi.org/10.1016/j.joi.2011.06.006">10.1016/j.joi.2011.06.006</a>, <a href="https://www.gagolewski.com/publications/2011citan.pdf">revised version</a>.</p>
+<p><a href="https://CRAN.R-project.org/package=CITAN" class="external-link">CITAN</a>:
+CITation ANalysis Toolpack.</p>
+<p>Gagolewski, M. (2011). Bibliometric impact assessment with R and the
+CITAN package, Journal of Informetrics, 5(4), pp. 678-692, DOI: <a href="https://doi.org/10.1016/j.joi.2011.06.006" class="external-link">10.1016/j.joi.2011.06.006</a>,
+<a href="https://www.gagolewski.com/publications/2011citan.pdf" class="external-link">revised
+version</a>.</p>
 </li>
 <li>
-<p><a href="http://www.bibliometrix.org">bibliometrix</a>: An R-Tool for Comprehensive Science Mapping Analysis.</p>
-<p>Aria, M. &amp; Cuccurullo, C. (2017). bibliometrix: An R-tool for comprehensive science mapping analysis, Journal of Informetrics, 11(4), pp 959-975, Elsevier, DOI: <a href="https://doi.org/10.1016/j.joi.2017.08.007">10.1016/j.joi.2017.08.007</a>.</p>
+<p><a href="http://www.bibliometrix.org" class="external-link">bibliometrix</a>: An R-Tool
+for Comprehensive Science Mapping Analysis.</p>
+<p>Aria, M. &amp; Cuccurullo, C. (2017). bibliometrix: An R-tool for
+comprehensive science mapping analysis, Journal of Informetrics, 11(4),
+pp 959-975, Elsevier, DOI: <a href="https://doi.org/10.1016/j.joi.2017.08.007" class="external-link">10.1016/j.joi.2017.08.007</a>.</p>
 </li>
-<li><p><a href="https://rubenfcasal.github.io/scimetr/index.html">scimetr</a>: Analysis of Scientific Publication Data with R.</p></li>
+<li><p><a href="https://rubenfcasal.github.io/scimetr/index.html" class="external-link">scimetr</a>:
+Analysis of Scientific Publication Data with R.</p></li>
 </ul>
 </div>
-<div id="paquetes-para-descarga-de-datos" class="section level2">
-<h2 class="hasAnchor">
-<a href="#paquetes-para-descarga-de-datos" class="anchor"></a>Paquetes para descarga de datos</h2>
+<div class="section level2">
+<h2 id="paquetes-para-descarga-de-datos">Paquetes para descarga de datos<a class="anchor" aria-label="anchor" href="#paquetes-para-descarga-de-datos"></a>
+</h2>
 <ul>
-<li><p><a href="https://vt-arc.github.io/wosr/index.html">wosr</a>: Clients to the ‘Web of Science’ and ‘InCites’ <a href="https://developer.clarivate.com/apis">APIs</a>.</p></li>
-<li><p><a href="https://github.com/juba/rwos">rwos</a>: R interface with <a href="https://developer.clarivate.com/apis/woslite">Web of Science API Lite</a>.</p></li>
-<li><p><a href="https://CRAN.R-project.org/package=rscopus">rscopus</a>: <a href="https://dev.elsevier.com/sc_apis.html">Scopus Database API</a> Interface.</p></li>
+<li><p><a href="https://vt-arc.github.io/wosr/index.html" class="external-link">wosr</a>:
+Clients to the ‘Web of Science’ and ‘InCites’ <a href="https://developer.clarivate.com/apis" class="external-link">APIs</a>.</p></li>
+<li><p><a href="https://github.com/juba/rwos" class="external-link">rwos</a>: R interface with
+<a href="https://developer.clarivate.com/apis/woslite" class="external-link">Web of Science
+API Lite</a>.</p></li>
+<li><p><a href="https://CRAN.R-project.org/package=rscopus" class="external-link">rscopus</a>:
+<a href="https://dev.elsevier.com/sc_apis.html" class="external-link">Scopus Database API</a>
+Interface.</p></li>
 <li><p>…</p></li>
 </ul>
 </div>
-<div id="ropensci-transforming-science-through-open-data-and-software" class="section level2">
-<h2 class="hasAnchor">
-<a href="#ropensci-transforming-science-through-open-data-and-software" class="anchor"></a>ropensci: Transforming science through open data and software</h2>
-<p>Seleccionando el filtro <em>Literature</em> en <a href="https://ropensci.org/packages">ropensci/packages</a> se obtiene un listado de paquetes que pueden ser de utilidad en este campo. Entre ellos:</p>
+<div class="section level2">
+<h2 id="ropensci-transforming-science-through-open-data-and-software">ropensci: Transforming science through open data and software<a class="anchor" aria-label="anchor" href="#ropensci-transforming-science-through-open-data-and-software"></a>
+</h2>
+<p>Seleccionando el filtro <em>Literature</em> en <a href="https://ropensci.org/packages" class="external-link">ropensci/packages</a> se obtiene un
+listado de paquetes que pueden ser de utilidad en este campo. Entre
+ellos:</p>
 <ul>
-<li><p><a href="https://docs.ropensci.org/aRxiv">aRxiv</a>: Interface to the arXiv API.</p></li>
-<li><p><a href="https://docs.ropensci.org/rcrossref">rcrossref</a>: R interface to various CrossRef APIs.</p></li>
-<li><p><a href="https://docs.ropensci.org/crminer">crminer</a>: Fetch ‘Scholary’ Full Text from ‘Crossref’.</p></li>
-<li><p><a href="https://ropensci.github.io/europepmc">europepmc</a>: R Interface to the Europe PubMed Central RESTful Web Service.</p></li>
-<li><p><a href="https://ropenscilabs.github.io/fulltext-book">fulltext</a>: Full Text of ‘Scholarly’ Articles Across Many Data Sources.</p></li>
-<li><p><a href="https://github.com/ropensci/IEEER">IEEER</a>: Interface to the IEEE Xplore Gateway.</p></li>
-<li><p><a href="https://ropensci.github.io/jstor">jstor</a>: Read Data from JSTOR/DfR.</p></li>
-<li><p><a href="https://ropensci.github.io/rorcid">rorcid</a>: Interface to the ‘Orcid.org’ API.</p></li>
-<li><p><a href="https://docs.ropensci.org/rplos">rplos</a>: R client for the PLoS Journals API.</p></li>
+<li><p><a href="https://docs.ropensci.org/aRxiv" class="external-link">aRxiv</a>: Interface to
+the arXiv API.</p></li>
+<li><p><a href="https://docs.ropensci.org/rcrossref" class="external-link">rcrossref</a>: R
+interface to various CrossRef APIs.</p></li>
+<li><p><a href="https://docs.ropensci.org/crminer" class="external-link">crminer</a>: Fetch
+‘Scholary’ Full Text from ‘Crossref’.</p></li>
+<li><p><a href="https://ropensci.github.io/europepmc" class="external-link">europepmc</a>: R
+Interface to the Europe PubMed Central RESTful Web Service.</p></li>
+<li><p><a href="https://ropenscilabs.github.io/fulltext-book" class="external-link">fulltext</a>: Full
+Text of ‘Scholarly’ Articles Across Many Data Sources.</p></li>
+<li><p><a href="https://github.com/ropensci/IEEER" class="external-link">IEEER</a>: Interface
+to the IEEE Xplore Gateway.</p></li>
+<li><p><a href="https://ropensci.github.io/jstor" class="external-link">jstor</a>: Read Data
+from JSTOR/DfR.</p></li>
+<li><p><a href="https://ropensci.github.io/rorcid" class="external-link">rorcid</a>: Interface
+to the ‘Orcid.org’ API.</p></li>
+<li><p><a href="https://docs.ropensci.org/rplos" class="external-link">rplos</a>: R client for
+the PLoS Journals API.</p></li>
 </ul>
 </div>
-<div id="otros-paquetesherramientas" class="section level2">
-<h2 class="hasAnchor">
-<a href="#otros-paquetesherramientas" class="anchor"></a>Otros paquetes/herramientas</h2>
+<div class="section level2">
+<h2 id="otros-paquetesherramientas">Otros paquetes/herramientas<a class="anchor" aria-label="anchor" href="#otros-paquetesherramientas"></a>
+</h2>
 <ul>
-<li><p><a href="https://cran.r-project.org/web/packages/Diderot/index.html">Diderot</a></p></li>
-<li><p><a href="https://github.com/topics/bibliometrics?l=r" class="uri">https://github.com/topics/bibliometrics?l=r</a></p></li>
+<li><p><a href="https://cran.r-project.org/web/packages/Diderot/index.html" class="external-link">Diderot</a></p></li>
+<li><p><a href="https://github.com/topics/bibliometrics?l=r" class="external-link uri">https://github.com/topics/bibliometrics?l=r</a></p></li>
 <li><p>…</p></li>
 </ul>
 </div>
@@ -163,11 +188,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Ruben Fernandez-Casal, Borja Lafuente-Rego, Maria Jose Lombardia, Javier Tarrio-Saavedra, Julian Costa-Bouzas.</p>
+  <p></p>
+<p>Developed by Ruben Fernandez-Casal, Borja Lafuente-Rego, Maria Jose Lombardia, Javier Tarrio-Saavedra, Julian Costa-Bouzas.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
@@ -175,6 +202,8 @@
 
   
 
+
+  
 
   </body>
 </html>

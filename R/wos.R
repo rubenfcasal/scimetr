@@ -24,9 +24,9 @@ ImportSources.wos <- function(path = '.', pattern = '*.txt', other = c("include"
   # wosdf <- bind_rows(data.list)
   wosdf <- do.call('rbind', data.list)
   #  write.csv2(wosdf, "wosdf.csv")
-  names(wosdf) <- names(wosdf)[-1] # Linux?
+  # names(wosdf) <- names(wosdf)[-1] #
   names(wosdf)[1] <- "PT"
-  wosdf <- wosdf[,-ncol(wosdf)]
+  # wosdf <- wosdf[,-ncol(wosdf)]
   # nwos <- nrow(wosdf)
   # wosdf %>% group_by
   ind <- nzchar(wosdf$SN) #  wosdf$SN != ""
@@ -47,7 +47,8 @@ ImportSources.wos <- function(path = '.', pattern = '*.txt', other = c("include"
   # PENDENTE: añadir clase wos.data a data.frame
 }
 
-.wos.variable.labels <- c(PT = "Publication type", AU = "Author", BA = "Book authors",
+.wos.variable.labels <- c(
+  PT = "Publication type", AU = "Author", BA = "Book authors",
   BE = "Editor", GP = "Group author", AF = "Author full", BF = "Book authors fullname",
   CA = "Corporate author", TI = "Title", SO = "Publication name",
   SE = "Series title", BS = "Book series", LA = "Language", DT = "Document type",
@@ -105,7 +106,9 @@ ImportSources.wos <- function(path = '.', pattern = '*.txt', other = c("include"
 #' summary(db)
 #' @export
 CreateDB.wos <- function(wosdf, label = "", print = interactive()) {
-# library(scimetr); data(wosdf); library(dplyr); library(stringr); label = ""; print = TRUE
+# library(scimetr); library(dplyr); library(stringr); label = ""; print = TRUE
+# data(wosdf); wosdf <- wosdf4
+# recover()
   ndocs <- nrow(wosdf)
   wosdf$idd = seq_len(ndocs) # OJO: Se añade una variable a los datos
 
@@ -141,6 +144,8 @@ CreateDB.wos <- function(wosdf, label = "", print = interactive()) {
     res <- res[nzchar(res[, 1]), , drop = FALSE]
     autores1 <- cbind(AF = autores0, OI = NA_character_)
     if(nrow(res)) {
+      # PROBLEMA: Pueden aparecer orcids duplicados
+      res <- res[!duplicated(res[, 2]), , drop = FALSE]
       amatch <- match_authors(res[, 1], autores0) # , attr.dist = TRUE)
       # View(cbind(res[, 1], autores0[amatch]))
       index <- !is.na(amatch)
@@ -309,6 +314,19 @@ CreateDB.wos <- function(wosdf, label = "", print = interactive()) {
   wosdf$PT <- factor(wosdf$PT, levels = c("B", "S", "J", "P"))
   levels(wosdf$PT) <- c("Book", "Book in series", "Journal", "Patent")
 
+  # Problema WOS: Puede aparecer revistas duplicadas con SN=EI y EI=""
+  # Mirar si algún SN está en EI
+  index <- with(wosdf, match(SN, EI, incomparables = ""))
+  res <- which(!is.na(index))
+  # View(wosdf[as.vector(t(cbind(res, index[res]))), ])
+  wosdf[res, c("SN", "EI")] <- wosdf[index[res], c("SN", "EI")]
+
+  # Problema WOS: Puede aparecer revistas duplicadas con el mismo EI
+  # SN,EI y SN="",EI
+  res <- wosdf %>% filter(nzchar(SN) & nzchar(EI)) %>% distinct(SN, EI)
+  index <- match(wosdf$EI, res$EI, incomparables = "")
+  wosdf$SN[!is.na(index)] <- res$SN[index[!is.na(index)]]
+
   # ids <- with(wosdf,
   #             ifelse(!is.na(BN), BN,
   #               ifelse(!is.na(SN), SN, EI)))
@@ -327,6 +345,7 @@ CreateDB.wos <- function(wosdf, label = "", print = interactive()) {
   Sources <- wosdf %>% select(ids, PT, SO:LA, PU:JI) %>%
     filter(!duplicated(ids))
   attr(Sources, "variable.labels") <- NULL
+
 
   # ~~~~~~~~~~~~~~~~~~
   # Docs: Tabla de documentos

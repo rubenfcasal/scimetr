@@ -87,7 +87,7 @@ Para combinar los ficheros en un `data.frame` se emplea la función
 `ImportSources.wos()`:
 
 ```{r ,eval=FALSE}
-wos.txt <- ImportSources.wos("UDC_2008-2017 (01-02-2019)", other = FALSE)
+wos.txt <- ImportSources.wos("UDC_2008-2017 (01-02-2019)", other = "ignore")
 ```
 
 A continuación habrá que crear la base de datos con la función `CreateDB.wos()`,

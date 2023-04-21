@@ -16,3 +16,7 @@ devtools::install_github("rubenfcasal/scimetr")
 
 Alternatively, Windows users may install the corresponding *scimetr_X.Y.Z.zip* file in the [releases section](https://github.com/rubenfcasal/scimetr/releases/latest) of the github repository.
 
+``` r
+install.packages('https://github.com/rubenfcasal/scimetr/releases/download/v0.3.6/scimetr_0.3.6.zip', 
+                 repos = NULL)
+``` 

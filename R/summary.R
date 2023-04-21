@@ -1,8 +1,3 @@
-# PENDIENTE:
-# MainInfo[4]=paste("Authors                          ",max(AutDoc$ida),"\n")
-
-
-
 
 #' WoS DB Summaries
 #'
@@ -42,7 +37,7 @@ summary.wos.db <- function(object, filter, TC.index = c("H", "G"), nmax = 10, ..
       if ("G" %in% TC.index) ind.tc$G <- max(which(pos^2 <= cumsum(TC)))
     }
     # oldClass(ind.tc) <- c("summaryDefault", "table")
-    
+
   }
   # Documentos por autor
   ida <- with(object$AutDoc,
@@ -68,7 +63,7 @@ summary.wos.db <- function(object, filter, TC.index = c("H", "G"), nmax = 10, ..
   idra <- with(object$AreaDoc,
                if(filtered) idra[idd %in% filter] else idra)
   top.area <- ftable(idra, object$Areas$SC, nmax = nmax)
-  
+
   # Top 10 Journals
   ind.jour <- match(docs$ids,  object$Sources$ids)
   top.jour <- with(object$Sources,
