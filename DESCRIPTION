@@ -4,21 +4,20 @@ Title: Analysis of Scientific Publication Data with R
 Version: 1.1.0
 Date: 2025-11-22
 Authors@R: c(
-    person("Ruben", "Fernandez-Casal", role = c("aut", "cre"),
-    email = "rubenfcasal@gmail.com"),
-    person("Borja", "Lafuente-Rego", role = c("aut"),
-    email = "borjalrego@gmail.com"),
+    person("Ruben", "Fernandez-Casal", role = c("aut", "cre"), 
+    email = "rubenfcasal@gmail.com", comment = c(ORCID = "0000-0002-5785-3739")),
+    person("Borja", "Lafuente-Rego", role = c("aut"), 
+    email = "borjalrego@gmail.com", comment = c(ORCID = "0000-0002-2443-3084")),
     person("Maria Jose", "Lombardia", role = c("aut"),
-    email = "maria.jose.lombardia@udc.es"),    
+    email = "maria.jose.lombardia@udc.es", comment = c(ORCID = "0000-0001-9452-9818")),    
     person("Javier", "Tarrio-Saavedra", role = c("aut"),
-    email = "javier.tarrio@udc.es"),
+    email = "javier.tarrio@udc.es", comment = c(ORCID = "0000-0002-9584-127X")),
     person("Julian", "Costa-Bouzas", role = c("aut"),
-    email = "julian.costa.bouzas@udc.es"),
+    email = "julian.costa.bouzas@udc.es", comment = c(ORCID = "0000-0001-9760-9581")),
     person("Yesica", "Fernandez-Ramos", role = c("ctb"),
     email = "yesica.ramos@udc.es"),
     person("Guillermo", "Lopez-Taboada", role = c("ctb"),
-    email = "guillermo.lopez.taboada@udc.es")
-    )
+    email = "guillermo.lopez.taboada@udc.es"))
 Description: This package implements tools for quantitative research
     in scientometrics and bibliometrics. It provides routines for importing
     bibliographic data from Thomson Reuters' Web of Science 
@@ -40,7 +39,7 @@ Suggests:
     rmarkdown,
     knitr
 License: GPL (>= 2)
-URL: https://github.com/rubenfcasal/scimetr/, https://github.com/rubenfcasal/scimetr/
+URL: https://rubenfcasal.github.io/scimetr/, https://github.com/rubenfcasal/scimetr/
 BugReports: https://github.com/rubenfcasal/scimetr/issues/
 Encoding: UTF-8
 VignetteBuilder: knitr
