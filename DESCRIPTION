@@ -1,8 +1,8 @@
 Package: scimetr
 Type: Package
 Title: Analysis of Scientific Publication Data with R
-Version: 0.3.6
-Date: 2023-04-21
+Version: 1.1.0
+Date: 2025-11-22
 Authors@R: c(
     person("Ruben", "Fernandez-Casal", role = c("aut", "cre"),
     email = "rubenfcasal@gmail.com"),
@@ -22,7 +22,7 @@ Authors@R: c(
 Description: This package implements tools for quantitative research
     in scientometrics and bibliometrics. It provides routines for importing
     bibliographic data from Thomson Reuters' Web of Science 
-    (<https://www.webofknowledge.com>) and performing bibliometric analysis.
+    (<https://www.webofscience.com>) and performing bibliometric analysis.
     For more information visit 
     <https://rubenfcasal.github.io/scimetr/articles/scimetr.html>.
 Depends:
@@ -30,20 +30,20 @@ Depends:
     graphics
 Imports:
     dplyr,
-    dbplyr,
-    DBI,
-    RSQLite,
+    tidyr,
     stringr,
     scales,
-    ggplot2
+    ggplot2,
+    rlang
 Suggests:
-    tidyr,
+    DT,
     rmarkdown,
     knitr
 License: GPL (>= 2)
-URL: https://github.com/rubenfcasal/scimetr
-BugReports: https://github.com/rubenfcasal/scimetr/issues
+URL: https://github.com/rubenfcasal/scimetr/, https://github.com/rubenfcasal/scimetr/
+BugReports: https://github.com/rubenfcasal/scimetr/issues/
 Encoding: UTF-8
 VignetteBuilder: knitr
 LazyData: true
-RoxygenNote: 7.2.3
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2

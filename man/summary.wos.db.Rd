@@ -5,7 +5,10 @@
 \alias{print.summary.wos.db}
 \alias{TC.authors}
 \alias{plot.summary.wos.db}
-\title{WoS DB Summaries}
+\alias{summary.wos.jcr}
+\alias{print.summary.wos.jcr}
+\alias{plot.summary.wos.jcr}
+\title{Summaries of a bibliographic database}
 \usage{
 \method{summary}{wos.db}(object, filter, TC.index = c("H", "G"), nmax = 10, ...)
 
@@ -19,14 +22,22 @@ TC.authors(db, idAuthors)
   pie = FALSE,
   others = !pie,
   accuracy = 0.1,
-  ask = length(which) > 1 && dev.interactive(),
+  plot = TRUE,
+  ask = length(which) > 1 && interactive(),
   ...
 )
+
+\method{summary}{wos.jcr}(object, filter, all = FALSE, ...)
+
+\method{print}{summary.wos.jcr}(x, digits = 2, all = TRUE, ...)
+
+\method{plot}{summary.wos.jcr}(x, plot = TRUE, all = FALSE, ask = plot && all && interactive(), ...)
 }
 \arguments{
 \item{object}{an object for which a summary is desired.}
 
-\item{filter}{vector of document identifiers (usually a result of \code{\link{get.idDocs}}).}
+\item{filter}{vector of document identifiers
+(optional, usually a result of \link{get.idDocs}).}
 
 \item{TC.index}{citation indexes.}
 
@@ -36,7 +47,7 @@ TC.authors(db, idAuthors)
 
 \item{x}{an object used to select a method.}
 
-\item{db}{Object of \code{\link{class}} \code{wos.db}, as returned by \code{\link{CreateDB.wos}}.}
+\item{db}{Object of \code{\link{class}} \code{wos.db}, as returned by \link{CreateDB}.}
 
 \item{idAuthors}{optional; author identifiers}
 
@@ -49,12 +60,21 @@ specify a subset of the numbers \code{1:5}.}
 
 \item{accuracy}{numerical scalar; see \code{\link[scales]{label_number}(accuracy=.)}.}
 
+\item{plot}{logical; if \code{TRUE} (default), the plots are drawn, otherwise only
+the list of ggplot2 objects is (invisibly) returned.}
+
 \item{ask}{logical; if \code{TRUE}, the user is asked before each plot,
 see \code{\link{par}(ask=.)}.}
+
+\item{all}{logical; if \code{TRUE}, the corresponding \linkS4class{wos.db} method
+is called (additional parameters \code{...} are passed to it), otherwise only results
+of JCR metrics are returned.}
+
+\item{digits}{minimal number of significant digits, see \link{print.default}.}
 }
 \description{
-\code{summary} methods for \code{wos.db}-class...
+\link{summary} methods for WoS bibliometric databases.
 }
 \seealso{
-\code{\link{CreateDB.wos}}.
+\link{CreateDB}, \link{AddDBJCR}.
 }

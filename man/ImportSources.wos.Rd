@@ -4,26 +4,29 @@
 \alias{ImportSources.wos}
 \title{Import bibliographic data downloaded from Web of Science (WoS).}
 \usage{
-ImportSources.wos(
-  path = ".",
-  pattern = "*.txt",
-  other = c("include", "ignore", "split")
-)
+ImportSources.wos(path = ".", pattern = "*.txt", all = TRUE, progress = NULL)
 }
 \arguments{
-\item{path}{to a subdir...}
+\item{path}{character; path to the directory containing the files.}
 
-\item{pattern}{file pattern (= '*.txt' by default)}
+\item{pattern}{regular expression; only matching files will be loaded.
+Defaults to \code{"*.txt"}.}
 
-\item{other}{Guardar otros documentos "include", "ignore", "split", pendiente: cambiar split por path}
+\item{all}{logical; indicating whether sources without ISSN are included
+(\code{TRUE}) or not (\code{FALSE}) in the result. Defaults to \code{TRUE}.}
+
+\item{progress}{logical; indicating whether a progress bar should be displayed.
+Defaults to \code{TRUE} when R is used interactively and there is more than one file,
+and \code{FALSE} otherwise.}
 }
 \value{
-A \code{data.frame} with columns corresponding to WoS variables.
+A \code{data.frame} with rows corresponding to sources and columns to
+WoS variables.
 }
 \description{
-Reads bibliography entries from UTF-8 encoded Tab-delimited files containing "Full Record and Cited References"
-(see \code{\link{wosdf}}.
+Reads bibliography entries from UTF-8 encoded Tab-delimited files containing
+"Full Record and Cited References" (see \link{wosdf}).
 }
 \seealso{
-\code{\link{wosdf}}, \code{\link{CreateDB.wos}}.
+\link{wosdf}, \link{CreateDB}.
 }

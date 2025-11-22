@@ -1,17 +1,20 @@
 ---
-title: "Creación de la BD empleando la API de WoS"
+title: "Creación de la BD empleando la API de WoS (obsoleto)"
 author: "Fernández-Ramos, Yésica; UDC Ranking's Group"
-date: '`r paste("scimetr", packageVersion("scimetr"),":", Sys.Date())`'
+date: "scimetr 0.3.6 (2023-04-21)"
 output: 
   rmarkdown::html_vignette:
     toc: yes
     toc_depth: 2
 vignette: >
-  %\VignetteIndexEntry{Creación de la BD empleando la API de WoS}
+  %\VignetteIndexEntry{Creación de la BD empleando la API de WoS (obsoleto)}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
+***Nota importante***: La information de este documento solo es aplicable a las versiones 0.3.6 o anteriores de `scimetr`, por cambios en la configuración de las bases de datos (se mantiene por si resulta de utilidad; debido a las restricciones - algunas no expuestas explícitamente por WoS - en cuanto al número y volumen de descargas a través de su API, decidimos no continuar este desarrollo y apostar por repositorios con datos en abierto para garantizar la transparencia y la reproducibilidad).
+
+---
 
 A continuación, se describen los pasos para la creación una base de datos empleando la [API de WoS](https://developer.clarivate.com/apis), así como para la planificación de las actualizaciones. 
 Posteriormente se puede importar a R empleando la función `ImportDB.wos()` del paquete `scimetr`.

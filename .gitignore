@@ -1,6 +1,6 @@
 .Rproj.user
-.Rproj.user/**
 .Rhistory
 .RData
 .Ruserdata
 *.orig
+_development

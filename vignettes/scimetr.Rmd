@@ -1,143 +1,151 @@
 ---
-title: "Introduction to the scimetr Package"
+title: "Introduction to the scimetr package"
 author: "UDC Ranking's Group"
-date: '`r paste("scimetr", packageVersion("scimetr"),":", Sys.Date())`'
+date: '`r paste0("scimetr ", packageVersion("scimetr"),": ", Sys.Date())`'
 output: 
   rmarkdown::html_vignette:
     toc: yes
-    toc_depth: 2
+    toc_depth: 3
 vignette: >
-  %\VignetteIndexEntry{Introduction to the scimetr Package}
+  %\VignetteIndexEntry{Introduction to the scimetr package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
+<!-- 
+NOTA:
+Javier, puedes decir que estamos "a punto" de sacar la versión 2.0, 
+cambiando los nombres de la funciones para homogeneizarlos 
+empleando estilo_serpiente (tidyverse) con minúsculas:
+ImportSources.wos, CreateDB -> import_sources_wos, create_db
+get.idXXXX -> get_id_xxxx
+TC.authors -> author_metrics 
+-->
+
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(fig.height = 4, fig.width =7, 
-                      fig.align = 'center', out.width = '100%')
+knitr::opts_chunk$set(fig.dim = c(8, 6), 
+                      fig.align = 'center', out.width = '80%')
+rebuid <- FALSE # TRUE 
 # knitr::spin("scimetr.R", knit = FALSE)
 # knitr::purl("scimetr.Rmd", documentation = 2)
-# options(digits = 5)
+options(digits = 5)
 ```
 
-This vignette (a working draft, in Spanish) tries to illustrate the use of the `scimetr` package ...
 
 ```{r }
 library(scimetr)
 ```
 
-Este paquete implementa herramientas para la investigación en cienciometría y bibliometría. Actualmente incluye rutinas para importar datos bibliográficos de 
-[*Clarivate Analytics Web of Science*](http://www.webofknowledge.com) (WoS) 
-y realizar análisis bibliométricos. 
 
-Un listado de otros paquetes de utilidad para el análisis de este tipo de
-datos está disponible [aquí](https://rubenfcasal.github.io/scimetr/articles/docs/R_packages.html).
+This vignette illustrates the use of the [`scimetr`](https://rubenfcasal.github.io/scimetr/) package for performing bibliometric analyses using datasets exported from Web of Science, highlighting the main workflows and functionalities. The package provides tools for scientometric and bibliometric research, including routines to import bibliographic records from [*Clarivate Analytics Web of Science*](http://www.webofknowledge.com) (WoS) and conduct bibliometric analyses. 
 
-Instalación
------------
+<!-- 
+For more information visit <https://rubenfcasal.github.io/scimetr>. 
+-->
 
-Para instalar el paquete sería recomendable en primer lugar instalar las dependencias:
-
-```{r dependencies, eval=FALSE}
-install.packages(c('dplyr', 'dbplyr','RSQLite', 'lazyeval', 'stringr', 'ggplot2', 'tidyr'. 'rmarkdown'))
-```
-
-Como de momento no está disponible en CRAN, habría que instalar 
-la versión de desarrollo en GitHub (en el repositorio
-[rubenfcasal/scimetr](https://github.com/rubenfcasal/scimetr)).
-En Windows bastaría con instalar la versión binaria del paquete *scimetr_X.Y.Z.zip*
-(disponible [aquí](https://github.com/rubenfcasal/scimetr/tree/master/docs)), 
-alternativamente se puede instalar directamente de GitHub:
-```{r eval=FALSE}
-# install.packages("devtools")
-devtools::install_github("rubenfcasal/scimetr")
-```
-
-Una vez instalado ya podríamos cargar el paquete.
-
-Carga de datos
---------------
-
-Nos centraremos únicamente en la importación de los datos de publicaciones de [WoS](http://www.webofknowledge.com)) en formato de texto.
-En primer lugar habría que descargar los correspondientes ficheros de la web de WoS, por ejemplo siguiendo los pasos descritos [aquí](https://rubenfcasal.github.io/scimetr/articles/docs/WoS_export.html).
+A list of other useful R packages for this type of analysis is available [here](https://rubenfcasal.github.io/scimetr/articles/docs/R_packages.html).
 
 
-Alternativamente se puede crear una base de datos empleando la [API de WoS](https://developer.clarivate.com/apis) para posteriormente importarla a R empleando la función `ImportDB.wos()`. 
-Para ello habría que disponer de acceso a esta API y seguir los pasos descritos [aquí](https://rubenfcasal.github.io/scimetr/articles/docs/wos_bd.html).
+# Installation
 
-
-### Cargar datos de directorio
-
-Se pueden cargar automáticamente los archivos WoS
-(que por defecto tienen una limitación de 500 registros) de un subdirectorio:
+Since the package is not yet available on CRAN, you need to install the development version from the GitHub repository [rubenfcasal/scimetr](https://github.com/rubenfcasal/scimetr):
 
 ```{r eval=FALSE}
-dir("UDC_2008-2017 (01-02-2019)", pattern='*.txt')
+# install.packages("remotes")
+remotes::install_github("rubenfcasal/mpae")
+```
+
+Alternatively, Windows users may install the corresponding *scimetr_X.Y.Z.zip* file in the [releases section](https://github.com/rubenfcasal/scimetr/releases/latest) of the github repository.
+It is recommended to first install its dependencies:
+
+<!-- 
+Pendiente:
+  Ultima versión en releases section
+-->
+```{r eval=FALSE}
+# Dependencies
+install.packages(c('dplyr', 'tidyr', 'stringr', 'ggplot2', 'scales', 'rlang'))
+# Last released version
+install.packages('https://github.com/rubenfcasal/scimetr/releases/download/v1.1.0/scimetr_1.1.0.zip', repos = NULL)
+```
+
+Once the package is installed, it can be loaded as usual.
+
+# Bibliographic data
+
+We will focus exclusively on importing publication data from [WoS](http://www.webofknowledge.com) in text format.
+First, you need to download the corresponding files from the WoS website, for example, by following the steps described [here](https://rubenfcasal.github.io/scimetr/articles/docs/WoS_export.html).
+
+## Loading WoS data from a directory
+
+WoS files (which by default are limited to 500 records each) can be automatically loaded from a subdirectory:
+
+```{r eval=FALSE}
+dir("UDC_2018-2023 (01-02-2024)", pattern = "*.txt")
 ```
 ```{r echo=FALSE}
-# dput(dir("UDC_2008-2017 (01-02-2019)", pattern='*.txt'))
+# dput(dir("UDC_2014-2023 (01-02-2024)", pattern='*.txt'))
 c("savedrecs01.txt", "savedrecs02.txt", "savedrecs03.txt", "savedrecs04.txt", 
 "savedrecs05.txt", "savedrecs06.txt", "savedrecs07.txt", "savedrecs08.txt", 
-"savedrecs09.txt", "savedrecs10.txt", "savedrecs11.txt", "savedrecs12.txt", 
-"savedrecs13.txt", "savedrecs14.txt", "savedrecs15.txt")
+"savedrecs09.txt", "savedrecs10.txt")
 ```
 
-Para combinar los ficheros en un `data.frame` se emplea la función 
-`ImportSources.wos()`:
+To combine the files into a `data.frame`, the `ImportSources.wos()` function is used:
 
-```{r ,eval=FALSE}
-wos.txt <- ImportSources.wos("UDC_2008-2017 (01-02-2019)", other = "ignore")
+```{r eval=FALSE}
+wos.data <- ImportSources.wos("UDC_2018-2023 (01-02-2024)")
 ```
 
-A continuación habrá que crear la base de datos con la función `CreateDB.wos()`,
-como se muestra más adelante.
+Next, the database must be created using the `CreateDB()` function, as shown later.
 
-### Datos de ejemplo
 
-En el paquete se incluyen dos conjuntos de datos de ejemplo 
-(obtenidos empleando la función `ImportSources.wos()`) 
-correspondientes a la búsqueda en WoS 
-por el campo Organización-Consolidada de la UDC 
-(Organization-Enhaced: OG = Universidade da Coruna):
+## Example data
 
-- `wosdf`: año 2015.
+The package includes the example dataset `wosdf` (obtained using the `ImportSources.wos()` function), corresponding to a WoS search by the Affiliation field of *Universidade da Coruña (UDC)* (Affiliation: OG = Universidade da Coruna) in the research area `"Mathematics"` during the years 2018–2023.
 
-- `wosdf2`:  área de investigación 'Mathematics', años 2008-2017.
-
-Variables WoS:
+All data tables have an associated `variable.labels` attribute with the variable labels. 
+These will be displayed below the variable names when viewed in RStudio (e.g. `View(wosdf)`).
 
 ```{r }
-# View(wosdf2) # En RStudio...
-variable.labels <- attr(wosdf, "variable.labels")
-knitr::kable(as.data.frame(variable.labels)) # caption = "Variable labels"
+wos.labels <- attr(wosdf, "variable.labels")
+knitr::kable(head(data.frame(wos.labels)),
+             col.names = c("Variable", "Label"))
+```
+...
+
+A full list of the variables used in the database tables is shown in the final section [*Variable list*](#variables) of this document.
+
+
+# Bibliographic database
+
+`scimetr` uses lists with `data.frame` components as relational databases.
+
+To create the [bibliographic database](https://en.wikipedia.org/wiki/Bibliographic_database), use the `CreateDB()` function (the result is a `wos.db`-class S3 object):
+
+```{r wosdf, cache=!rebuid}
+db <- CreateDB(wosdf, label = "Mathematics_UDC_2018-2023")
+names(db) 
 ```
 
-Creación de la base de datos
-----------------------------
 
-Para crear la base de datos se emplea la función `CreateDB.wos()`:
+## Summaries
 
-```{r wosdf2, cache=TRUE}
-db <- CreateDB.wos(wosdf2, label = "Mathematics_UDC_2008-2017 (01-02-2019)")
-str(db, 1)
-```
+You can generate either global summaries or yearly summaries of your database.
 
+### Global summary
 
-Sumarios
---------
+The `summary()` method of a bibliographic database `(summary.wos.db()`), provides an overview of the entire database, including total documents, authors, journals, citations, and other aggregated statistics.
 
-Se pueden realizar sumarios globales o por años...
-
-### Sumario `summary.wos.db()`
-
-```{r summary, cache=TRUE}
+```{r summary, cache=!rebuid}
 res1 <- summary(db)
 options(digits = 5)
 res1
 ```
 
-### Sumario por años `summary_year()`
+### Yearly summary
+
+The `summary_year()` method breaks down the summary *by year*, showing trends over time in publications, citations, and other key metrics. 
 
 ```{r }
 res2 <- summary_year(db)
@@ -145,127 +153,265 @@ res2
 ```
 
 
-Gráficos
---------
+## Visualizations
 
-Se emplea la librería [`ggplot2`](https://ggplot2.tidyverse.org)...
+The [`ggplot2`](https://ggplot2.tidyverse.org) package is used to create a wide variety of visualizations from the database.  
+There are three main types of plots you can create:
 
+- Database plots (`plot(db)`).
 
-### Gráficos de la base de datos `plot.wos.db()`
+- Summary plots (`plot(summary(db)`).
+
+- Yearly summary plots (`plot(summary_year(db))`).
+
+Note: All `plot()` methods invisible return a list with the generated `ggplot2` objects (use `plot = FALSE` to avoid plotting).
+
+### Database plots 
+
+The `plot()` method of a bibliographic database (`plot.wos.db()`) provides a general visualization of its contents.  
 
 ```{r plotdb, warning=FALSE, message=FALSE}
 plot(db)
 ```
 
-### Gráficos sumario `plot.summary.wos.db()`
+### Summary plots 
 
-```{r , fig.align = 'left'}
+The plot method of a summary result (`plot.summary.wos.db()`) visualizes the results generating different types of plots: standard bar, line plots or Pie charts (`pie = TRUE`).
+
+```{r }
 plot(res1)
 
 plot(res1, pie = TRUE)
 ```
 
-### Gráficos sumario por años `plot.summary.year()`
+### Yearly summary plots
 
-```{r , fig.align = 'left'}
+The `plot()` method of a yearly summary (`plot.summary.year()`) visualizes the results generating different types of plots: standard bar and line plots for trends over time, or boxplots (`boxplot = TRUE`), to show variability within each year.
+
+```{r }
 plot(res2)
 
 plot(res2, boxplot = TRUE)
 ```
 
-Filtrado
---------
 
-Se combinan las funciones `get.id<Tabla>()` 
-(se puede emplear cualquier variable de la correspondiente tabla; 
-multiple conditions are combined with `&`, see e.g. `dplyr::filter()`) 
-con la función `get.idDocs()`.
+## Filtering
 
-### Funciones get
+To filter elements (entities) of the database, you can use the functions `get.id<Table>()` to retrieve identification codes (IDs or entity key values). Any variable from the corresponding `<Table>` may be used (multiple conditions are combined with `&`; see e.g. `dplyr::filter()`).
 
-- `get.idAuthors()`: buscar id (códigos) de autores
+Typically, these functions are combined together with the `get.idDocs()` function to obtain document IDs, which are finally used in argument `filter` of summary functions to filter documents in results.
 
-    Buscar un autor concreto:
+
+### Retrieving element IDs (entity key values)
+
+- **`get.idAuthors()`**: Retrieve author IDs (codes)
+
+    Search for a specific author:
       
-    ```{r }
+    ```{r}
     idAuthor <- get.idAuthors(db, AF == "Cao, Ricardo")
     idAuthor
     ```
       
-    Buscar en nombres de autores:
+    Search by partial name match:
       
-    ```{r }
+    ```{r}
     idAuthors <- get.idAuthors(db, grepl('Cao', AF))
     idAuthors
     ```
 
-- `get.idAreas()`: Devuelve códigos de las áreas
+- **`get.idAreas()`**: Retrieve codes for research areas
 
-    ```{r }
+    ```{r}
     get.idAreas(db, SC == 'Mathematics')
     get.idAreas(db, SC == 'Mathematics' | SC == 'Computer Science')
     ```
 
-- `get.idCategories()`: códigos de las categorías
+- **`get.idCategories()`**: Retrieve category codes
 
-    ```{r }
+    ```{r}
     get.idCategories(db, grepl('Mathematics', WC))
     ```
 
-- `get.idSources()` códigos de las fuentes (revistas, libros o colecciones)
+- **`get.idSources()`**: Retrieve source codes (journals, books, or collections)
 
-    ```{r }
-    ijss <- get.idSources(db, SO == 'JOURNAL OF STATISTICAL SOFTWARE')
+    ```{r}
+    ijss <- get.idSources(db, SO == 'TEST')
     ijss
-    knitr::kable(db$Journals[ijss, ], caption = "JSS")
-    # get.idSources(db, JI == 'J. Stat. Softw.')
+    knitr::kable(t(db$Sources[ijss, ]), caption = "Test journal",
+                 col.names = c("Variable", "Value"))
+    # get.idSources(db, JI == 'Test')
     ```
 
-### Obtener documentos (de autores, revistas, ...)
 
-Los indices anteriores se pueden combinar en `get.idDocs()`
+### Retrieving documents IDs (by authors, journals, etc.)
 
-```{r }
+The IDs retrieved above can be combined in `get.idDocs()`:
+
+```{r}
 idocs <- get.idDocs(db, idAuthors = idAuthor)
 idocs
 ```
 
-Los índices de documentos se pueden utilizar como filtro p.e. en `summary.wos.db()`.
+The document IDs can be used as filters, for example, in `summary.wos.db()`.
 
-### Sumarios filtrados
 
-Obtener sumario de autor(es):
+### Filtered Summaries
 
-```{r }
+Get a summary for one or more authors:
+
+```{r}
 summary(db, idocs)
 ```
 
-Obtener sumario de autor(es) por años:
+
+Get a year-by-year summary for one or more authors:
 
 ```{r }
 summary_year(db, idocs)
 ```
 
 
-Indices de autores
-------------------
+## Author metrics
 
-Obtener índices de múltiples autores
+Retrieve metrics for multiple authors:
 
 ```{r }
 TC.authors(db, idAuthors)
 ```
 
-Trabajo futuro
---------------
-  
-- Descarga y análisis de datos de [Scopus](https://www.scopus.com): 
-  empleando descarga de archivos
-  (al estilo del paquete   
-  [CITAN](https://CRAN.R-project.org/package=CITAN)) 
+
+# Bibliographic database with JCR metrics
+
+We can extends the bibliographic database by adding JCR metrics to sources, per year and WoS category.
+
+## Import JCR data from WoS
+
+Excel files with JCR data (avaliable from WoS) can be automatically loaded from a subdirectory:
+
+```{r eval=FALSE}
+dir("JCR_download", pattern = "*.xlsx")
+```
+```{r echo=FALSE}
+# dput(dir("../../JCR_download", pattern='*.xlsx'))
+c("JCR_SCIE_2018.xlsx", "JCR_SCIE_2019.xlsx", "JCR_SCIE_2020.xlsx", 
+"JCR_SCIE_2021.xlsx", "JCR_SCIE_2022.xlsx", "JCR_SCIE_2023.xlsx", 
+"JCR_SSCI_2018.xlsx", "JCR_SSCI_2019.xlsx", "JCR_SSCI_2020.xlsx", 
+"JCR_SSCI_2021.xlsx", "JCR_SSCI_2022.xlsx", "JCR_SSCI_2023.xlsx")
+```
+
+To combine the files into a relational database, the `CreateDBJCR()` function is used:
+
+```{r CreateDBJCR, eval=FALSE}
+jcr <- CreateDBJCR("JCR_download")
+```
+
+## Add JCR data to a bibliographic database
+
+The JCR data can be combined with a bibliographic database by using the `AddDBJCR()` function:
+
+```{r AddDBJCR, eval=FALSE}
+dbjcr <- AddDBJCR(db, jcr)
+```
+
+Two additional tables, `JCRSour` and `JCRCatSour`, are added to the bibliographic database (the result is a `wos.jcr`-class S3 object).
+
+The database resulting from this particular example is provided as a dataset of the `scimetr` package:
+
+```{r dbjcr}
+names(dbjcr)
+class(dbjcr)
+```
+
+
+## Summaries
+
+Auxiliary functions are available to perform database queries:
+
+- **`get_jcr()`**: combines document indexes with their source JCR metrics per year.
+
+    ```{r}
+    head(get_jcr(dbjcr))
+    ```
+
+- **`get_jcr_cat()`** combines document indexes with their source JCR metrics per year and WoS category (if `best = TRUE`, only the results for the WoS category with the best ranking for each document are returned).
+
+    ```{r}
+    head(get_jcr_cat(dbjcr, best = TRUE))
+    ```
+
+The summary methods combine the above queries and generate global summaries or yearly summaries of a bibliographic database with JCR metrics (if `all = TRUE`, the corresponding `wos.db`-class results are also generated).
+
+```{r}
+res1 <- summary(dbjcr)
+res1
+res2 <- summary_year(dbjcr)
+res2
+```
+
+Note: `res1$docjcrcat` contains the combined queries.
+
+
+## Visualizations
+
+The `plot()` method (`plot.wos.jcr()`) generates histograms of documents JCR metrics (if argument `all = TRUE`, `plot.wos.bd()` is also called):
+
+```{r plotdbjcr, message=FALSE, warning=FALSE, out.width = '100%'}
+plot(dbjcr)
+```
+
+Summary results have also a `plot()` method:
+
+```{r plot.summary.jcr, fig.dim = c(10, 6), out.width = '100%'}
+plot(res1)
+```
+```{r plot.summary.year.jcr, out.width = '100%'}
+plot(res2)
+```
+
+
+# Variable list {#variables}
+
+The following list shows all variables used in the database tables:
+
+```{r echo=FALSE}
+all.labels <- data.frame(scimetr:::.all.labels)
+DT::datatable(all.labels, colnames = c("Variable", "Label"), filter = 'top', 
+              options = list(pageLength = 10))
+```
+
+Note: The table above was generated using the `datatable()` function from the [DT](https://rstudio.github.io/DT) package.
+By default, the first rows are displayed. 
+Click on the page index (below) to change this. 
+You can sort by column by clicking on the arrows to the right of its name. 
+You can search for values (search box, top right) and filter values (click on the filter box below the name of each variable).
+
+
+<!-- 
+Pendiente:
+  - Añadir summary_all(plot = TRUE)
+  - Añadir tabla dinámica con todas las variables
+-->
+
+<!-- 
+## Trabajo futuro
+
+- Descarga y análisis de datos de [Scopus](https://www.scopus.com):
+  empleando descarga de archivos (PARCIALMENTE IMPLEMENTADO)
+  (al estilo del paquete
+  [CITAN](https://CRAN.R-project.org/package=CITAN))
   o la [API de Scopus](https://dev.elsevier.com/sc_apis.html)
-  (al estilo del paquete 
+  (al estilo del paquete
   [rscopus](https://CRAN.R-project.org/package=rscopus)).
   
-- Implementar análisis estadísticos "avanzados".  
+- Descarga y análisis de datos de fuentes en abierto (TFM Clever):
+  in line with open source and open data to ensure transparency and reproducibility 
 
+    - [openalexR](https://docs.ropensci.org/openalexR) (Aria et al. 2024):
+    Getting Bibliographic Records from 'OpenAlex' Database Using 'DSL' API.
+    
+    - [rcrossref](https://docs.ropensci.org/rcrossref) (Chamberlain et al. 2014): R interface to various CrossRef APIs.
+  
+
+- Implementar análisis estadísticos "avanzados".
+-->

@@ -4,672 +4,470 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Introduction to the scimetr Package • scimetr</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to the scimetr Package">
-<meta property="og:description" content="scimetr">
-<!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
-<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Introduction to the scimetr package • scimetr</title>
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to the scimetr package">
 </head>
-<body data-spy="scroll" data-target="#toc">
-    
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">scimetr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.3.6</span>
-      </span>
-    </div>
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../articles/scimetr.html">Get started</a>
-</li>
-<li>
-  <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/docs/R_packages.html">Análisis bibliométrico con R</a>
-    </li>
-    <li>
-      <a href="../articles/docs/wos_bd.html">Creación de la BD empleando la API de WoS</a>
-    </li>
-    <li>
-      <a href="../articles/docs/WoS_export.html">Descarga de datos de la Web of Science</a>
-    </li>
+    <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
+
+    <a class="navbar-brand me-2" href="../index.html">scimetr</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-3">
+      <ul class="navbar-nav me-auto">
+<li class="active nav-item"><a class="nav-link" href="../articles/scimetr.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/docs/R_packages.html">Bibliometric analysis with R</a></li>
+    <li><a class="dropdown-item" href="../articles/docs/wos_bd.html">Creación de la BD empleando la API de WoS (obsoleto)</a></li>
+    <li><a class="dropdown-item" href="../articles/WoS_export.html">Downloading data from the Web of Science</a></li>
   </ul>
 </li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
+<li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/rubenfcasal/scimetr/" class="external-link">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
+<ul class="navbar-nav">
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/rubenfcasal/scimetr/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
-<!--/.nav-collapse -->
+
+
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
+</nav><div class="container template-article">
 
-      
 
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Introduction to the scimetr Package</h1>
+
+<link href="scimetr_files/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="scimetr_files/htmlwidgets-1.6.4/htmlwidgets.js"></script><link href="scimetr_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="scimetr_files/datatables-binding-0.33/datatables.js"></script><link href="scimetr_files/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="scimetr_files/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="scimetr_files/dt-core-1.13.6/js/jquery.dataTables.min.js"></script><link href="scimetr_files/nouislider-7.0.10/jquery.nouislider.min.css" rel="stylesheet">
+<script src="scimetr_files/nouislider-7.0.10/jquery.nouislider.min.js"></script><link href="scimetr_files/selectize-0.12.0/selectize.bootstrap3.css" rel="stylesheet">
+<script src="scimetr_files/selectize-0.12.0/selectize.min.js"></script><link href="scimetr_files/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="scimetr_files/crosstalk-1.2.1/js/crosstalk.min.js"></script><div class="row">
+  <main id="main" class="col-md-9"><div class="page-header">
+
+      <h1>Introduction to the scimetr package</h1>
                         <h4 data-toc-skip class="author">UDC Ranking’s
 Group</h4>
             
-            <h4 data-toc-skip class="date">scimetr 0.3.6 :
-2023-04-21</h4>
+            <h4 data-toc-skip class="date">scimetr 1.1.0:
+2025-11-22</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rubenfcasal/scimetr/blob/HEAD/vignettes/scimetr.Rmd" class="external-link"><code>vignettes/scimetr.Rmd</code></a></small>
-      <div class="hidden name"><code>scimetr.Rmd</code></div>
-
+      <div class="d-none name"><code>scimetr.Rmd</code></div>
     </div>
 
     
     
-<p>This vignette (a working draft, in Spanish) tries to illustrate the
-use of the <code>scimetr</code> package …</p>
+<!-- 
+NOTA:
+Javier, puedes decir que estamos "a punto" de sacar la versión 2.0, 
+cambiando los nombres de la funciones para homogeneizarlos 
+empleando estilo_serpiente (tidyverse) con minúsculas:
+ImportSources.wos, CreateDB -> import_sources_wos, create_db
+get.idXXXX -> get_id_xxxx
+TC.authors -> author_metrics 
+-->
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rubenfcasal/scimetr" class="external-link">scimetr</a></span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/rubenfcasal/scimetr/" class="external-link">scimetr</a></span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  scimetr: Analysis of Scientific Publication Data with R,</span></span>
-<span><span class="co">##  version 0.3.6 (built on 2023-04-21).</span></span>
-<span><span class="co">##  Copyright (C) UDC Rankings Group 2017-2023.</span></span>
+<span><span class="co">##  version 1.1.0 (built on 2025-11-22).</span></span>
+<span><span class="co">##  Copyright (C) UDC Rankings Group 2017-2025.</span></span>
 <span><span class="co">##  Type `help(scimetr)` for an overview of the package or</span></span>
 <span><span class="co">##  visit https://rubenfcasal.github.io/scimetr.</span></span></code></pre>
-<p>Este paquete implementa herramientas para la investigación en
-cienciometría y bibliometría. Actualmente incluye rutinas para importar
-datos bibliográficos de <a href="http://www.webofknowledge.com" class="external-link"><em>Clarivate Analytics Web of
-Science</em></a> (WoS) y realizar análisis bibliométricos.</p>
-<p>Un listado de otros paquetes de utilidad para el análisis de este
-tipo de datos está disponible <a href="https://rubenfcasal.github.io/scimetr/articles/docs/R_packages.html" class="external-link">aquí</a>.</p>
+<p>This vignette illustrates the use of the <a href="https://rubenfcasal.github.io/scimetr/"><code>scimetr</code></a>
+package for performing bibliometric analyses using datasets exported
+from Web of Science, highlighting the main workflows and
+functionalities. The package provides tools for scientometric and
+bibliometric research, including routines to import bibliographic
+records from <a href="http://www.webofknowledge.com" class="external-link"><em>Clarivate
+Analytics Web of Science</em></a> (WoS) and conduct bibliometric
+analyses.</p>
+<!-- 
+For more information visit <https://rubenfcasal.github.io/scimetr>. 
+-->
+<p>A list of other useful R packages for this type of analysis is
+available <a href="https://rubenfcasal.github.io/scimetr/articles/docs/R_packages.html">here</a>.</p>
 <div class="section level2">
-<h2 id="instalación">Instalación<a class="anchor" aria-label="anchor" href="#instalaci%C3%B3n"></a>
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Para instalar el paquete sería recomendable en primer lugar instalar
-las dependencias:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">'dplyr'</span>, <span class="st">'dbplyr'</span>,<span class="st">'RSQLite'</span>, <span class="st">'lazyeval'</span>, <span class="st">'stringr'</span>, <span class="st">'ggplot2'</span>, <span class="st">'tidyr'</span>. <span class="st">'rmarkdown'</span>))</span></code></pre></div>
-<p>Como de momento no está disponible en CRAN, habría que instalar la
-versión de desarrollo en GitHub (en el repositorio <a href="https://github.com/rubenfcasal/scimetr" class="external-link">rubenfcasal/scimetr</a>).
-En Windows bastaría con instalar la versión binaria del paquete
-<em>scimetr_X.Y.Z.zip</em> (disponible <a href="https://github.com/rubenfcasal/scimetr/tree/master/docs" class="external-link">aquí</a>),
-alternativamente se puede instalar directamente de GitHub:</p>
+<p>Since the package is not yet available on CRAN, you need to install
+the development version from the GitHub repository <a href="https://github.com/rubenfcasal/scimetr" class="external-link">rubenfcasal/scimetr</a>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
+<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"rubenfcasal/mpae"</span><span class="op">)</span></span></code></pre></div>
+<p>Alternatively, Windows users may install the corresponding
+<em>scimetr_X.Y.Z.zip</em> file in the <a href="https://github.com/rubenfcasal/scimetr/releases/latest" class="external-link">releases
+section</a> of the github repository. It is recommended to first install
+its dependencies:</p>
+<!-- 
+Pendiente:
+  Ultima versión en releases section
+-->
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"rubenfcasal/scimetr"</span><span class="op">)</span></span></code></pre></div>
-<p>Una vez instalado ya podríamos cargar el paquete.</p>
+<code class="sourceCode R"><span><span class="co"># Dependencies</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">'dplyr'</span>, <span class="st">'tidyr'</span>, <span class="st">'stringr'</span>, <span class="st">'ggplot2'</span>, <span class="st">'scales'</span>, <span class="st">'rlang'</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co"># Last released version</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'https://github.com/rubenfcasal/scimetr/releases/download/v1.1.0/scimetr_1.1.0.zip'</span>, repos <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span></code></pre></div>
+<p>Once the package is installed, it can be loaded as usual.</p>
 </div>
 <div class="section level2">
-<h2 id="carga-de-datos">Carga de datos<a class="anchor" aria-label="anchor" href="#carga-de-datos"></a>
+<h2 id="bibliographic-data">Bibliographic data<a class="anchor" aria-label="anchor" href="#bibliographic-data"></a>
 </h2>
-<p>Nos centraremos únicamente en la importación de los datos de
-publicaciones de <a href="http://www.webofknowledge.com" class="external-link">WoS</a>) en
-formato de texto. En primer lugar habría que descargar los
-correspondientes ficheros de la web de WoS, por ejemplo siguiendo los
-pasos descritos <a href="https://rubenfcasal.github.io/scimetr/articles/docs/WoS_export.html" class="external-link">aquí</a>.</p>
-<p>Alternativamente se puede crear una base de datos empleando la <a href="https://developer.clarivate.com/apis" class="external-link">API de WoS</a> para
-posteriormente importarla a R empleando la función
-<code><a href="../reference/ImportDB.wos.html">ImportDB.wos()</a></code>. Para ello habría que disponer de acceso a
-esta API y seguir los pasos descritos <a href="https://rubenfcasal.github.io/scimetr/articles/docs/wos_bd.html" class="external-link">aquí</a>.</p>
+<p>We will focus exclusively on importing publication data from <a href="http://www.webofknowledge.com" class="external-link">WoS</a> in text format. First, you
+need to download the corresponding files from the WoS website, for
+example, by following the steps described <a href="https://rubenfcasal.github.io/scimetr/articles/docs/WoS_export.html">here</a>.</p>
 <div class="section level3">
-<h3 id="cargar-datos-de-directorio">Cargar datos de directorio<a class="anchor" aria-label="anchor" href="#cargar-datos-de-directorio"></a>
+<h3 id="loading-wos-data-from-a-directory">Loading WoS data from a directory<a class="anchor" aria-label="anchor" href="#loading-wos-data-from-a-directory"></a>
 </h3>
-<p>Se pueden cargar automáticamente los archivos WoS (que por defecto
-tienen una limitación de 500 registros) de un subdirectorio:</p>
+<p>WoS files (which by default are limited to 500 records each) can be
+automatically loaded from a subdirectory:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="st">"UDC_2008-2017 (01-02-2019)"</span>, pattern<span class="op">=</span><span class="st">'*.txt'</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="st">"UDC_2018-2023 (01-02-2024)"</span>, pattern <span class="op">=</span> <span class="st">"*.txt"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##  [1] "savedrecs01.txt" "savedrecs02.txt" "savedrecs03.txt" "savedrecs04.txt"</span></span>
 <span><span class="co">##  [5] "savedrecs05.txt" "savedrecs06.txt" "savedrecs07.txt" "savedrecs08.txt"</span></span>
-<span><span class="co">##  [9] "savedrecs09.txt" "savedrecs10.txt" "savedrecs11.txt" "savedrecs12.txt"</span></span>
-<span><span class="co">## [13] "savedrecs13.txt" "savedrecs14.txt" "savedrecs15.txt"</span></span></code></pre>
-<p>Para combinar los ficheros en un <code>data.frame</code> se emplea la
-función <code><a href="../reference/ImportSources.wos.html">ImportSources.wos()</a></code>:</p>
+<span><span class="co">##  [9] "savedrecs09.txt" "savedrecs10.txt"</span></span></code></pre>
+<p>To combine the files into a <code>data.frame</code>, the
+<code><a href="../reference/ImportSources.wos.html">ImportSources.wos()</a></code> function is used:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">wos.txt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ImportSources.wos.html">ImportSources.wos</a></span><span class="op">(</span><span class="st">"UDC_2008-2017 (01-02-2019)"</span>, other <span class="op">=</span> <span class="st">"ignore"</span><span class="op">)</span></span></code></pre></div>
-<p>A continuación habrá que crear la base de datos con la función
-<code><a href="../reference/CreateDB.wos.html">CreateDB.wos()</a></code>, como se muestra más adelante.</p>
+<code class="sourceCode R"><span><span class="va">wos.data</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ImportSources.wos.html">ImportSources.wos</a></span><span class="op">(</span><span class="st">"UDC_2018-2023 (01-02-2024)"</span><span class="op">)</span></span></code></pre></div>
+<p>Next, the database must be created using the <code><a href="../reference/CreateDB.html">CreateDB()</a></code>
+function, as shown later.</p>
 </div>
 <div class="section level3">
-<h3 id="datos-de-ejemplo">Datos de ejemplo<a class="anchor" aria-label="anchor" href="#datos-de-ejemplo"></a>
+<h3 id="example-data">Example data<a class="anchor" aria-label="anchor" href="#example-data"></a>
 </h3>
-<p>En el paquete se incluyen dos conjuntos de datos de ejemplo
-(obtenidos empleando la función <code><a href="../reference/ImportSources.wos.html">ImportSources.wos()</a></code>)
-correspondientes a la búsqueda en WoS por el campo
-Organización-Consolidada de la UDC (Organization-Enhaced: OG =
-Universidade da Coruna):</p>
-<ul>
-<li><p><code>wosdf</code>: año 2015.</p></li>
-<li><p><code>wosdf2</code>: área de investigación ‘Mathematics’, años
-2008-2017.</p></li>
-</ul>
-<p>Variables WoS:</p>
+<p>The package includes the example dataset <code>wosdf</code> (obtained
+using the <code><a href="../reference/ImportSources.wos.html">ImportSources.wos()</a></code> function), corresponding to a
+WoS search by the Affiliation field of <em>Universidade da Coruña
+(UDC)</em> (Affiliation: OG = Universidade da Coruna) in the research
+area <code>"Mathematics"</code> during the years 2018–2023.</p>
+<p>All data tables have an associated <code>variable.labels</code>
+attribute with the variable labels. These will be displayed below the
+variable names when viewed in RStudio
+(e.g. <code>View(wosdf)</code>).</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># View(wosdf2) # En RStudio...</span></span>
-<span><span class="va">variable.labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">wosdf</span>, <span class="st">"variable.labels"</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="va">variable.labels</span><span class="op">)</span><span class="op">)</span> <span class="co"># caption = "Variable labels"</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">wos.labels</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">wosdf</span>, <span class="st">"variable.labels"</span><span class="op">)</span></span>
+<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span><span class="va">wos.labels</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>             col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Variable"</span>, <span class="st">"Label"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
-<th align="left"></th>
-<th align="left">variable.labels</th>
+<th align="left">Variable</th>
+<th align="left">Label</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
 <td align="left">PT</td>
-<td align="left">Publication type</td>
+<td align="left">Publication Type</td>
 </tr>
 <tr class="even">
 <td align="left">AU</td>
 <td align="left">Author</td>
 </tr>
 <tr class="odd">
-<td align="left">BA</td>
-<td align="left">Book authors</td>
-</tr>
-<tr class="even">
-<td align="left">BE</td>
-<td align="left">Editor</td>
-</tr>
-<tr class="odd">
-<td align="left">GP</td>
-<td align="left">Group author</td>
-</tr>
-<tr class="even">
 <td align="left">AF</td>
-<td align="left">Author full</td>
-</tr>
-<tr class="odd">
-<td align="left">BF</td>
-<td align="left">Book authors fullname</td>
+<td align="left">Author Full Name</td>
 </tr>
 <tr class="even">
-<td align="left">CA</td>
-<td align="left">Corporate author</td>
-</tr>
-<tr class="odd">
 <td align="left">TI</td>
-<td align="left">Title</td>
+<td align="left">Article Title</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">SO</td>
-<td align="left">Publication name</td>
+<td align="left">Source Title</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">SE</td>
-<td align="left">Series title</td>
-</tr>
-<tr class="even">
-<td align="left">BS</td>
-<td align="left">Book series</td>
-</tr>
-<tr class="odd">
-<td align="left">LA</td>
-<td align="left">Language</td>
-</tr>
-<tr class="even">
-<td align="left">DT</td>
-<td align="left">Document type</td>
-</tr>
-<tr class="odd">
-<td align="left">CT</td>
-<td align="left">Conference title</td>
-</tr>
-<tr class="even">
-<td align="left">CY</td>
-<td align="left">Conference year</td>
-</tr>
-<tr class="odd">
-<td align="left">CL</td>
-<td align="left">Conference place</td>
-</tr>
-<tr class="even">
-<td align="left">SP</td>
-<td align="left">Conference sponsors</td>
-</tr>
-<tr class="odd">
-<td align="left">HO</td>
-<td align="left">Conference host</td>
-</tr>
-<tr class="even">
-<td align="left">DE</td>
-<td align="left">Keywords</td>
-</tr>
-<tr class="odd">
-<td align="left">ID</td>
-<td align="left">Keywords Plus</td>
-</tr>
-<tr class="even">
-<td align="left">AB</td>
-<td align="left">Abstract</td>
-</tr>
-<tr class="odd">
-<td align="left">C1</td>
-<td align="left">Addresses</td>
-</tr>
-<tr class="even">
-<td align="left">RP</td>
-<td align="left">Reprint author</td>
-</tr>
-<tr class="odd">
-<td align="left">EM</td>
-<td align="left">Author email</td>
-</tr>
-<tr class="even">
-<td align="left">RI</td>
-<td align="left">Researcher id numbers</td>
-</tr>
-<tr class="odd">
-<td align="left">OI</td>
-<td align="left">Orcid numbers</td>
-</tr>
-<tr class="even">
-<td align="left">FU</td>
-<td align="left">Funding agency and grant number</td>
-</tr>
-<tr class="odd">
-<td align="left">FX</td>
-<td align="left">Funding text</td>
-</tr>
-<tr class="even">
-<td align="left">CR</td>
-<td align="left">Cited references</td>
-</tr>
-<tr class="odd">
-<td align="left">NR</td>
-<td align="left">Number of cited references</td>
-</tr>
-<tr class="even">
-<td align="left">TC</td>
-<td align="left">Times cited</td>
-</tr>
-<tr class="odd">
-<td align="left">Z9</td>
-<td align="left">Total times cited count</td>
-</tr>
-<tr class="even">
-<td align="left">U1</td>
-<td align="left">Usage Count (Last 180 Days)</td>
-</tr>
-<tr class="odd">
-<td align="left">U2</td>
-<td align="left">Usage Count (Since 2013)</td>
-</tr>
-<tr class="even">
-<td align="left">PU</td>
-<td align="left">Publisher</td>
-</tr>
-<tr class="odd">
-<td align="left">PI</td>
-<td align="left">Publisher city</td>
-</tr>
-<tr class="even">
-<td align="left">PA</td>
-<td align="left">Publisher address</td>
-</tr>
-<tr class="odd">
-<td align="left">SN</td>
-<td align="left">ISSN</td>
-</tr>
-<tr class="even">
-<td align="left">EI</td>
-<td align="left">eISSN</td>
-</tr>
-<tr class="odd">
-<td align="left">BN</td>
-<td align="left">ISBN</td>
-</tr>
-<tr class="even">
-<td align="left">J9</td>
-<td align="left">Journal.ISI</td>
-</tr>
-<tr class="odd">
-<td align="left">JI</td>
-<td align="left">Journal.ISO</td>
-</tr>
-<tr class="even">
-<td align="left">PD</td>
-<td align="left">Publication date</td>
-</tr>
-<tr class="odd">
-<td align="left">PY</td>
-<td align="left">Year published</td>
-</tr>
-<tr class="even">
-<td align="left">VL</td>
-<td align="left">Volume</td>
-</tr>
-<tr class="odd">
-<td align="left">IS</td>
-<td align="left">Issue</td>
-</tr>
-<tr class="even">
-<td align="left">PN</td>
-<td align="left">Part number</td>
-</tr>
-<tr class="odd">
-<td align="left">SU</td>
-<td align="left">Supplement</td>
-</tr>
-<tr class="even">
-<td align="left">SI</td>
-<td align="left">Special issue</td>
-</tr>
-<tr class="odd">
-<td align="left">MA</td>
-<td align="left">Meeting abstract</td>
-</tr>
-<tr class="even">
-<td align="left">BP</td>
-<td align="left">Beginning page</td>
-</tr>
-<tr class="odd">
-<td align="left">EP</td>
-<td align="left">Ending page</td>
-</tr>
-<tr class="even">
-<td align="left">AR</td>
-<td align="left">Article number</td>
-</tr>
-<tr class="odd">
-<td align="left">DI</td>
-<td align="left">DOI</td>
-</tr>
-<tr class="even">
-<td align="left">D2</td>
-<td align="left">Book DOI</td>
-</tr>
-<tr class="odd">
-<td align="left">PG</td>
-<td align="left">Page count</td>
-</tr>
-<tr class="even">
-<td align="left">WC</td>
-<td align="left">WOS category</td>
-</tr>
-<tr class="odd">
-<td align="left">SC</td>
-<td align="left">Research areas</td>
-</tr>
-<tr class="even">
-<td align="left">GA</td>
-<td align="left">Document delivery number</td>
-</tr>
-<tr class="odd">
-<td align="left">UT</td>
-<td align="left">Access number</td>
-</tr>
-<tr class="even">
-<td align="left">PM</td>
-<td align="left">Pub Med ID</td>
+<td align="left">Book Series Title</td>
 </tr>
 </tbody>
 </table>
+<p>…</p>
+<p>A full list of the variables used in the database tables is shown in
+the final section <a href="#variables"><em>Variable list</em></a> of
+this document.</p>
 </div>
 </div>
 <div class="section level2">
-<h2 id="creación-de-la-base-de-datos">Creación de la base de datos<a class="anchor" aria-label="anchor" href="#creaci%C3%B3n-de-la-base-de-datos"></a>
+<h2 id="bibliographic-database">Bibliographic database<a class="anchor" aria-label="anchor" href="#bibliographic-database"></a>
 </h2>
-<p>Para crear la base de datos se emplea la función
-<code><a href="../reference/CreateDB.wos.html">CreateDB.wos()</a></code>:</p>
+<p><code>scimetr</code> uses lists with <code>data.frame</code>
+components as relational databases.</p>
+<p>To create the <a href="https://en.wikipedia.org/wiki/Bibliographic_database" class="external-link">bibliographic
+database</a>, use the <code><a href="../reference/CreateDB.html">CreateDB()</a></code> function (the result is a
+<code>wos.db</code>-class S3 object):</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CreateDB.wos.html">CreateDB.wos</a></span><span class="op">(</span><span class="va">wosdf2</span>, label <span class="op">=</span> <span class="st">"Mathematics_UDC_2008-2017 (01-02-2019)"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">db</span>, <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## List of 11</span></span>
-<span><span class="co">##  $ Docs      :'data.frame':  389 obs. of  25 variables:</span></span>
-<span><span class="co">##   ..- attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...</span></span>
-<span><span class="co">##   .. ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...</span></span>
-<span><span class="co">##  $ Authors   :'data.frame':  610 obs. of  4 variables:</span></span>
-<span><span class="co">##  $ AutDoc    :'data.frame':  1260 obs. of  2 variables:</span></span>
-<span><span class="co">##  $ Categories:'data.frame':  46 obs. of  2 variables:</span></span>
-<span><span class="co">##  $ CatDoc    :'data.frame':  866 obs. of  2 variables:</span></span>
-<span><span class="co">##  $ Areas     :'data.frame':  26 obs. of  2 variables:</span></span>
-<span><span class="co">##  $ AreaDoc   :'data.frame':  771 obs. of  2 variables:</span></span>
-<span><span class="co">##  $ Addresses :'data.frame':  896 obs. of  5 variables:</span></span>
-<span><span class="co">##  $ AddAutDoc :'data.frame':  1328 obs. of  3 variables:</span></span>
-<span><span class="co">##  $ Sources   :'data.frame':  150 obs. of  14 variables:</span></span>
-<span><span class="co">##  $ label     : chr "Mathematics_UDC_2008-2017 (01-02-2019)"</span></span>
-<span><span class="co">##  - attr(*, "variable.labels")= Named chr [1:62] "Publication type" "Author" "Book authors" "Editor" ...</span></span>
-<span><span class="co">##   ..- attr(*, "names")= chr [1:62] "PT" "AU" "BA" "BE" ...</span></span>
-<span><span class="co">##  - attr(*, "class")= chr "wos.db"</span></span></code></pre>
-</div>
-<div class="section level2">
-<h2 id="sumarios">Sumarios<a class="anchor" aria-label="anchor" href="#sumarios"></a>
-</h2>
-<p>Se pueden realizar sumarios globales o por años…</p>
+<code class="sourceCode R"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CreateDB.html">CreateDB</a></span><span class="op">(</span><span class="va">wosdf</span>, label <span class="op">=</span> <span class="st">"Mathematics_UDC_2018-2023"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">db</span><span class="op">)</span> </span></code></pre></div>
+<pre><code><span><span class="co">##  [1] "Docs"         "Authors"      "AutDoc"       "OI"           "OIDoc"       </span></span>
+<span><span class="co">##  [6] "RI"           "RIDoc"        "Categories"   "CatSour"      "Areas"       </span></span>
+<span><span class="co">## [11] "AreaSour"     "Addresses"    "AddAutDoc"    "Affiliations" "AffDoc"      </span></span>
+<span><span class="co">## [16] "Sources"      "WSIndex"      "SourWSI"      "label"        "export.date"</span></span></code></pre>
 <div class="section level3">
-<h3 id="sumario-summary-wos-db">Sumario <code>summary.wos.db()</code><a class="anchor" aria-label="anchor" href="#sumario-summary-wos-db"></a>
+<h3 id="summaries">Summaries<a class="anchor" aria-label="anchor" href="#summaries"></a>
 </h3>
+<p>You can generate either global summaries or yearly summaries of your
+database.</p>
+<div class="section level4">
+<h4 id="global-summary">Global summary<a class="anchor" aria-label="anchor" href="#global-summary"></a>
+</h4>
+<p>The <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> method of a bibliographic database
+<code>(summary.wos.db()</code>), provides an overview of the entire
+database, including total documents, authors, journals, citations, and
+other aggregated statistics.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>digits <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="va">res1</span></span></code></pre></div>
-<pre><code><span><span class="co">## Number of documents: 389 </span></span>
-<span><span class="co">## Authors: 610 </span></span>
-<span><span class="co">## Period: 2008 - 2017 </span></span>
+<pre><code><span><span class="co">## Number of documents: 293 </span></span>
+<span><span class="co">## Authors: 504 </span></span>
+<span><span class="co">## Period: 2018 - 2023 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Document types:</span></span>
 <span><span class="co">##                            Documents</span></span>
-<span><span class="co">## Article                          360</span></span>
-<span><span class="co">## Article; Proceedings Paper        16</span></span>
-<span><span class="co">## Correction                         1</span></span>
-<span><span class="co">## Editorial Material                 5</span></span>
-<span><span class="co">## Review                             7</span></span>
+<span><span class="co">## Article                          254</span></span>
+<span><span class="co">## Article; Early Access              1</span></span>
+<span><span class="co">## Article; Proceedings Paper         2</span></span>
+<span><span class="co">## Correction                         7</span></span>
+<span><span class="co">## Editorial Material                21</span></span>
+<span><span class="co">## Review                             8</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Number of authors per document:</span></span>
 <span><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span><span class="co">##    1.00    2.00    3.00    3.24    4.00    8.00 </span></span>
+<span><span class="co">##    1.00    3.00    3.00    3.63    4.00   13.00 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Number of documents per author:</span></span>
 <span><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span><span class="co">##    1.00    1.00    1.00    2.07    2.00   29.00 </span></span>
+<span><span class="co">##    1.00    1.00    1.00    2.11    2.00   23.00 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Number of times cited:</span></span>
 <span><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span><span class="co">##     0.0     1.0     3.0    10.9     9.0  1139.0 </span></span>
+<span><span class="co">##    0.00    1.00    3.00    5.87    7.00  123.00 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Indexes:</span></span>
 <span><span class="co">##  H  G </span></span>
-<span><span class="co">## 24 54 </span></span>
+<span><span class="co">## 19 27 </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Status:</span></span>
+<span><span class="co">## Highly Cited   Hot Papers </span></span>
+<span><span class="co">##            1            0 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Top Categories:</span></span>
 <span><span class="co">##                                                  Documents</span></span>
-<span><span class="co">## Mathematics, Interdisciplinary Applications            134</span></span>
-<span><span class="co">## Mathematics, Applied                                   130</span></span>
-<span><span class="co">## Statistics &amp; Probability                               121</span></span>
-<span><span class="co">## Mathematics                                             77</span></span>
-<span><span class="co">## Engineering, Multidisciplinary                          64</span></span>
-<span><span class="co">## Mechanics                                               59</span></span>
-<span><span class="co">## Computer Science, Interdisciplinary Applications        45</span></span>
-<span><span class="co">## Computer Science, Artificial Intelligence               20</span></span>
-<span><span class="co">## Social Sciences, Mathematical Methods                   17</span></span>
-<span><span class="co">## Automation &amp; Control Systems                            16</span></span>
-<span><span class="co">## Others                                                 183</span></span>
+<span><span class="co">## Mathematics, Applied                                   133</span></span>
+<span><span class="co">## Mathematics                                             96</span></span>
+<span><span class="co">## Statistics &amp; Probability                                84</span></span>
+<span><span class="co">## Mathematics, Interdisciplinary Applications             55</span></span>
+<span><span class="co">## Computer Science, Interdisciplinary Applications        30</span></span>
+<span><span class="co">## Logic                                                   28</span></span>
+<span><span class="co">## Mechanics                                               19</span></span>
+<span><span class="co">## Engineering, Multidisciplinary                          17</span></span>
+<span><span class="co">## Multidisciplinary Sciences                              13</span></span>
+<span><span class="co">## Biochemical Research Methods                            11</span></span>
+<span><span class="co">## Others                                                 104</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Top Areas:</span></span>
-<span><span class="co">##                                         Documents</span></span>
-<span><span class="co">## Mathematics                                   389</span></span>
-<span><span class="co">## Computer Science                               69</span></span>
-<span><span class="co">## Engineering                                    69</span></span>
-<span><span class="co">## Mechanics                                      59</span></span>
-<span><span class="co">## Physics                                        22</span></span>
-<span><span class="co">## Chemistry                                      17</span></span>
-<span><span class="co">## Mathematical Methods In Social Sciences        17</span></span>
-<span><span class="co">## Automation &amp; Control Systems                   16</span></span>
-<span><span class="co">## Instruments &amp; Instrumentation                  16</span></span>
-<span><span class="co">## Business &amp; Economics                           15</span></span>
-<span><span class="co">## Others                                         82</span></span>
+<span><span class="co">##                                          Documents</span></span>
+<span><span class="co">## Mathematics                                    293</span></span>
+<span><span class="co">## Computer Science                                45</span></span>
+<span><span class="co">## Science &amp; Technology - Other Topics             41</span></span>
+<span><span class="co">## Engineering                                     20</span></span>
+<span><span class="co">## Mechanics                                       19</span></span>
+<span><span class="co">## Biochemistry &amp; Molecular Biology                11</span></span>
+<span><span class="co">## Mathematical &amp; Computational Biology             9</span></span>
+<span><span class="co">## Operations Research &amp; Management Science         9</span></span>
+<span><span class="co">## Physics                                          9</span></span>
+<span><span class="co">## Mathematical Methods In Social Sciences          7</span></span>
+<span><span class="co">## Others                                          37</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Top Journals:</span></span>
-<span><span class="co">##                                     Documents</span></span>
-<span><span class="co">## Comput. Meth. Appl. Mech. Eng.             29</span></span>
-<span><span class="co">## J. Math. Anal. Appl.                       11</span></span>
-<span><span class="co">## Chemometrics Intell. Lab. Syst.            11</span></span>
-<span><span class="co">## Rev. Int. Metod. Numer. Calc. Dise.        11</span></span>
-<span><span class="co">## J. Comput. Appl. Math.                     10</span></span>
-<span><span class="co">## Comput. Stat. Data Anal.                    9</span></span>
-<span><span class="co">## Int. J. Numer. Methods Fluids               9</span></span>
-<span><span class="co">## Appl. Numer. Math.                          9</span></span>
-<span><span class="co">## J. Nonparametr. Stat.                       8</span></span>
-<span><span class="co">## Int. J. Numer. Methods Eng.                 8</span></span>
-<span><span class="co">## Others                                    274</span></span>
+<span><span class="co">##                                          Documents</span></span>
+<span><span class="co">## Log. J. IGPL                                    28</span></span>
+<span><span class="co">## Mathematics                                     21</span></span>
+<span><span class="co">## Test                                            17</span></span>
+<span><span class="co">## Appl. Math. Comput.                              9</span></span>
+<span><span class="co">## Complexity                                       9</span></span>
+<span><span class="co">## IEEE-ACM Trans. Comput. Biol. Bioinform.         7</span></span>
+<span><span class="co">## J. Math. Anal. Appl.                             7</span></span>
+<span><span class="co">## Comput. Math. Appl.                              6</span></span>
+<span><span class="co">## J. Comput. Appl. Math.                           6</span></span>
+<span><span class="co">## Arch. Comput. Method Eng.                        5</span></span>
+<span><span class="co">## Others                                         178</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Top Countries:</span></span>
-<span><span class="co">##         Documents</span></span>
-<span><span class="co">## Spain         389</span></span>
-<span><span class="co">## USA            49</span></span>
-<span><span class="co">## France         32</span></span>
-<span><span class="co">## Italy          13</span></span>
-<span><span class="co">## Mexico         11</span></span>
-<span><span class="co">## UK             11</span></span>
-<span><span class="co">## Germany        10</span></span>
-<span><span class="co">## Canada          8</span></span>
-<span><span class="co">## China           8</span></span>
-<span><span class="co">## Belgium         7</span></span>
-<span><span class="co">## Others         52</span></span></code></pre>
+<span><span class="co">##           Documents</span></span>
+<span><span class="co">## Spain           293</span></span>
+<span><span class="co">## France           20</span></span>
+<span><span class="co">## UK               18</span></span>
+<span><span class="co">## USA              17</span></span>
+<span><span class="co">## Italy            13</span></span>
+<span><span class="co">## Chile             9</span></span>
+<span><span class="co">## Ecuador           9</span></span>
+<span><span class="co">## Portugal          8</span></span>
+<span><span class="co">## Argentina         6</span></span>
+<span><span class="co">## Uruguay           6</span></span>
+<span><span class="co">## Others           46</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## International colaboration documents (Spain): 134</span></span></code></pre>
 </div>
-<div class="section level3">
-<h3 id="sumario-por-años-summary_year">Sumario por años <code>summary_year()</code><a class="anchor" aria-label="anchor" href="#sumario-por-a%C3%B1os-summary_year"></a>
-</h3>
+<div class="section level4">
+<h4 id="yearly-summary">Yearly summary<a class="anchor" aria-label="anchor" href="#yearly-summary"></a>
+</h4>
+<p>The <code><a href="../reference/summary_year.html">summary_year()</a></code> method breaks down the summary <em>by
+year</em>, showing trends over time in publications, citations, and
+other key metrics.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/summary_year.html">summary_year</a></span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span>
 <span><span class="va">res2</span></span></code></pre></div>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Annual Scientific Production:</span></span>
-<span><span class="co">## </span></span>
+<pre><code><span><span class="co">## Annual Scientific Production:</span></span>
 <span><span class="co">##      Documents</span></span>
-<span><span class="co">## 2008        42</span></span>
-<span><span class="co">## 2009        28</span></span>
-<span><span class="co">## 2010        40</span></span>
-<span><span class="co">## 2011        37</span></span>
-<span><span class="co">## 2012        44</span></span>
-<span><span class="co">## 2013        40</span></span>
-<span><span class="co">## 2014        38</span></span>
-<span><span class="co">## 2015        39</span></span>
-<span><span class="co">## 2016        47</span></span>
-<span><span class="co">## 2017        34</span></span>
+<span><span class="co">## 2018        40</span></span>
+<span><span class="co">## 2019        61</span></span>
+<span><span class="co">## 2020        46</span></span>
+<span><span class="co">## 2021        51</span></span>
+<span><span class="co">## 2022        45</span></span>
+<span><span class="co">## 2023        50</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Annual Authors per Document:</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##          Avg Median</span></span>
-<span><span class="co">##  2008 2.8810    3.0</span></span>
-<span><span class="co">##  2009 3.3214    3.0</span></span>
-<span><span class="co">##  2010 3.3500    3.0</span></span>
-<span><span class="co">##  2011 3.3784    3.0</span></span>
-<span><span class="co">##  2012 2.8182    2.5</span></span>
-<span><span class="co">##  2013 3.3750    3.0</span></span>
-<span><span class="co">##  2014 3.2368    3.0</span></span>
-<span><span class="co">##  2015 3.0513    3.0</span></span>
-<span><span class="co">##  2016 3.5745    3.0</span></span>
-<span><span class="co">##  2017 3.4706    3.0</span></span>
+<span><span class="co">##    PY   Mean Median</span></span>
+<span><span class="co">##  2018 3.3250    3.5</span></span>
+<span><span class="co">##  2019 3.5902    3.0</span></span>
+<span><span class="co">##  2020 3.8696    3.0</span></span>
+<span><span class="co">##  2021 3.5098    3.0</span></span>
+<span><span class="co">##  2022 3.8444    3.0</span></span>
+<span><span class="co">##  2023 3.6600    3.0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Annual Times Cited:</span></span>
+<span><span class="co">##    PY Cites   Mean Median</span></span>
+<span><span class="co">##  2018   364 9.1000    5.0</span></span>
+<span><span class="co">##  2019   538 8.8197    5.0</span></span>
+<span><span class="co">##  2020   306 6.6522    3.0</span></span>
+<span><span class="co">##  2021   206 4.0392    3.0</span></span>
+<span><span class="co">##  2022   186 4.1333    2.0</span></span>
+<span><span class="co">##  2023   120 2.4000    1.5</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">##       Cites     Avg Median</span></span>
-<span><span class="co">##  2008   755 17.9762    5.0</span></span>
-<span><span class="co">##  2009   265  9.4643    6.0</span></span>
-<span><span class="co">##  2010   410 10.2500    5.0</span></span>
-<span><span class="co">##  2011  1422 38.4324    5.0</span></span>
-<span><span class="co">##  2012   335  7.6136    3.5</span></span>
-<span><span class="co">##  2013   271  6.7750    4.0</span></span>
-<span><span class="co">##  2014   336  8.8421    3.5</span></span>
-<span><span class="co">##  2015   215  5.5128    2.0</span></span>
-<span><span class="co">##  2016   192  4.0851    2.0</span></span>
-<span><span class="co">##  2017    55  1.6176    1.0</span></span></code></pre>
+<span><span class="co">## Status:</span></span>
+<span><span class="co">##    PY Highly Cited Hot Paper</span></span>
+<span><span class="co">##  2018            0         0</span></span>
+<span><span class="co">##  2019            1         0</span></span>
+<span><span class="co">##  2020            0         0</span></span>
+<span><span class="co">##  2021            0         0</span></span>
+<span><span class="co">##  2022            0         0</span></span>
+<span><span class="co">##  2023            0         0</span></span></code></pre>
 </div>
 </div>
-<div class="section level2">
-<h2 id="gráficos">Gráficos<a class="anchor" aria-label="anchor" href="#gr%C3%A1ficos"></a>
-</h2>
-<p>Se emplea la librería <a href="https://ggplot2.tidyverse.org" class="external-link"><code>ggplot2</code></a>…</p>
 <div class="section level3">
-<h3 id="gráficos-de-la-base-de-datos-plot-wos-db">Gráficos de la base de datos <code>plot.wos.db()</code><a class="anchor" aria-label="anchor" href="#gr%C3%A1ficos-de-la-base-de-datos-plot-wos-db"></a>
+<h3 id="visualizations">Visualizations<a class="anchor" aria-label="anchor" href="#visualizations"></a>
 </h3>
+<p>The <a href="https://ggplot2.tidyverse.org" class="external-link"><code>ggplot2</code></a>
+package is used to create a wide variety of visualizations from the
+database.<br>
+There are three main types of plots you can create:</p>
+<ul>
+<li><p>Database plots (<code>plot(db)</code>).</p></li>
+<li><p>Summary plots (<code>plot(summary(db)</code>).</p></li>
+<li><p>Yearly summary plots
+(<code>plot(summary_year(db))</code>).</p></li>
+</ul>
+<p>Note: All <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> methods invisible return a list with
+the generated <code>ggplot2</code> objects (use
+<code>plot = FALSE</code> to avoid plotting).</p>
+<div class="section level4">
+<h4 id="database-plots">Database plots<a class="anchor" aria-label="anchor" href="#database-plots"></a>
+</h4>
+<p>The <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> method of a bibliographic database
+(<code><a href="../reference/CreateDB.html">plot.wos.db()</a></code>) provides a general visualization of its
+contents.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span></code></pre></div>
-<p><img src="scimetr_files/figure-html/plotdb-1.png" width="100%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/plotdb-2.png" width="100%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/plotdb-3.png" width="100%" style="display: block; margin: auto;"></p>
+<p><img src="scimetr_files/figure-html/plotdb-1.png" width="80%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/plotdb-2.png" width="80%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/plotdb-3.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
-<div class="section level3">
-<h3 id="gráficos-sumario-plot-summary-wos-db">Gráficos sumario <code>plot.summary.wos.db()</code><a class="anchor" aria-label="anchor" href="#gr%C3%A1ficos-sumario-plot-summary-wos-db"></a>
-</h3>
+<div class="section level4">
+<h4 id="summary-plots">Summary plots<a class="anchor" aria-label="anchor" href="#summary-plots"></a>
+</h4>
+<p>The plot method of a summary result
+(<code><a href="../reference/summary.wos.db.html">plot.summary.wos.db()</a></code>) visualizes the results generating
+different types of plots: standard bar, line plots or Pie charts
+(<code>pie = TRUE</code>).</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res1</span><span class="op">)</span></span></code></pre></div>
-<p><img src="scimetr_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-2.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-3.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-4.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-5.png" width="100%" style="display: block; margin: auto auto auto 0;"></p>
+<p><img src="scimetr_files/figure-html/unnamed-chunk-9-1.png" width="80%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/unnamed-chunk-9-2.png" width="80%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/unnamed-chunk-9-3.png" width="80%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/unnamed-chunk-9-4.png" width="80%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/unnamed-chunk-9-5.png" width="80%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res1</span>, pie <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="scimetr_files/figure-html/unnamed-chunk-8-6.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-7.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-8.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-9.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-8-10.png" width="100%" style="display: block; margin: auto auto auto 0;"></p>
+<p><img src="scimetr_files/figure-html/unnamed-chunk-9-6.png" width="80%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/unnamed-chunk-9-7.png" width="80%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/unnamed-chunk-9-8.png" width="80%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/unnamed-chunk-9-9.png" width="80%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/unnamed-chunk-9-10.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
-<div class="section level3">
-<h3 id="gráficos-sumario-por-años-plot-summary-year">Gráficos sumario por años <code>plot.summary.year()</code><a class="anchor" aria-label="anchor" href="#gr%C3%A1ficos-sumario-por-a%C3%B1os-plot-summary-year"></a>
-</h3>
+<div class="section level4">
+<h4 id="yearly-summary-plots">Yearly summary plots<a class="anchor" aria-label="anchor" href="#yearly-summary-plots"></a>
+</h4>
+<p>The <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> method of a yearly summary
+(<code>plot.summary.year()</code>) visualizes the results generating
+different types of plots: standard bar and line plots for trends over
+time, or boxplots (<code>boxplot = TRUE</code>), to show variability
+within each year.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="scimetr_files/figure-html/unnamed-chunk-9-1.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-9-2.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-9-3.png" width="100%" style="display: block; margin: auto auto auto 0;"></p>
+<p><img src="scimetr_files/figure-html/unnamed-chunk-10-1.png" width="80%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/unnamed-chunk-10-2.png" width="80%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/unnamed-chunk-10-3.png" width="80%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res2</span>, boxplot <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="scimetr_files/figure-html/unnamed-chunk-9-4.png" width="100%" style="display: block; margin: auto auto auto 0;"><img src="scimetr_files/figure-html/unnamed-chunk-9-5.png" width="100%" style="display: block; margin: auto auto auto 0;"></p>
+<p><img src="scimetr_files/figure-html/unnamed-chunk-10-4.png" width="80%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/unnamed-chunk-10-5.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
 </div>
-<div class="section level2">
-<h2 id="filtrado">Filtrado<a class="anchor" aria-label="anchor" href="#filtrado"></a>
-</h2>
-<p>Se combinan las funciones <code>get.id&lt;Tabla&gt;()</code> (se
-puede emplear cualquier variable de la correspondiente tabla; multiple
-conditions are combined with <code>&amp;</code>, see
-e.g. <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code>) con la función
-<code><a href="../reference/get.idDocs.html">get.idDocs()</a></code>.</p>
 <div class="section level3">
-<h3 id="funciones-get">Funciones get<a class="anchor" aria-label="anchor" href="#funciones-get"></a>
+<h3 id="filtering">Filtering<a class="anchor" aria-label="anchor" href="#filtering"></a>
 </h3>
+<p>To filter elements (entities) of the database, you can use the
+functions <code>get.id&lt;Table&gt;()</code> to retrieve identification
+codes (IDs or entity key values). Any variable from the corresponding
+<code>&lt;Table&gt;</code> may be used (multiple conditions are combined
+with <code>&amp;</code>; see e.g. <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">dplyr::filter()</a></code>).</p>
+<p>Typically, these functions are combined together with the
+<code><a href="../reference/get.idDocs.html">get.idDocs()</a></code> function to obtain document IDs, which are
+finally used in argument <code>filter</code> of summary functions to
+filter documents in results.</p>
+<div class="section level4">
+<h4 id="retrieving-element-ids-entity-key-values">Retrieving element IDs (entity key values)<a class="anchor" aria-label="anchor" href="#retrieving-element-ids-entity-key-values"></a>
+</h4>
 <ul>
 <li>
-<p><code><a href="../reference/get.idDocs.html">get.idAuthors()</a></code>: buscar id (códigos) de autores</p>
-<p>Buscar un autor concreto:</p>
+<p><strong><code><a href="../reference/get.idDocs.html">get.idAuthors()</a></code></strong>: Retrieve author
+IDs (codes)</p>
+<p>Search for a specific author:</p>
 <div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">idAuthor</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idAuthors</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">AF</span> <span class="op">==</span> <span class="st">"Cao, Ricardo"</span><span class="op">)</span></span>
 <span><span class="va">idAuthor</span></span></code></pre></div>
-<pre><code><span><span class="co">## Cao, Ricardo </span></span>
-<span><span class="co">##           16</span></span></code></pre>
-<p>Buscar en nombres de autores:</p>
+<pre><code><span><span class="co">## Cao, Ricardo Cao, Ricardo </span></span>
+<span><span class="co">##           11          260</span></span></code></pre>
+<p>Search by partial name match:</p>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">idAuthors</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idAuthors</a></span><span class="op">(</span><span class="va">db</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">'Cao'</span>, <span class="va">AF</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">idAuthors</span></span></code></pre></div>
-<pre><code><span><span class="co">##           Cao, Ricardo Cao-Rial, Maria Teresa </span></span>
-<span><span class="co">##                     16                     69</span></span></code></pre>
+<pre><code><span><span class="co">##      Cao, Ricardo   Cao-Rial, M. T.      Cao, Ricardo           Cao, R. </span></span>
+<span><span class="co">##                11                80               260               328 </span></span>
+<span><span class="co">## Cao Abad, Ricardo   Cao-Rial, M. T. </span></span>
+<span><span class="co">##               501               504</span></span></code></pre>
 </li>
 <li>
-<p><code><a href="../reference/get.idDocs.html">get.idAreas()</a></code>: Devuelve códigos de las áreas</p>
+<p><strong><code><a href="../reference/get.idDocs.html">get.idAreas()</a></code></strong>: Retrieve codes for
+research areas</p>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get.idDocs.html">get.idAreas</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">SC</span> <span class="op">==</span> <span class="st">'Mathematics'</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Mathematics </span></span>
@@ -677,225 +475,453 @@ e.g. <code><a href="https://dplyr.tidyverse.org/reference/filter.html" class="e
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get.idDocs.html">get.idAreas</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">SC</span> <span class="op">==</span> <span class="st">'Mathematics'</span> <span class="op">|</span> <span class="va">SC</span> <span class="op">==</span> <span class="st">'Computer Science'</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Computer Science      Mathematics </span></span>
-<span><span class="co">##                7               16</span></span></code></pre>
+<span><span class="co">##                6               16</span></span></code></pre>
 </li>
 <li>
-<p><code><a href="../reference/get.idDocs.html">get.idCategories()</a></code>: códigos de las categorías</p>
+<p><strong><code><a href="../reference/get.idDocs.html">get.idCategories()</a></code></strong>: Retrieve
+category codes</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/get.idDocs.html">get.idCategories</a></span><span class="op">(</span><span class="va">db</span>, <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">'Mathematics'</span>, <span class="va">WC</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">##                                 Mathematics </span></span>
-<span><span class="co">##                                          28 </span></span>
+<span><span class="co">##                                         148 </span></span>
 <span><span class="co">##                        Mathematics, Applied </span></span>
-<span><span class="co">##                                          29 </span></span>
+<span><span class="co">##                                         149 </span></span>
 <span><span class="co">## Mathematics, Interdisciplinary Applications </span></span>
-<span><span class="co">##                                          30</span></span></code></pre>
+<span><span class="co">##                                         150</span></span></code></pre>
 </li>
 <li>
-<p><code><a href="../reference/get.idDocs.html">get.idSources()</a></code> códigos de las fuentes (revistas,
-libros o colecciones)</p>
+<p><strong><code><a href="../reference/get.idDocs.html">get.idSources()</a></code></strong>: Retrieve source
+codes (journals, books, or collections)</p>
 <div class="sourceCode" id="cb30"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ijss</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idSources</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">SO</span> <span class="op">==</span> <span class="st">'JOURNAL OF STATISTICAL SOFTWARE'</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">ijss</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idSources</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">SO</span> <span class="op">==</span> <span class="st">'TEST'</span><span class="op">)</span></span>
 <span><span class="va">ijss</span></span></code></pre></div>
-<pre><code><span><span class="co">## [1] 70</span></span></code></pre>
+<pre><code><span><span class="co">## TEST </span></span>
+<span><span class="co">##    6</span></span></code></pre>
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="va">db</span><span class="op">$</span><span class="va">Journals</span><span class="op">[</span><span class="va">ijss</span>, <span class="op">]</span>, caption <span class="op">=</span> <span class="st">"JSS"</span><span class="op">)</span></span></code></pre></div>
-<p>Table: JSS</p>
+<code class="sourceCode R"><span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="va">db</span><span class="op">$</span><span class="va">Sources</span><span class="op">[</span><span class="va">ijss</span>, <span class="op">]</span><span class="op">)</span>, caption <span class="op">=</span> <span class="st">"Test journal"</span>,</span>
+<span>             col.names <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"Variable"</span>, <span class="st">"Value"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<caption>Test journal</caption>
+<thead><tr class="header">
+<th align="left">Variable</th>
+<th align="left">Value</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">ids</td>
+<td align="left">6</td>
+</tr>
+<tr class="even">
+<td align="left">PT</td>
+<td align="left">Journal</td>
+</tr>
+<tr class="odd">
+<td align="left">SO</td>
+<td align="left">TEST</td>
+</tr>
+<tr class="even">
+<td align="left">SE</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">BS</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">LA</td>
+<td align="left">English</td>
+</tr>
+<tr class="odd">
+<td align="left">PU</td>
+<td align="left">SPRINGER</td>
+</tr>
+<tr class="even">
+<td align="left">PI</td>
+<td align="left">NEW YORK</td>
+</tr>
+<tr class="odd">
+<td align="left">PA</td>
+<td align="left">ONE NEW YORK PLAZA, SUITE 4600, NEW YORK, NY, UNITED
+STATES</td>
+</tr>
+<tr class="even">
+<td align="left">SN</td>
+<td align="left">1133-0686</td>
+</tr>
+<tr class="odd">
+<td align="left">EI</td>
+<td align="left">1863-8260</td>
+</tr>
+<tr class="even">
+<td align="left">BN</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">J9</td>
+<td align="left">TEST-SPAIN</td>
+</tr>
+<tr class="even">
+<td align="left">JI</td>
+<td align="left">Test</td>
+</tr>
+</tbody>
+</table>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># get.idSources(db, JI == 'J. Stat. Softw.')</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># get.idSources(db, JI == 'Test')</span></span></code></pre></div>
 </li>
 </ul>
 </div>
-<div class="section level3">
-<h3 id="obtener-documentos-de-autores-revistas">Obtener documentos (de autores, revistas, …)<a class="anchor" aria-label="anchor" href="#obtener-documentos-de-autores-revistas"></a>
-</h3>
-<p>Los indices anteriores se pueden combinar en
-<code><a href="../reference/get.idDocs.html">get.idDocs()</a></code></p>
+<div class="section level4">
+<h4 id="retrieving-documents-ids-by-authors-journals-etc-">Retrieving documents IDs (by authors, journals, etc.)<a class="anchor" aria-label="anchor" href="#retrieving-documents-ids-by-authors-journals-etc-"></a>
+</h4>
+<p>The IDs retrieved above can be combined in
+<code><a href="../reference/get.idDocs.html">get.idDocs()</a></code>:</p>
 <div class="sourceCode" id="cb34"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">idocs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get.idDocs.html">get.idDocs</a></span><span class="op">(</span><span class="va">db</span>, idAuthors <span class="op">=</span> <span class="va">idAuthor</span><span class="op">)</span></span>
 <span><span class="va">idocs</span></span></code></pre></div>
-<pre><code><span><span class="co">##  [1]  10  16  23  33  40  56 128 183 187 196 210 220 269 286 295 312 315 332 340</span></span>
-<span><span class="co">## [20] 346 347 350 359 362 372 375 384 385</span></span></code></pre>
-<p>Los índices de documentos se pueden utilizar como filtro p.e. en
+<pre><code><span><span class="co">##  [1]   6  14  66  94 102 104 148 162 164 170 171 187 225 286 287 288</span></span></code></pre>
+<p>The document IDs can be used as filters, for example, in
 <code><a href="../reference/summary.wos.db.html">summary.wos.db()</a></code>.</p>
 </div>
-<div class="section level3">
-<h3 id="sumarios-filtrados">Sumarios filtrados<a class="anchor" aria-label="anchor" href="#sumarios-filtrados"></a>
-</h3>
-<p>Obtener sumario de autor(es):</p>
+<div class="section level4">
+<h4 id="filtered-summaries">Filtered Summaries<a class="anchor" aria-label="anchor" href="#filtered-summaries"></a>
+</h4>
+<p>Get a summary for one or more authors:</p>
 <div class="sourceCode" id="cb36"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">idocs</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Number of documents: 28 </span></span>
-<span><span class="co">## Authors: 40 </span></span>
-<span><span class="co">## Period: 2008 - 2017 </span></span>
+<pre><code><span><span class="co">## Number of documents: 16 </span></span>
+<span><span class="co">## Authors: 21 </span></span>
+<span><span class="co">## Period: 2019 - 2023 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Document types:</span></span>
-<span><span class="co">##                            Documents</span></span>
-<span><span class="co">## Article                           26</span></span>
-<span><span class="co">## Article; Proceedings Paper         1</span></span>
-<span><span class="co">## Editorial Material                 1</span></span>
+<span><span class="co">##                    Documents</span></span>
+<span><span class="co">## Article                   10</span></span>
+<span><span class="co">## Editorial Material         5</span></span>
+<span><span class="co">## Review                     1</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Number of authors per document:</span></span>
 <span><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span><span class="co">##    2.00    2.00    3.00    3.14    4.00    6.00 </span></span>
+<span><span class="co">##    1.00    2.00    3.00    2.81    3.25    5.00 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Number of documents per author:</span></span>
 <span><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span><span class="co">##     1.0     1.0     1.0     2.2     2.0    28.0 </span></span>
+<span><span class="co">##    1.00    1.00    1.00    2.14    2.00    9.00 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Number of times cited:</span></span>
 <span><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
-<span><span class="co">##    0.00    1.00    2.00    3.25    4.25   14.00 </span></span>
+<span><span class="co">##    0.00    0.00    2.50   11.81    6.75  123.00 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Indexes:</span></span>
-<span><span class="co">## H G </span></span>
-<span><span class="co">## 5 7 </span></span>
+<span><span class="co">##  H  G </span></span>
+<span><span class="co">##  5 13 </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Status:</span></span>
+<span><span class="co">## Highly Cited   Hot Papers </span></span>
+<span><span class="co">##            1            0 </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Top Categories:</span></span>
 <span><span class="co">##                                                  Documents</span></span>
-<span><span class="co">## Statistics &amp; Probability                                26</span></span>
-<span><span class="co">## Mathematics, Interdisciplinary Applications              4</span></span>
-<span><span class="co">## Computer Science, Interdisciplinary Applications         3</span></span>
-<span><span class="co">## Economics                                                2</span></span>
-<span><span class="co">## Mathematical &amp; Computational Biology                     2</span></span>
-<span><span class="co">## Social Sciences, Mathematical Methods                    2</span></span>
-<span><span class="co">## Automation &amp; Control Systems                             1</span></span>
-<span><span class="co">## Biochemistry &amp; Molecular Biology                         1</span></span>
-<span><span class="co">## Biology                                                  1</span></span>
-<span><span class="co">## Business, Finance                                        1</span></span>
-<span><span class="co">## Others                                                   4</span></span>
+<span><span class="co">## Statistics &amp; Probability                                15</span></span>
+<span><span class="co">## Operations Research &amp; Management Science                 2</span></span>
+<span><span class="co">## Computer Science, Interdisciplinary Applications         1</span></span>
+<span><span class="co">## Mathematical &amp; Computational Biology                     1</span></span>
+<span><span class="co">## Mathematics                                              1</span></span>
+<span><span class="co">## Medical Informatics                                      1</span></span>
+<span><span class="co">## Medicine, Research &amp; Experimental                        1</span></span>
+<span><span class="co">## Public, Environmental &amp; Occupational Health              1</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Top Areas:</span></span>
-<span><span class="co">##                                            Documents</span></span>
-<span><span class="co">## Mathematics                                       28</span></span>
-<span><span class="co">## Computer Science                                   4</span></span>
-<span><span class="co">## Business &amp; Economics                               2</span></span>
-<span><span class="co">## Mathematical &amp; Computational Biology               2</span></span>
-<span><span class="co">## Mathematical Methods In Social Sciences            2</span></span>
-<span><span class="co">## Automation &amp; Control Systems                       1</span></span>
-<span><span class="co">## Biochemistry &amp; Molecular Biology                   1</span></span>
-<span><span class="co">## Chemistry                                          1</span></span>
-<span><span class="co">## Instruments &amp; Instrumentation                      1</span></span>
-<span><span class="co">## Life Sciences &amp; Biomedicine - Other Topics         1</span></span>
-<span><span class="co">## Others                                             1</span></span>
+<span><span class="co">##                                             Documents</span></span>
+<span><span class="co">## Mathematics                                        16</span></span>
+<span><span class="co">## Operations Research &amp; Management Science            2</span></span>
+<span><span class="co">## Computer Science                                    1</span></span>
+<span><span class="co">## Mathematical &amp; Computational Biology                1</span></span>
+<span><span class="co">## Medical Informatics                                 1</span></span>
+<span><span class="co">## Public, Environmental &amp; Occupational Health         1</span></span>
+<span><span class="co">## Research &amp; Experimental Medicine                    1</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Top Journals:</span></span>
-<span><span class="co">##                               Documents</span></span>
-<span><span class="co">## J. Nonparametr. Stat.                 4</span></span>
-<span><span class="co">## Comput. Stat. Data Anal.              3</span></span>
-<span><span class="co">## Comput. Stat.                         3</span></span>
-<span><span class="co">## Test                                  2</span></span>
-<span><span class="co">## Ann. Inst. Stat. Math.                2</span></span>
-<span><span class="co">## J. Chemometr.                         1</span></span>
-<span><span class="co">## J. Time Ser. Anal.                    1</span></span>
-<span><span class="co">## Stat. Probab. Lett.                   1</span></span>
-<span><span class="co">## SORT-Stat. Oper. Res. Trans.          1</span></span>
-<span><span class="co">## Stat. Appl. Genet. Mol. Biol.         1</span></span>
-<span><span class="co">## Others                                9</span></span>
+<span><span class="co">##                                       Documents</span></span>
+<span><span class="co">## Test                                          4</span></span>
+<span><span class="co">## J. Nonparametr. Stat.                         2</span></span>
+<span><span class="co">## J. Multivar. Anal.                            2</span></span>
+<span><span class="co">## SORT-Stat. Oper. Res. Trans.                  2</span></span>
+<span><span class="co">## Mathematics                                   1</span></span>
+<span><span class="co">## Comput. Stat.                                 1</span></span>
+<span><span class="co">## Commun. Stat.-Simul. Comput.                  1</span></span>
+<span><span class="co">## Stat. Med.                                    1</span></span>
+<span><span class="co">## J. Stat. Comput. Simul.                       1</span></span>
+<span><span class="co">## Wiley Interdiscip. Rev.-Comput. Stat.         1</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Top Countries:</span></span>
-<span><span class="co">##           Documents</span></span>
-<span><span class="co">## Spain            28</span></span>
-<span><span class="co">## Belgium           6</span></span>
-<span><span class="co">## France            2</span></span>
-<span><span class="co">## Germany           2</span></span>
-<span><span class="co">## Argentina         1</span></span>
-<span><span class="co">## Canada            1</span></span>
-<span><span class="co">## India             1</span></span>
-<span><span class="co">## Mexico            1</span></span>
-<span><span class="co">## Norway            1</span></span></code></pre>
-<p>Obtener sumario de autor(es) por años:</p>
+<span><span class="co">##             Documents</span></span>
+<span><span class="co">## Spain              16</span></span>
+<span><span class="co">## France              3</span></span>
+<span><span class="co">## Uruguay             2</span></span>
+<span><span class="co">## Belgium             1</span></span>
+<span><span class="co">## Canada              1</span></span>
+<span><span class="co">## Mexico              1</span></span>
+<span><span class="co">## Switzerland         1</span></span>
+<span><span class="co">## USA                 1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## International colaboration documents (Spain): 7</span></span></code></pre>
+<p>Get a year-by-year summary for one or more authors:</p>
 <div class="sourceCode" id="cb38"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/summary_year.html">summary_year</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">idocs</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## </span></span>
-<span><span class="co">## Annual Scientific Production:</span></span>
-<span><span class="co">## </span></span>
+<pre><code><span><span class="co">## Annual Scientific Production:</span></span>
 <span><span class="co">##      Documents</span></span>
-<span><span class="co">## 2008         7</span></span>
-<span><span class="co">## 2009         4</span></span>
-<span><span class="co">## 2010         4</span></span>
-<span><span class="co">## 2011         1</span></span>
-<span><span class="co">## 2012         2</span></span>
-<span><span class="co">## 2013         3</span></span>
-<span><span class="co">## 2014         1</span></span>
-<span><span class="co">## 2016         2</span></span>
-<span><span class="co">## 2017         4</span></span>
+<span><span class="co">## 2019         6</span></span>
+<span><span class="co">## 2020         2</span></span>
+<span><span class="co">## 2021         3</span></span>
+<span><span class="co">## 2022         3</span></span>
+<span><span class="co">## 2023         2</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Annual Authors per Document:</span></span>
-<span><span class="co">## </span></span>
-<span><span class="co">##          Avg Median</span></span>
-<span><span class="co">##  2008 2.4286    2.0</span></span>
-<span><span class="co">##  2009 3.7500    3.5</span></span>
-<span><span class="co">##  2010 3.5000    3.5</span></span>
-<span><span class="co">##  2011 4.0000    4.0</span></span>
-<span><span class="co">##  2012 3.0000    3.0</span></span>
-<span><span class="co">##  2013 3.6667    4.0</span></span>
-<span><span class="co">##  2014 2.0000    2.0</span></span>
-<span><span class="co">##  2016 2.5000    2.5</span></span>
-<span><span class="co">##  2017 3.5000    3.5</span></span>
+<span><span class="co">##    PY   Mean Median</span></span>
+<span><span class="co">##  2019 3.1667    3.5</span></span>
+<span><span class="co">##  2020 3.0000    3.0</span></span>
+<span><span class="co">##  2021 2.6667    3.0</span></span>
+<span><span class="co">##  2022 2.6667    3.0</span></span>
+<span><span class="co">##  2023 2.0000    2.0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Annual Times Cited:</span></span>
+<span><span class="co">##    PY Cites   Mean Median</span></span>
+<span><span class="co">##  2019   166 27.667   10.5</span></span>
+<span><span class="co">##  2020    11  5.500    5.5</span></span>
+<span><span class="co">##  2021     6  2.000    0.0</span></span>
+<span><span class="co">##  2022     6  2.000    2.0</span></span>
+<span><span class="co">##  2023     0  0.000    0.0</span></span>
 <span><span class="co">## </span></span>
-<span><span class="co">##       Cites    Avg Median</span></span>
-<span><span class="co">##  2008    42 6.0000    6.0</span></span>
-<span><span class="co">##  2009    20 5.0000    3.0</span></span>
-<span><span class="co">##  2010     9 2.2500    2.0</span></span>
-<span><span class="co">##  2011     1 1.0000    1.0</span></span>
-<span><span class="co">##  2012     1 0.5000    0.5</span></span>
-<span><span class="co">##  2013     8 2.6667    2.0</span></span>
-<span><span class="co">##  2014     4 4.0000    4.0</span></span>
-<span><span class="co">##  2016     3 1.5000    1.5</span></span>
-<span><span class="co">##  2017     3 0.7500    0.5</span></span></code></pre>
+<span><span class="co">## Status:</span></span>
+<span><span class="co">##    PY Highly Cited Hot Paper</span></span>
+<span><span class="co">##  2019            1         0</span></span>
+<span><span class="co">##  2020            0         0</span></span>
+<span><span class="co">##  2021            0         0</span></span>
+<span><span class="co">##  2022            0         0</span></span>
+<span><span class="co">##  2023            0         0</span></span></code></pre>
 </div>
 </div>
-<div class="section level2">
-<h2 id="indices-de-autores">Indices de autores<a class="anchor" aria-label="anchor" href="#indices-de-autores"></a>
-</h2>
-<p>Obtener índices de múltiples autores</p>
+<div class="section level3">
+<h3 id="author-metrics">Author metrics<a class="anchor" aria-label="anchor" href="#author-metrics"></a>
+</h3>
+<p>Retrieve metrics for multiple authors:</p>
 <div class="sourceCode" id="cb40"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/summary.wos.db.html">TC.authors</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">idAuthors</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##                        H G</span></span>
-<span><span class="co">## Cao, Ricardo           5 7</span></span>
-<span><span class="co">## Cao-Rial, Maria Teresa 1 1</span></span></code></pre>
+<pre><code><span><span class="co">##                   H G</span></span>
+<span><span class="co">## Cao, Ricardo      3 9</span></span>
+<span><span class="co">## Cao-Rial, M. T.   4 5</span></span>
+<span><span class="co">## Cao, Ricardo      4 5</span></span>
+<span><span class="co">## Cao, R.           0 0</span></span>
+<span><span class="co">## Cao Abad, Ricardo 1 2</span></span>
+<span><span class="co">## Cao-Rial, M. T.   0 0</span></span></code></pre>
+</div>
 </div>
 <div class="section level2">
-<h2 id="trabajo-futuro">Trabajo futuro<a class="anchor" aria-label="anchor" href="#trabajo-futuro"></a>
+<h2 id="bibliographic-database-with-jcr-metrics">Bibliographic database with JCR metrics<a class="anchor" aria-label="anchor" href="#bibliographic-database-with-jcr-metrics"></a>
 </h2>
+<p>We can extends the bibliographic database by adding JCR metrics to
+sources, per year and WoS category.</p>
+<div class="section level3">
+<h3 id="import-jcr-data-from-wos">Import JCR data from WoS<a class="anchor" aria-label="anchor" href="#import-jcr-data-from-wos"></a>
+</h3>
+<p>Excel files with JCR data (avaliable from WoS) can be automatically
+loaded from a subdirectory:</p>
+<div class="sourceCode" id="cb42"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">dir</a></span><span class="op">(</span><span class="st">"JCR_download"</span>, pattern <span class="op">=</span> <span class="st">"*.xlsx"</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##  [1] "JCR_SCIE_2018.xlsx" "JCR_SCIE_2019.xlsx" "JCR_SCIE_2020.xlsx"</span></span>
+<span><span class="co">##  [4] "JCR_SCIE_2021.xlsx" "JCR_SCIE_2022.xlsx" "JCR_SCIE_2023.xlsx"</span></span>
+<span><span class="co">##  [7] "JCR_SSCI_2018.xlsx" "JCR_SSCI_2019.xlsx" "JCR_SSCI_2020.xlsx"</span></span>
+<span><span class="co">## [10] "JCR_SSCI_2021.xlsx" "JCR_SSCI_2022.xlsx" "JCR_SSCI_2023.xlsx"</span></span></code></pre>
+<p>To combine the files into a relational database, the
+<code><a href="../reference/CreateDBJCR.html">CreateDBJCR()</a></code> function is used:</p>
+<div class="sourceCode" id="cb44"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">jcr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/CreateDBJCR.html">CreateDBJCR</a></span><span class="op">(</span><span class="st">"JCR_download"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="add-jcr-data-to-a-bibliographic-database">Add JCR data to a bibliographic database<a class="anchor" aria-label="anchor" href="#add-jcr-data-to-a-bibliographic-database"></a>
+</h3>
+<p>The JCR data can be combined with a bibliographic database by using
+the <code><a href="../reference/AddDBJCR.html">AddDBJCR()</a></code> function:</p>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">dbjcr</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/AddDBJCR.html">AddDBJCR</a></span><span class="op">(</span><span class="va">db</span>, <span class="va">jcr</span><span class="op">)</span></span></code></pre></div>
+<p>Two additional tables, <code>JCRSour</code> and
+<code>JCRCatSour</code>, are added to the bibliographic database (the
+result is a <code>wos.jcr</code>-class S3 object).</p>
+<p>The database resulting from this particular example is provided as a
+dataset of the <code>scimetr</code> package:</p>
+<div class="sourceCode" id="cb46"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">dbjcr</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##  [1] "Docs"         "Authors"      "AutDoc"       "OI"           "OIDoc"       </span></span>
+<span><span class="co">##  [6] "RI"           "RIDoc"        "Categories"   "CatSour"      "Areas"       </span></span>
+<span><span class="co">## [11] "AreaSour"     "Addresses"    "AddAutDoc"    "Affiliations" "AffDoc"      </span></span>
+<span><span class="co">## [16] "Sources"      "WSIndex"      "SourWSI"      "label"        "export.date" </span></span>
+<span><span class="co">## [21] "JCRSour"      "JCRCatSour"</span></span></code></pre>
+<div class="sourceCode" id="cb48"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">class</a></span><span class="op">(</span><span class="va">dbjcr</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## [1] "wos.jcr" "wos.db"</span></span></code></pre>
+</div>
+<div class="section level3">
+<h3 id="summaries-1">Summaries<a class="anchor" aria-label="anchor" href="#summaries-1"></a>
+</h3>
+<p>Auxiliary functions are available to perform database queries:</p>
 <ul>
-<li><p>Descarga y análisis de datos de <a href="https://www.scopus.com" class="external-link">Scopus</a>: empleando descarga de archivos
-(al estilo del paquete<br><a href="https://CRAN.R-project.org/package=CITAN" class="external-link">CITAN</a>) o la <a href="https://dev.elsevier.com/sc_apis.html" class="external-link">API de Scopus</a> (al
-estilo del paquete <a href="https://CRAN.R-project.org/package=rscopus" class="external-link">rscopus</a>).</p></li>
-<li><p>Implementar análisis estadísticos “avanzados”.</p></li>
+<li>
+<p><strong><code><a href="../reference/get_jcr.html">get_jcr()</a></code></strong>: combines document
+indexes with their source JCR metrics per year.</p>
+<div class="sourceCode" id="cb50"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_jcr.html">get_jcr</a></span><span class="op">(</span><span class="va">dbjcr</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   idd ids   PY   JIF   IMM  CHL   JIF5     JEF     JEFN   JAI</span></span>
+<span><span class="co">## 1   1   1 2021 1.673 0.165  4.9 11.808 0.01332  2.86423 4.500</span></span>
+<span><span class="co">## 2   2   2 2018 2.896 1.169  4.7  2.344 0.00585  0.69599 0.707</span></span>
+<span><span class="co">## 3   3   3 2023 2.300 0.900  1.9  2.200 0.03686  8.10075 0.374</span></span>
+<span><span class="co">## 4   4   4 2023 4.400 1.000  3.2  3.600 0.00847  1.86316 0.691</span></span>
+<span><span class="co">## 5   5   5 2023 4.400 1.000 10.0  7.600 0.12386 27.21696 3.056</span></span>
+<span><span class="co">## 6   6   6 2023 1.200 0.200  7.7  2.200 0.00235  0.51687 1.225</span></span></code></pre>
+</li>
+<li>
+<p><strong><code><a href="../reference/get_jcr.html">get_jcr_cat()</a></code></strong> combines document
+indexes with their source JCR metrics per year and WoS category (if
+<code>best = TRUE</code>, only the results for the WoS category with the
+best ranking for each document are returned).</p>
+<div class="sourceCode" id="cb52"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/get_jcr.html">get_jcr_cat</a></span><span class="op">(</span><span class="va">dbjcr</span>, best <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">##   idd ids   PY idc     WCR JIFQ   JIFP   WE WCP WCT</span></span>
+<span><span class="co">## 1   1   1 2021  46 0.13514   Q4 13.840 SCIE  97 112</span></span>
+<span><span class="co">## 2   2   2 2018  46 0.65714   Q2 65.566 SCIE  37 106</span></span>
+<span><span class="co">## 3   3   3 2023 148 0.95910   Q1 95.800 SCIE  21 490</span></span>
+<span><span class="co">## 4   4   4 2023  46 0.78107   Q1 77.900 SCIE  38 170</span></span>
+<span><span class="co">## 5   5   5 2023  26 0.78613   Q1 78.400 SCIE  38 174</span></span>
+<span><span class="co">## 6   6   6 2023 237 0.56287   Q2 56.300 SCIE  74 168</span></span></code></pre>
+</li>
 </ul>
+<p>The summary methods combine the above queries and generate global
+summaries or yearly summaries of a bibliographic database with JCR
+metrics (if <code>all = TRUE</code>, the corresponding
+<code>wos.db</code>-class results are also generated).</p>
+<div class="sourceCode" id="cb54"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">dbjcr</span><span class="op">)</span></span>
+<span><span class="va">res1</span></span></code></pre></div>
+<pre><code><span><span class="co">## JCR metrics:</span></span>
+<span><span class="co">##         JIF  IMM  CHL  JIF5     JEF   JEFN  JAI JIFP WCP</span></span>
+<span><span class="co">## Min.    0.4 0.00  1.1  0.48 0.00042  0.053 0.18  2.8   5</span></span>
+<span><span class="co">## 1st Qu. 1.0 0.26  5.6  1.00 0.00226  0.381 0.42 28.6  31</span></span>
+<span><span class="co">## Median  1.7 0.45  7.7  1.87 0.00500  0.848 0.66 56.3  58</span></span>
+<span><span class="co">## Mean    2.1 0.62  8.6  2.30 0.01119  2.060 0.83 55.1  86</span></span>
+<span><span class="co">## 3rd Qu. 2.6 0.83 10.4  2.73 0.01412  2.352 0.89 82.6 126</span></span>
+<span><span class="co">## Max.    9.7 2.69 39.5 11.81 0.20530 29.627 4.50 97.6 298</span></span>
+<span><span class="co">## NA's    1.0 1.00  1.0  2.00 1.00000  1.000 2.00  1.0   1</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Documents in JCR: 292 (99.66%)</span></span>
+<span><span class="co">## Documents in Q1: 90 (30.82% of JCR)</span></span>
+<span><span class="co">## Documents in D1: 50 (17.12% of JCR)</span></span>
+<span><span class="co">## Documents in top 3 journals: 0 (0% of JCR)</span></span></code></pre>
+<div class="sourceCode" id="cb56"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">res2</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/summary_year.html">summary_year</a></span><span class="op">(</span><span class="va">dbjcr</span><span class="op">)</span></span>
+<span><span class="va">res2</span></span></code></pre></div>
+<pre><code><span><span class="co">## Mean of JCR metrics:</span></span>
+<span><span class="co">##    PY  JIF   IMM  CHL JIF5     JEF JEFN   JAI JIFP   WCP</span></span>
+<span><span class="co">##  2018 2.01 0.579 8.03 2.11 0.01397 1.66 0.864 54.8  89.7</span></span>
+<span><span class="co">##  2019 1.60 0.527 8.85 1.61 0.00876 1.07 0.605 49.3  78.4</span></span>
+<span><span class="co">##  2020 2.59 0.841 7.09 2.68 0.01030 2.16 0.899 60.8  87.2</span></span>
+<span><span class="co">##  2021 2.27 0.624 8.81 2.92 0.01108 2.38 1.068 53.7  73.5</span></span>
+<span><span class="co">##  2022 2.28 0.638 8.98 2.39 0.01050 2.29 0.769 55.3  85.2</span></span>
+<span><span class="co">##  2023 1.98 0.520 9.38 2.21 0.01349 2.97 0.830 58.4 103.7</span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Documents in JCR:</span></span>
+<span><span class="co">## 2018 2019 2020 2021 2022 2023 </span></span>
+<span><span class="co">##   40   61   45   51   45   50 </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Documents in Q1:</span></span>
+<span><span class="co">## 2018 2019 2020 2021 2022 2023 </span></span>
+<span><span class="co">##   13   13   19   15   13   17 </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Documents in D1:</span></span>
+<span><span class="co">## 2018 2019 2020 2021 2022 2023 </span></span>
+<span><span class="co">##    6    5   15    8    7    9 </span></span>
+<span><span class="co">## </span></span>
+<span><span class="co">## Documents in top 3 journals:</span></span>
+<span><span class="co">## 2018 2019 2020 2021 2022 2023 </span></span>
+<span><span class="co">##    0    0    0    0    0    0</span></span></code></pre>
+<p>Note: <code>res1$docjcrcat</code> contains the combined queries.</p>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
+<div class="section level3">
+<h3 id="visualizations-1">Visualizations<a class="anchor" aria-label="anchor" href="#visualizations-1"></a>
+</h3>
+<p>The <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> method (<code><a href="../reference/AddDBJCR.html">plot.wos.jcr()</a></code>)
+generates histograms of documents JCR metrics (if argument
+<code>all = TRUE</code>, <code>plot.wos.bd()</code> is also called):</p>
+<div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">dbjcr</span><span class="op">)</span></span></code></pre></div>
+<p><img src="scimetr_files/figure-html/plotdbjcr-1.png" width="100%" style="display: block; margin: auto;"></p>
+<p>Summary results have also a <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> method:</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res1</span><span class="op">)</span></span></code></pre></div>
+<p><img src="scimetr_files/figure-html/plot.summary.jcr-1.png" width="100%" style="display: block; margin: auto;"></p>
+<div class="sourceCode" id="cb60"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="va">res2</span><span class="op">)</span></span></code></pre></div>
+<p><img src="scimetr_files/figure-html/plot.summary.year.jcr-1.png" width="100%" style="display: block; margin: auto;"><img src="scimetr_files/figure-html/plot.summary.year.jcr-2.png" width="100%" style="display: block; margin: auto;"></p>
 </div>
-
 </div>
+<div class="section level2">
+<h2 id="variables">Variable list<a class="anchor" aria-label="anchor" href="#variables"></a>
+</h2>
+<p>The following list shows all variables used in the database
+tables:</p>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-ac96cb3ee4656e2e9ec3" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ac96cb3ee4656e2e9ec3">{"x":{"filter":"top","vertical":false,"filterHTML":"<tr>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n  <td data-type=\"character\" style=\"vertical-align: top;\">\n    <div class=\"form-group has-feedback\" style=\"margin-bottom: auto;\">\n      <input type=\"search\" placeholder=\"All\" class=\"form-control\" style=\"width: 100%;\"/>\n      <span class=\"glyphicon glyphicon-remove-circle form-control-feedback\"><\/span>\n    <\/div>\n  <\/td>\n<\/tr>","data":[["AF","AFOI","AFRI","an","AR","AU","BN","BP","BS","C1","C3","CHL","Country","D2","DA","DI","DT","EA","EI","EP","HC","HP","ida","idad","idaf","idc","idd","idra","ids","idwe","IMM","ioi","iri","IS","J9","JAI","JEF","JEFN","JI","JIF","JIF5","JIFP","JIFQ","LA","MA","NR","OI","PA","PD","PG","PI","PN","PT","PU","PY","RI","SC","SE","SI","SN","SO","SU","TC","TI","U1","U2","Univ","UT","VL","WC","WCC","WCP","WCR","WCT","WE","Z9"],["Author Full Name","ORCID Full Name","RI Full Name","Number of authors","Article Number","Author","ISBN","Start Page","Book Series Subtitle","Address","Affiliation","Cited Half-Life","Country","Book DOI","Date of Export","DOI","Document Type","Early Access Date","eISSN","End Page","Highly Cited Status","Hot Paper Status","Author ID","Address ID","Affiliation ID","Categorie ID","Document ID","Area ID","Source ID","WoS Index ID","Immediacy Index","ORCID ID","RI ID","Issue","Journal Abbreviation","Article Influence Score","Eigenfactor Score","Normalized Eigenfactor Score","Journal ISO Abbreviation","Impact Factor","5Yr Impact Factor","JIF Percentile","Quartile Rank","Language","Meeting Abstract","Cited Reference Count","ORCID","Publisher Address","Publication Date","Number of Pages","Publisher City","Part Number","Publication Type","Publisher","Publication Year","Researcher Ids","Research Area","Book Series Title","Special Issue","ISSN","Source Title","Supplement","Times Cited, WoS Core","Article Title","180 Day Usage Count","Since 2013 Usage Count","University","Unique WOS ID","Volume","WoS Category","WoS Category code","Category Position","Category Ranking","Total Category","Web of Science Index","Times Cited, All Databases"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th>Variable<\/th>\n      <th>Label<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"columnDefs":[{"name":" ","targets":0},{"name":"scimetr....all.labels","targets":1}],"order":[],"autoWidth":false,"orderClasses":false,"orderCellsTop":true}},"evals":[],"jsHooks":[]}</script><p>Note: The table above was generated using the
+<code>datatable()</code> function from the <a href="https://rstudio.github.io/DT" class="external-link">DT</a> package. By default, the
+first rows are displayed. Click on the page index (below) to change
+this. You can sort by column by clicking on the arrows to the right of
+its name. You can search for values (search box, top right) and filter
+values (click on the filter box below the name of each variable).</p>
+<!-- 
+Pendiente:
+  - Añadir summary_all(plot = TRUE)
+  - Añadir tabla dinámica con todas las variables
+-->
+<!-- 
+## Trabajo futuro
 
+- Descarga y análisis de datos de [Scopus](https://www.scopus.com):
+  empleando descarga de archivos (PARCIALMENTE IMPLEMENTADO)
+  (al estilo del paquete
+  [CITAN](https://CRAN.R-project.org/package=CITAN))
+  o la [API de Scopus](https://dev.elsevier.com/sc_apis.html)
+  (al estilo del paquete
+  [rscopus](https://CRAN.R-project.org/package=rscopus)).
+  
+- Descarga y análisis de datos de fuentes en abierto (TFM Clever):
+  in line with open source and open data to ensure transparency and reproducibility 
 
-
-      <footer><div class="copyright">
-  <p></p>
-<p>Developed by Ruben Fernandez-Casal, Borja Lafuente-Rego, Maria Jose Lombardia, Javier Tarrio-Saavedra, Julian Costa-Bouzas.</p>
-</div>
-
-<div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
-</div>
-
-      </footer>
-</div>
-
+    - [openalexR](https://docs.ropensci.org/openalexR) (Aria et al. 2024):
+    Getting Bibliographic Records from 'OpenAlex' Database Using 'DSL' API.
+    
+    - [rcrossref](https://docs.ropensci.org/rcrossref) (Chamberlain et al. 2014): R interface to various CrossRef APIs.
   
 
+- Implementar análisis estadísticos "avanzados".
+-->
+</div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
+</div>
 
-  
+
+
+    <footer><div class="pkgdown-footer-left">
+  <p>Developed by Ruben Fernandez-Casal, Borja Lafuente-Rego, Maria Jose Lombardia, Javier Tarrio-Saavedra, Julian Costa-Bouzas.</p>
+</div>
+
+<div class="pkgdown-footer-right">
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+</div>
+
+    </footer>
+</div>
+
+
+
+
 
   </body>
 </html>

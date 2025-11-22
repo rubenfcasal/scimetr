@@ -6,10 +6,23 @@
 \alias{get.idAddresses}
 \alias{get.idAreas}
 \alias{get.idCategories}
+\alias{get.idWSI}
 \alias{get.idSources}
+\alias{get.idOI}
+\alias{get.idRI}
+\alias{get.idAffiliations}
 \title{Get table identifiers}
 \usage{
-get.idDocs(db, idAuthors, idCategories, idAreas, idAddresses, idSources)
+get.idDocs(
+  db,
+  ...,
+  idSources,
+  idAuthors,
+  idAddresses,
+  idOI,
+  idRI,
+  idAffiliations
+)
 
 get.idAuthors(db, ...)
 
@@ -19,23 +32,39 @@ get.idAreas(db, ...)
 
 get.idCategories(db, ...)
 
-get.idSources(db, ...)
+get.idWSI(db, ...)
+
+get.idSources(db, ..., idCategories, idAreas, idWSI)
+
+get.idOI(db, ...)
+
+get.idRI(db, ...)
+
+get.idAffiliations(db, ...)
 }
 \arguments{
-\item{db}{Object of \code{\link{class}} \code{wos.db}, as returned by \code{\link{CreateDB.wos}}.}
-
-\item{idAuthors}{optional; author identifiers}
-
-\item{idCategories}{optional; categories identifiers}
-
-\item{idAreas}{optional; areas identifiers}
-
-\item{idAddresses}{optional; addresses identifiers}
-
-\item{idSources}{optional; sources identifiers}
+\item{db}{Object of \code{\link{class}} \code{wos.db}, as returned by \link{CreateDB}.}
 
 \item{...}{Logical predicates. Multiple conditions are combined with & (see
 \code{\link[dplyr]{filter}})}
+
+\item{idSources}{optional; sources identifiers}
+
+\item{idAuthors}{optional; author identifiers}
+
+\item{idAddresses}{optional; addresses identifiers}
+
+\item{idOI}{optional; ORCID identifiers or codes (values of \code{db$OI$OI})}
+
+\item{idRI}{optional; RI identifiers or codes (values of \code{db$RI$RI})}
+
+\item{idAffiliations}{optional; affiliations identifiers or names (values of \code{db$Affiliations$C3})}
+
+\item{idCategories}{optional; categories identifiers or names (values of \code{db$Categories$WC})}
+
+\item{idAreas}{optional; research area identifiers or names (values of \code{db$Areas$SC})}
+
+\item{idWSI}{optional; WoS Index identifiers or names (values of \code{db$WSI$WE})}
 }
 \description{
 \code{get.idDocs} returns the document identifiers (values of the \code{db$Docs$idd} variable)
@@ -43,5 +72,5 @@ corresponding to identifiers of authors (values of \code{db$Authors$ids}), categ
 addresses (...) and/or sources (...). Multiple conditions are combined with &.
 }
 \seealso{
-\code{\link{CreateDB.wos}}, \code{\link[dplyr]{filter}}.
+\link{CreateDB}, \code{\link[dplyr]{filter}}.
 }

@@ -1,43 +1,46 @@
 ## ----setup, include=FALSE-----------------------------------------------------
-knitr::opts_chunk$set(fig.height = 4, fig.width =7, 
-                      fig.align = 'center', out.width = '100%')
+knitr::opts_chunk$set(fig.dim = c(8, 6), 
+                      fig.align = 'center', out.width = '80%')
+rebuid <- FALSE # TRUE 
 # knitr::spin("scimetr.R", knit = FALSE)
 # knitr::purl("scimetr.Rmd", documentation = 2)
-# options(digits = 5)
+options(digits = 5)
 
 ## -----------------------------------------------------------------------------
 library(scimetr)
 
-## ----dependencies, eval=FALSE-------------------------------------------------
-#  install.packages(c('dplyr', 'dbplyr','RSQLite', 'lazyeval', 'stringr', 'ggplot2', 'tidyr'. 'rmarkdown'))
+## ----eval=FALSE---------------------------------------------------------------
+# # install.packages("remotes")
+# remotes::install_github("rubenfcasal/mpae")
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  # install.packages("devtools")
-#  devtools::install_github("rubenfcasal/scimetr")
+# # Dependencies
+# install.packages(c('dplyr', 'tidyr', 'stringr', 'ggplot2', 'scales', 'rlang'))
+# # Last released version
+# install.packages('https://github.com/rubenfcasal/scimetr/releases/download/v1.1.0/scimetr_1.1.0.zip', repos = NULL)
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  dir("UDC_2008-2017 (01-02-2019)", pattern='*.txt')
+# dir("UDC_2018-2023 (01-02-2024)", pattern = "*.txt")
 
 ## ----echo=FALSE---------------------------------------------------------------
-# dput(dir("UDC_2008-2017 (01-02-2019)", pattern='*.txt'))
+# dput(dir("UDC_2014-2023 (01-02-2024)", pattern='*.txt'))
 c("savedrecs01.txt", "savedrecs02.txt", "savedrecs03.txt", "savedrecs04.txt", 
 "savedrecs05.txt", "savedrecs06.txt", "savedrecs07.txt", "savedrecs08.txt", 
-"savedrecs09.txt", "savedrecs10.txt", "savedrecs11.txt", "savedrecs12.txt", 
-"savedrecs13.txt", "savedrecs14.txt", "savedrecs15.txt")
+"savedrecs09.txt", "savedrecs10.txt")
 
 ## ----eval=FALSE---------------------------------------------------------------
-#  wos.txt <- ImportSources.wos("UDC_2008-2017 (01-02-2019)", other = "ignore")
+# wos.data <- ImportSources.wos("UDC_2018-2023 (01-02-2024)")
 
 ## -----------------------------------------------------------------------------
-# View(wosdf2) # En RStudio...
-variable.labels <- attr(wosdf, "variable.labels")
-knitr::kable(as.data.frame(variable.labels)) # caption = "Variable labels"
+wos.labels <- attr(wosdf, "variable.labels")
+knitr::kable(head(data.frame(wos.labels)),
+             col.names = c("Variable", "Label"))
 
-## ----wosdf2, cache=TRUE-------------------------------------------------------
-db <- CreateDB.wos(wosdf2, label = "Mathematics_UDC_2008-2017 (01-02-2019)")
-str(db, 1)
+## ----wosdf, cache=!rebuid-----------------------------------------------------
+db <- CreateDB(wosdf, label = "Mathematics_UDC_2018-2023")
+names(db) 
 
-## ----summary, cache=TRUE------------------------------------------------------
+## ----summary, cache=!rebuid---------------------------------------------------
 res1 <- summary(db)
 options(digits = 5)
 res1
@@ -49,12 +52,12 @@ res2
 ## ----plotdb, warning=FALSE, message=FALSE-------------------------------------
 plot(db)
 
-## ---- fig.align = 'left'------------------------------------------------------
+## -----------------------------------------------------------------------------
 plot(res1)
 
 plot(res1, pie = TRUE)
 
-## ---- fig.align = 'left'------------------------------------------------------
+## -----------------------------------------------------------------------------
 plot(res2)
 
 plot(res2, boxplot = TRUE)
@@ -75,10 +78,11 @@ get.idAreas(db, SC == 'Mathematics' | SC == 'Computer Science')
 get.idCategories(db, grepl('Mathematics', WC))
 
 ## -----------------------------------------------------------------------------
-ijss <- get.idSources(db, SO == 'JOURNAL OF STATISTICAL SOFTWARE')
+ijss <- get.idSources(db, SO == 'TEST')
 ijss
-knitr::kable(db$Journals[ijss, ], caption = "JSS")
-# get.idSources(db, JI == 'J. Stat. Softw.')
+knitr::kable(t(db$Sources[ijss, ]), caption = "Test journal",
+             col.names = c("Variable", "Value"))
+# get.idSources(db, JI == 'Test')
 
 ## -----------------------------------------------------------------------------
 idocs <- get.idDocs(db, idAuthors = idAuthor)
@@ -92,4 +96,50 @@ summary_year(db, idocs)
 
 ## -----------------------------------------------------------------------------
 TC.authors(db, idAuthors)
+
+## ----eval=FALSE---------------------------------------------------------------
+# dir("JCR_download", pattern = "*.xlsx")
+
+## ----echo=FALSE---------------------------------------------------------------
+# dput(dir("../../JCR_download", pattern='*.xlsx'))
+c("JCR_SCIE_2018.xlsx", "JCR_SCIE_2019.xlsx", "JCR_SCIE_2020.xlsx", 
+"JCR_SCIE_2021.xlsx", "JCR_SCIE_2022.xlsx", "JCR_SCIE_2023.xlsx", 
+"JCR_SSCI_2018.xlsx", "JCR_SSCI_2019.xlsx", "JCR_SSCI_2020.xlsx", 
+"JCR_SSCI_2021.xlsx", "JCR_SSCI_2022.xlsx", "JCR_SSCI_2023.xlsx")
+
+## ----CreateDBJCR, eval=FALSE--------------------------------------------------
+# jcr <- CreateDBJCR("JCR_download")
+
+## ----AddDBJCR, eval=FALSE-----------------------------------------------------
+# dbjcr <- AddDBJCR(db, jcr)
+
+## ----dbjcr--------------------------------------------------------------------
+names(dbjcr)
+class(dbjcr)
+
+## -----------------------------------------------------------------------------
+head(get_jcr(dbjcr))
+
+## -----------------------------------------------------------------------------
+head(get_jcr_cat(dbjcr, best = TRUE))
+
+## -----------------------------------------------------------------------------
+res1 <- summary(dbjcr)
+res1
+res2 <- summary_year(dbjcr)
+res2
+
+## ----plotdbjcr, message=FALSE, warning=FALSE, out.width = '100%'--------------
+plot(dbjcr)
+
+## ----plot.summary.jcr, fig.dim = c(10, 6), out.width = '100%'-----------------
+plot(res1)
+
+## ----plot.summary.year.jcr, out.width = '100%'--------------------------------
+plot(res2)
+
+## ----echo=FALSE---------------------------------------------------------------
+all.labels <- data.frame(scimetr:::.all.labels)
+DT::datatable(all.labels, colnames = c("Variable", "Label"), filter = 'top', 
+              options = list(pageLength = 10))
 

@@ -1,4 +1,6 @@
-
+#' @name scimetr-internals
+#' @title scimetr internal and secondary functions
+#' @description Listed below are supporting functions for the major methods in scimetr.
 #' @keywords internal
 .stable <- function(x, nmax = 10, others = TRUE) {
   res <- sort(table(x), decreasing = TRUE)
@@ -13,11 +15,6 @@
   }
   return(res)
 }
-
-
-#' @keywords internal
-.get.ida.AutDoc<- function(db, idocs)
-  return(with(db$AutDoc, ida[idd %in% idocs]))
 
 
 #' @keywords internal
@@ -46,3 +43,17 @@ binwidth.fd <- function(x) {
   if (h==0) h <- binwidth.sturges(x)
   return(h)
 }
+
+
+# Pendiente: escala logarítmica comenzando debajo de 1
+# Pendiente: eliminar warnings (Inf -> NA?)
+#' @keywords internal
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+trans_y_log_2 <- function (base = exp(1), from = 0.1) {
+  trans <- function(x) pmax(log(x, base), log(from, base)) # OJO: pmax(log(0), -2) = -2
+  inv <- function(x) base^x
+  scales::trans_new("scale_y_log_2", trans, inv, scales::log_breaks(base = base),
+                    domain =  c(1e-100, Inf))
+}
+# De momento + geom_rug() siguiendo sugerencia de Edward Joseph Velo Fuentes
+

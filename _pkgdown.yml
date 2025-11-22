@@ -1,0 +1,36 @@
+url: https://rubenfcasal.github.io/scimetr/
+
+template:
+  bootstrap: 5
+  # light-switch: true
+  bootswatch: flatly # lumen
+
+news:
+  cran_dates: false
+
+reference:
+  - title: "Bibliographic data"
+    desc: "Main utilities for importing data and creating databases."
+    contents:
+      - scimetr-package
+      - ImportSources.wos
+      - CreateDB
+      - CreateDBJCR
+      - AddDBJCR
+  - title: "Summaries"
+    desc: "Global and yearly summaries."
+    contents:
+      - starts_with("summary")
+      - TC.authors
+  - title: "Data retrieval"
+    desc: "Functions to perform database queries."
+    contents:
+      - starts_with("get.id")
+      - starts_with("get_jcr")
+  - title: "Data"
+    desc: "Examples of data and databases."
+    contents:
+      - wosdf
+      - dbjcr
+
+

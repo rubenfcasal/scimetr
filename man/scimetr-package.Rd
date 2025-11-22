@@ -8,6 +8,33 @@
 \description{
 This package implements tools for quantitative research in scientometrics and bibliometrics.
 It provides routines for importing bibliographic data from
-Thomson Reuters' Web of Knowledge (<https://www.webofknowledge.com>) and performing bibliometric analysis.
-For more information visit <https://rubenfcasal.github.io/scimetr/articles/scimetr.html>.
+Thomson Reuters' Web of Science (\url{https://webofscience}) and performing bibliometric analysis.
+For more information visit \url{https://rubenfcasal.github.io/scimetr/articles/scimetr.html}.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/rubenfcasal/scimetr/}
+  \item \url{https://github.com/rubenfcasal/scimetr/}
+  \item Report bugs at \url{https://github.com/rubenfcasal/scimetr/issues/}
+}
+
+}
+\author{
+\strong{Maintainer}: Ruben Fernandez-Casal \email{rubenfcasal@gmail.com}
+
+Authors:
+\itemize{
+  \item Borja Lafuente-Rego \email{borjalrego@gmail.com}
+  \item Maria Jose Lombardia \email{maria.jose.lombardia@udc.es}
+  \item Javier Tarrio-Saavedra \email{javier.tarrio@udc.es}
+  \item Julian Costa-Bouzas \email{julian.costa.bouzas@udc.es}
+}
+
+Other contributors:
+\itemize{
+  \item Yesica Fernandez-Ramos \email{yesica.ramos@udc.es} [contributor]
+  \item Guillermo Lopez-Taboada \email{guillermo.lopez.taboada@udc.es} [contributor]
+}
+
 }
