@@ -1,8 +1,8 @@
 Package: scimetr
 Type: Package
 Title: Analysis of Scientific Publication Data with R
-Version: 1.1.0
-Date: 2025-11-22
+Version: 1.2.0
+Date: 2026-03-01
 Authors@R: c(
     person("Ruben", "Fernandez-Casal", role = c("aut", "cre"), 
     email = "rubenfcasal@gmail.com", comment = c(ORCID = "0000-0002-5785-3739")),
@@ -18,22 +18,24 @@ Authors@R: c(
     email = "yesica.ramos@udc.es"),
     person("Guillermo", "Lopez-Taboada", role = c("ctb"),
     email = "guillermo.lopez.taboada@udc.es"))
-Description: This package implements tools for quantitative research
-    in scientometrics and bibliometrics. It provides routines for importing
-    bibliographic data from Thomson Reuters' Web of Science 
-    (<https://www.webofscience.com>) and performing bibliometric analysis.
+Description: Tools for quantitative research in scientometrics and bibliometrics. 
+    This package provides routines for importing bibliographic data from
+    Clarivate Web of Science (<https://www.webofscience.com/>) and performing 
+    bibliometric analysis.
     For more information visit 
     <https://rubenfcasal.github.io/scimetr/articles/scimetr.html>.
 Depends:
-    R (>= 3.5.0),
+    R (>= 4.1.0),
     graphics
 Imports:
     dplyr,
     tidyr,
     stringr,
+    stringi,
     scales,
     ggplot2,
-    rlang
+    rlang,
+    openxlsx
 Suggests:
     DT,
     rmarkdown,

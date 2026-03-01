@@ -41,15 +41,14 @@ vignette: >
 
 - [rscopus](https://CRAN.R-project.org/package=rscopus): 
   [Scopus Database API](https://dev.elsevier.com/sc_apis.html) Interface.
+  
+- [wosr](https://crew102.github.io/wosr): Clients to the 'Web of Science' and 'InCites' [APIs](https://developer.clarivate.com/apis). 
 
 - [rwos](https://github.com/juba/rwos): 
   R interface with [Web of Science API Lite](https://developer.clarivate.com/apis/woslite) **[ARCHIVED]**.
 
 - ...
 
-<!-- 
-- [wosr](https://vt-arc.github.io/wosr/index.html): Clients to the 'Web of Science' and 'InCites' [APIs](https://developer.clarivate.com/apis). 
--->
 
 
 ## ropensci: Transforming science through open data and software

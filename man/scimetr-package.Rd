@@ -8,27 +8,27 @@
 \description{
 This package implements tools for quantitative research in scientometrics and bibliometrics.
 It provides routines for importing bibliographic data from
-Thomson Reuters' Web of Science (\url{https://webofscience}) and performing bibliometric analysis.
+Clarivate Web of Science (\url{https://www.webofscience.com/}) and performing bibliometric analysis.
 For more information visit \url{https://rubenfcasal.github.io/scimetr/articles/scimetr.html}.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/rubenfcasal/scimetr/}
+  \item \url{https://rubenfcasal.github.io/scimetr/}
   \item \url{https://github.com/rubenfcasal/scimetr/}
   \item Report bugs at \url{https://github.com/rubenfcasal/scimetr/issues/}
 }
 
 }
 \author{
-\strong{Maintainer}: Ruben Fernandez-Casal \email{rubenfcasal@gmail.com}
+\strong{Maintainer}: Ruben Fernandez-Casal \email{rubenfcasal@gmail.com} (\href{https://orcid.org/0000-0002-5785-3739}{ORCID})
 
 Authors:
 \itemize{
-  \item Borja Lafuente-Rego \email{borjalrego@gmail.com}
-  \item Maria Jose Lombardia \email{maria.jose.lombardia@udc.es}
-  \item Javier Tarrio-Saavedra \email{javier.tarrio@udc.es}
-  \item Julian Costa-Bouzas \email{julian.costa.bouzas@udc.es}
+  \item Borja Lafuente-Rego \email{borjalrego@gmail.com} (\href{https://orcid.org/0000-0002-2443-3084}{ORCID})
+  \item Maria Jose Lombardia \email{maria.jose.lombardia@udc.es} (\href{https://orcid.org/0000-0001-9452-9818}{ORCID})
+  \item Javier Tarrio-Saavedra \email{javier.tarrio@udc.es} (\href{https://orcid.org/0000-0002-9584-127X}{ORCID})
+  \item Julian Costa-Bouzas \email{julian.costa.bouzas@udc.es} (\href{https://orcid.org/0000-0001-9760-9581}{ORCID})
 }
 
 Other contributors:

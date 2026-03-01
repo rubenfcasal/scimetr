@@ -1,4 +1,28 @@
-# scimetr 1.1 (2025-11-22)
+# scimetr 1.2.0 (2026-03-01)
+
+* Changes to prepare the package for its submission to CRAN
+  (Defined global variables through `utils::globalVariables()` to avoid check 
+  warnings related to dplyr usage, updated documentation, urls, package 
+  description, dependencies, ...).
+
+* Consistent naming of functions using the *snake_case* convention
+
+  - `ImportSources.wos()` renamed to `import_wos()`.
+  
+  - `CreateDB()` renamed to `db_bib()`.
+
+  - `CreateDBJCR()` renamed to `db_jcr()`.
+
+  - `AddDBJCR()` renamed to `add_jcr()`.
+
+  - `get.idXxxx()` functions renamed to `get_id_xxxx()`   
+    `idXxxx` arguments renamed to `id_xxxx`.
+    
+  - `TC.authors()` renamed to `author_metrics()`   
+    `TC.index` argument renamed to `index`.
+
+
+# scimetr 1.1.0 (2025-11-22)
 
 * Added methods for `wos.jcr`-class objects: `plot.wos.jcr()`, `summary.wos.jcr()`,
   `print.summary.wos.jcr()`, `plot.summary.wos.jcr()`, `summary.year.jcr()`,
@@ -10,14 +34,14 @@
 
 * Added (internal) global variables `.jcr.labels` and `.all.labels`.
 
-* `summary.year()` is now a generic function 
+* `summary_year()` is now a generic function 
   (with methods for `wos.db` and `wos.jcr` classes).
 
 * Added a return value in plot methods `plot.wos.db()`, `plot.summary.wos.db()`
   and `plot.summary.year.wos()`.
   
 
-# scimetr 1.0 (2025-03-21)
+# scimetr 1.0.0 (2025-03-21)
 
 * Major internal changes:
 

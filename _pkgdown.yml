@@ -13,19 +13,19 @@ reference:
     desc: "Main utilities for importing data and creating databases."
     contents:
       - scimetr-package
-      - ImportSources.wos
-      - CreateDB
-      - CreateDBJCR
-      - AddDBJCR
+      - import_wos
+      - db_bib
+      - db_jcr
+      - add_jcr
   - title: "Summaries"
     desc: "Global and yearly summaries."
     contents:
       - starts_with("summary")
-      - TC.authors
+      - author_metrics
   - title: "Data retrieval"
     desc: "Functions to perform database queries."
     contents:
-      - starts_with("get.id")
+      - starts_with("get_id")
       - starts_with("get_jcr")
   - title: "Data"
     desc: "Examples of data and databases."

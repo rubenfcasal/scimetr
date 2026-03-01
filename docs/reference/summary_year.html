@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">scimetr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +88,7 @@
 
 <dt id="arg-filter">filter<a class="anchor" aria-label="anchor" href="#arg-filter"></a></dt>
 <dd><p>vector of document identifiers
-(optional, usually a result of <a href="get.idDocs.html">get.idDocs</a>).</p></dd>
+(optional, usually a result of <a href="get_id_docs.html">get_id_docs</a>).</p></dd>
 
 
 <dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
@@ -115,14 +115,23 @@ see <code><a href="https://rdrr.io/r/graphics/par.html" class="external-link">pa
 
 
 <dt id="arg-all">all<a class="anchor" aria-label="anchor" href="#arg-all"></a></dt>
-<dd><p>logical; if <code>TRUE</code>, the corresponding <a href="CreateDB.html">wos.db</a> method
+<dd><p>logical; if <code>TRUE</code>, the corresponding <a href="db_bib.html">wos.db</a> method
 is called (additional parameters <code>...</code> are passed to it), otherwise only results
 of JCR metrics are returned.</p></dd>
 
+
+<dt id="arg-digits">digits<a class="anchor" aria-label="anchor" href="#arg-digits"></a></dt>
+<dd><p>minimal number of <em>significant</em> digits, see <a href="https://rdrr.io/r/base/print.default.html" class="external-link">print.default</a>.</p></dd>
+
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p>A list of summary statistics (an object of class <code>summary.year.wos</code>
+or <code>summary.year.jcr</code>), which have specialized <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> and <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> methods.</p>
+    </div>
+    <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="CreateDB.html">CreateDB</a>, <a href="AddDBJCR.html">AddDBJCR</a>.</p></div>
+    <div class="dont-index"><p><a href="db_bib.html">db_bib</a>, <a href="add_jcr.html">add_jcr</a>.</p></div>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -13,19 +13,23 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', out.width = '80%')
+knitr::opts_chunk$set(echo = FALSE, fig.align = "center", out.width = "80%")
 ```
 
 Note that **a subscription is required to import data from Web of Science**.
 
+
+## Web of Science search web page
+
 Access the Clarivate Web of Science (WoS) search web page: <https://www.webofscience.com/wos> 
 (or through your institutional access link; for instance <https://www.recursoscientificos.fecyt.es> from the Spanish Foundation for Science and Technology, FECYT Consortium Academic Group).
 
-Select the **Web of Science Core Collection** database in the top dropdown menu and choose the desired options:
+Select the **Web of Science Core Collection** database in the top dropdown menu *Search in*, and choose the desired options:
 
 -   **Editions**: this dropdown menu can be used to select the citation
-    indexes (For example, if following the IUNE criteria, you would
-    select the first three).
+    indexes (For example, following the [IUNE](https://iune.es/) criteria, 
+    the first three could be select: *Science Citation Index Expanded*, 
+    *Social Sciences Citation Index* and *Arts & Humanities Citation Index*).
 
 -   **Add date range**: limit the results to a specific period.
 
@@ -34,7 +38,7 @@ Select the **Web of Science Core Collection** database in the top dropdown menu 
 -   **Query Builder:** build more complex queries using field tags and
     Boolean operators.
 
-      *Note:* Visit the online training portal for details: <https://clarivate.com/webofsciencegroup/support/wos/>.
+      *Note:* Visit the online training portal for details: <https://clarivate.com/academia-government/training-support/>.
 
 <br>
 
@@ -58,6 +62,9 @@ The names of the universities that make up the Galician University System (SUG) 
 -   **UVIGO**: *Universidade de Vigo*.
 
 Additionally, you can specify a **year range**.
+
+
+## Download bibliometric data files
 
 Once you obtain the results list, select **Export** and **Tab delimited file** (you will need to repeat this if the number of records exceeds 500, which is the default download limit).
 

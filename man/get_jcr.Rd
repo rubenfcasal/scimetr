@@ -11,19 +11,22 @@ get_jcr_cat(db, filter, best = TRUE)
 }
 \arguments{
 \item{db}{a bibliographic database with JCR information (a \linkS4class{wos.jcr} object;
-typically the output of the function \link{AddDBJCR}).}
+typically the output of the function \code{\link[=add_jcr]{add_jcr()}}).}
 
-\item{filter}{vector of document identifiers (usually a result of \link{get.idDocs}).}
+\item{filter}{vector of document identifiers (usually a result of \code{\link[=get_id_docs]{get_id_docs()}}).}
 
 \item{best}{logical; if \code{TRUE} (default), only the results for the WoS category
 with the best ranking for each document are returned.}
 }
+\value{
+A \code{data.frame} with document indexes and their source JCR metrics.
+}
 \description{
-\code{get_jcr} combines document indexes with their source JCR metrics per year.
+\code{get_jcr()} combines document indexes with their source JCR metrics per year.
 
-\code{get_jcr_cat} combines document indexes with their source JCR metrics per year
+\code{get_jcr_cat()} combines document indexes with their source JCR metrics per year
 and WoS category.
 }
 \seealso{
-\link{AddDBJCR}, \link{CreateDBJCR}, \link{CreateDB}.
+\code{\link[=add_jcr]{add_jcr()}}, \code{\link[=db_jcr]{db_jcr()}}, \code{\link[=db_bib]{db_bib()}}.
 }

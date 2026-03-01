@@ -37,7 +37,7 @@ summary_year(object, ...)
 \item{...}{further arguments passed to or from other methods.}
 
 \item{filter}{vector of document identifiers
-(optional, usually a result of \link{get.idDocs}).}
+(optional, usually a result of \link{get_id_docs}).}
 
 \item{x}{an object used to select a method.}
 
@@ -55,10 +55,16 @@ see \code{\link{par}(ask=.)}.}
 \item{all}{logical; if \code{TRUE}, the corresponding \linkS4class{wos.db} method
 is called (additional parameters \code{...} are passed to it), otherwise only results
 of JCR metrics are returned.}
+
+\item{digits}{minimal number of \emph{significant} digits, see \link{print.default}.}
+}
+\value{
+A list of summary statistics (an object of class \code{summary.year.wos}
+or \code{summary.year.jcr}), which have specialized \code{\link[=print]{print()}} and \code{\link[=plot]{plot()}} methods.
 }
 \description{
 The \code{summary_year} methods return summaries by year of a bibliometric database.
 }
 \seealso{
-\link{CreateDB}, \link{AddDBJCR}.
+\link{db_bib}, \link{add_jcr}.
 }

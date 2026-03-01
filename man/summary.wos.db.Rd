@@ -3,18 +3,18 @@
 \name{summary.wos.db}
 \alias{summary.wos.db}
 \alias{print.summary.wos.db}
-\alias{TC.authors}
+\alias{author_metrics}
 \alias{plot.summary.wos.db}
 \alias{summary.wos.jcr}
 \alias{print.summary.wos.jcr}
 \alias{plot.summary.wos.jcr}
 \title{Summaries of a bibliographic database}
 \usage{
-\method{summary}{wos.db}(object, filter, TC.index = c("H", "G"), nmax = 10, ...)
+\method{summary}{wos.db}(object, filter, index = c("H", "G"), nmax = 10, ...)
 
 \method{print}{summary.wos.db}(x, ...)
 
-TC.authors(db, idAuthors)
+author_metrics(db, id_authors)
 
 \method{plot}{summary.wos.db}(
   x,
@@ -37,9 +37,9 @@ TC.authors(db, idAuthors)
 \item{object}{an object for which a summary is desired.}
 
 \item{filter}{vector of document identifiers
-(optional, usually a result of \link{get.idDocs}).}
+(optional, usually a result of \code{\link[=get_id_docs]{get_id_docs()}}).}
 
-\item{TC.index}{citation indexes.}
+\item{index}{citation indexes.}
 
 \item{nmax}{number of top levels.}
 
@@ -47,9 +47,9 @@ TC.authors(db, idAuthors)
 
 \item{x}{an object used to select a method.}
 
-\item{db}{Object of \code{\link{class}} \code{wos.db}, as returned by \link{CreateDB}.}
+\item{db}{Object of \code{\link{class}} \code{wos.db}, as returned by \link{db_bib}.}
 
-\item{idAuthors}{optional; author identifiers}
+\item{id_authors}{optional; author identifiers}
 
 \item{which}{if a subset of the plots is required,
 specify a subset of the numbers \code{1:5}.}
@@ -72,9 +72,13 @@ of JCR metrics are returned.}
 
 \item{digits}{minimal number of significant digits, see \link{print.default}.}
 }
+\value{
+A list of summary statistics (an object of class \code{summary.wos.db}
+or \code{summary.wos.jcr}), which have specialized \code{\link[=print]{print()}} and \code{\link[=plot]{plot()}} methods.
+}
 \description{
-\link{summary} methods for WoS bibliometric databases.
+\code{\link[=summary]{summary()}} methods for bibliometric databases.
 }
 \seealso{
-\link{CreateDB}, \link{AddDBJCR}.
+\code{\link[=db_bib]{db_bib()}}, \code{\link[=add_jcr]{add_jcr()}}.
 }

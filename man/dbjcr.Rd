@@ -14,7 +14,7 @@ dbjcr
 Bibliographic database with JCR metrics (a \linkS4class{wos.jcr} S3 object)
 corresponding to a WoS search by the Affiliation field of \emph{Universidade da Coruña (UDC)}
 in the research area \code{"Mathematics"} during the years 2018–2023
-(generated fom \link{wosdf} data set, using the functions \link{CreateDB}, \link{CreateDBJCR}
-and \link{AddDBJCR}).
+(generated fom \link{wosdf} data set, using the functions \link{db_bib}, \link{db_jcr}
+and \link{add_jcr}).
 }
 \keyword{datasets}

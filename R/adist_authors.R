@@ -6,10 +6,13 @@
 #' @keywords internal
 authors.short <- function(authors) {
   # authors <- stringi::stri_trans_general(authors, "upper; latin-ascii")
-  sauthors <- str_split(authors, ', ', simplify = TRUE)
-  family <- lapply(str_split(sauthors[, 1], ' |-'), function(x) toupper(x))
-  name <- if (ncol(sauthors) == 1) as.list(rep("", nrow(sauthors))) else
-    lapply(str_split(sauthors[, 2], ' |-'), function(x) substr(x, 1, 1))
+  sauthors <- str_split(authors, ", ", simplify = TRUE)
+  family <- lapply(str_split(sauthors[, 1], " |-"), function(x) toupper(x))
+  name <- if (ncol(sauthors) == 1) {
+    as.list(rep("", nrow(sauthors)))
+  } else {
+    lapply(str_split(sauthors[, 2], " |-"), function(x) substr(x, 1, 1))
+  }
   return(list(family = family, name = name))
 }
 
@@ -20,8 +23,9 @@ authors.short <- function(authors) {
 
 
 #' @keywords internal
-dist_names0 <- function(x, Y)
-  1 - sapply(Y, function(y) (mean(y %in% x) + mean(x %in% y))/2)
+dist_names0 <- function(x, Y) {
+  1 - sapply(Y, function(y) (mean(y %in% x) + mean(x %in% y)) / 2)
+}
 
 #' @keywords internal
 adist_author0 <- function(sautname, sautfamily, stable,
@@ -30,7 +34,7 @@ adist_author0 <- function(sautname, sautfamily, stable,
   # stable <- authors.short(table)
   family.match <- dist_names0(sautfamily, stable$family)
   name.match <- dist_names0(sautname, stable$name)
-  res <- weight[1]*family.match + weight[2]*name.match
+  res <- weight[1] * family.match + weight[2] * name.match
   # names(res) <- list(author, table)
   return(res)
 }
@@ -84,15 +88,7 @@ match_authors <- function(authors, table, weight = c(family = 0.9, name = 0.1),
       }
     }
   }
-  if (attr.dist) attr(match, 'dist') <- dist
+  if (attr.dist) attr(match, "dist") <- dist
   names(match) <- authors
   return(match)
 }
-
-
-
-
-
-
-
-

@@ -8,7 +8,7 @@
 #' Import bibliographic data downloaded from Web of Science (WoS).
 #'
 #' Reads bibliography entries from UTF-8 encoded Tab-delimited files containing
-#' "Full Record and Cited References" (see [wosdf]).
+#' "Full Record and Cited References" (see [wosdf] and vignette [Downloading data from the Web of Science](https://rubenfcasal.github.io/scimetr/articles/WoS_export.html)).
 #' @param path character; path to the directory containing the files.
 #' @param pattern regular expression; only matching files will be loaded.
 #' Defaults to `"*.txt"`.
@@ -19,34 +19,38 @@
 #' and `FALSE` otherwise.
 #' @return A `data.frame` with rows corresponding to sources and columns to
 #' WoS variables.
-#' @seealso [wosdf], [CreateDB].
+#' @seealso [wosdf], [db_bib()].
 #' @export
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ImportSources.wos <- function(path = '.', pattern = '*.txt',
-                              all = TRUE, progress = NULL){
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+import_wos <- function(path = ".", pattern = "*.txt",
+                              all = TRUE, progress = NULL) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # path <- "USC (29-03-2023)";  pattern = '*.txt'; all = TRUE
   # NOTAS:
   #   Por defecto se consideran fuentes aunque no tengan ISSN (argumento all)
   #   OJO: No convierte las variables de texto a factor...
   files <- dir(path, pattern = pattern, full.names = TRUE)
   nfiles <- length(files)
-  if(!nfiles) stop("No files matching 'pattern' in 'path'")
-  if(is.null(progress)) progress <- interactive() & (nfiles > 1)
+  if (!nfiles) stop("No files matching 'pattern' in 'path'")
+  if (is.null(progress)) progress <- interactive() & (nfiles > 1)
   if (progress) {
-    cat('\nProcessing files...\n')
+    cat("\nProcessing files...\n")
     progressbar <- txtProgressBar(min = 0, max = nfiles, width = 40, style = 3)
   }
   # Nombres y etiquetas de variables
-  tmp <- .wos.labels %>% filter(!is.na(id)) %>% select(name, label)
+  tmp <- .wos.labels %>%
+    filter(!is.na(id)) %>%
+    select(name, label)
   labels <- tmp$label
   names(labels) <- tmp$name
   # Bucle
   data.list <- list(nfiles)
   for (i in seq_len(nfiles)) {
     # Pendiente: probar carga de archivos con readr
-    data <- read.delim(files[i], row.names = NULL, na.strings = "",
-                       colClasses = 'character', stringsAsFactors = FALSE, quote = "", encoding = "UTF-8")
+    data <- read.delim(files[i],
+      row.names = NULL, na.strings = "",
+      colClasses = "character", stringsAsFactors = FALSE, quote = "", encoding = "UTF-8"
+    )
     # Guardar fichero de origen por si surgen problemas
     # data$origin <- x # Poner como opción?
     # Comprobar variables y generar error si no están todas (all_of()?)
@@ -60,7 +64,7 @@ ImportSources.wos <- function(path = '.', pattern = '*.txt',
     if (progress) setTxtProgressBar(progressbar, i)
     data.list[[i]] <- data
   }
-  wosdf <- do.call('rbind', data.list)
+  wosdf <- do.call("rbind", data.list)
   # names(wosdf) <- names(wosdf)[-1] # Versión anterior
   ind <- !is.na(wosdf$SN)
   if (!all && sum(ind) < nrow(wosdf)) {
@@ -83,50 +87,68 @@ ImportSources.wos <- function(path = '.', pattern = '*.txt',
 #' @param ... further arguments passed to or from other methods.
 #' @aliases wos.db-class
 #' @export
-# S3 generic function CreateDB
+# S3 generic function db_bib
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-CreateDB <- function(data, ...){
-  UseMethod("CreateDB")
+db_bib <- function(data, ...) {
+  UseMethod("db_bib")
 }
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#' @rdname CreateDB
-#' @method CreateDB wos.data
+#' @rdname db_bib
+#' @method db_bib wos.data
 #' @description
-#' \code{CreateDB.wos.data()} converts a \code{data.frame} with WoS variables
-#' (as returned by \code{\link{ImportSources.wos}}; see \code{\link{wosdf}}) into
+#' \code{db_bib.wos.data()} converts a \code{data.frame} with WoS variables
+#' (as returned by \code{\link{import_wos}}; see \code{\link{wosdf}}) into
 #' a relational database (a list of data.frames).
 #' @param label character string describing the data.
 #' @param progress logical; if `TRUE` the progress is printed.
 #' @param verbose logical; if `TRUE` additional information is printed.
 #' @return An S3 object of [class] `wos.db`.
 #' A `list` with the following components:
-#' `Docs`, `Authors`, `AutDoc`, `OI`, `OIDoc`, `RI`, `RIDoc`,
-#' `Categories`, `CatSour`, `Areas`, `AreaSour`, `Addresses`, `AddAutDoc`,
-#' `Affiliations`, `AffDoc`, `Sources`, `WSIndex`, `SourWSI`, `label` and
-#' `export.date`.
-# \describe{
-#   item{Docs}{}
-# }
-#' @seealso \code{\link{wosdf}}, \code{\link{ImportSources.wos}}.
+#'
+#' - `Docs`: document-level records (year, type, citations, identifiers).
+#'
+#' - `Authors` and `AutDoc`: author dictionary and document-author links.
+#'
+#' - `OI` and `OIDoc`: ORCID identifiers and their linkage to documents.
+#'
+#' - `RI` and `RIDoc`: ResearcherID identifiers and their linkage to documents.
+#'
+#' - `Affiliations` and `AffDoc`: affiliation dictionary and document links.
+#'
+#' - `Addresses` and `AddAutDoc`: address and document-author-address links.
+#'
+#' - `Sources`: document sources (journals, books, proceedings, ...).
+#'
+#' - `Categories`, `Areas`, `CatSour` and `AreaSour`: thematic classifications
+#'   and their linkage to sources.
+#'
+#' - `WSIndex` and `SourWSI`: Web of Science indexes and their linkage to
+#'   sources.
+#'
+#' - `label` and `date`: metadata that helps tracking the dataset
+#'   identity over time.
+#'
+#' This object has specialized [print] and [plot] methods.
+#' @seealso \code{\link{wosdf}}, \code{\link{import_wos}}.
 #' @examples
-#' db <- CreateDB(wosdf)
+#' db <- db_bib(wosdf)
 #' str(db, 1)
 #' print(db)
 #' summary(db)
 #' @export
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-CreateDB.wos.data <- function(data, label = "", progress = interactive(),
-                         verbose = FALSE, ...) {
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+db_bib.wos.data <- function(data, label = "", progress = interactive(),
+                              verbose = FALSE, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # data = wosdf; label = ""; verbose = FALSE; progress = FALSE
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ndocs <- nrow(data)
-  data$idd = seq_len(ndocs) # OJO: Se añade una variable a los datos
+  data$idd <- seq_len(ndocs) # OJO: Se añade una variable a los datos
 
   if (progress) {
-    cat('Processing Documents...\n')
+    cat("Processing Documents...\n")
     progressbar <- txtProgressBar(min = 0, max = ndocs, width = 40, style = 3)
   }
 
@@ -137,18 +159,14 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   an <- oin <- rin <- dirsn <- numeric(ndocs)
   san <- soin <- srin <- 0
   # ~~~~~~~~~~~~~~~~~~
-  for(i in 1:ndocs){
+  for (i in 1:ndocs) {
     # i <- 0; i <- i +1
-    # i <- 14627
     # i <- 838 # ", ALO/0000-0003-1456-7342"
-    # i <- 529
-    # i <- 7
-    # i <- 208
 
     # update progress bar
     if (progress) {
       setTxtProgressBar(progressbar, i)
-      if (verbose) cat( " r", i, sep = "")
+      if (verbose) cat(" r", i, sep = "")
     }
     # ~~~~~~~~~~~~~~~~~~
     # Authors: Tabla de autores
@@ -157,8 +175,8 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
     # AF	Nombre completo de autor
     # PROBLEMA: Puede aparecer el segundo nombre como apellido
     #   Antonio Gomez-Fraguela, Jose
-    autores0 <- str_split(data$AF[i], '; ')[[1]]
-    an[i] <- length(autores0)                       # nº de autores [Docs]
+    autores0 <- str_split(data$AF[i], "; ")[[1]]
+    an[i] <- length(autores0) # nº de autores [Docs]
     ida0 <- san + seq_len(an[i]) # Indice secuencial de author (fila en autores)
     san <- san + an[i]
 
@@ -177,11 +195,11 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
     if (is.na(OI0)) {
       oin[i] <- 0
       # Lista de orcids con NAs
-      lorcid[[i]] <- data.frame(ioi0 = NA, OI = NA_character_)  # No lo tengo claro
+      lorcid[[i]] <- data.frame(ioi0 = NA, OI = NA_character_) # No lo tengo claro
     } else {
-      OI0 <- str_split(OI0, '; ')[[1]]
+      OI0 <- str_split(OI0, "; ")[[1]]
       # Trocear en nombre y orcid
-      res <- str_split(OI0, '/', simplify = TRUE)
+      res <- str_split(OI0, "/", simplify = TRUE)
       # PROBLEMA: Pueden aparecer orcids duplicados
       res <- res[!duplicated(res[, 2]), , drop = FALSE]
       # PROBLEMA: Pueden aparecer orcids vacios
@@ -198,7 +216,7 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
       # PROBLEMA: Puede haber orcid sin nombre
       # "/0000-0003-2170-2733"
       res <- res[nzchar(res[, 1]), ]
-      if(nrow(res)) {
+      if (nrow(res)) {
         # PENDIENTE: Escribir mensajes en fichero .log
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         # PENDIENTE: Mejorar eficiencia (ir buscando cada autor y eliminando)
@@ -215,12 +233,16 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
       }
       # Avisar si no encuentra alguno (o si hay mas)
       if (verbose && oin[i] > nrow(autores1)) {
-        cat("\nWarning: number of authors (", nrow(autores1),
-            ") less than the number of ORCIDs (", nrow(res),"), in source", i, "\n")
-
-      } else if(verbose && (tmp <- oin[i] - sum(!is.na(autores1$ioi0))) > 0)
-        cat("\nWarning: ", tmp,
-            " ORCIDs where not assigned, in source", i, "\n")
+        cat(
+          "\nWarning: number of authors (", nrow(autores1),
+          ") less than the number of ORCIDs (", nrow(res), "), in source", i, "\n"
+        )
+      } else if (verbose && (tmp <- oin[i] - sum(!is.na(autores1$ioi0))) > 0) {
+        cat(
+          "\nWarning: ", tmp,
+          " ORCIDs where not assigned, in source", i, "\n"
+        )
+      }
     }
 
 
@@ -231,11 +253,11 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
     if (is.na(RI0)) {
       rin[i] <- 0
       # Lista de ris con NAs
-      lri[[i]] <- data.frame(iri0 = NA, RI = NA_character_)  # No lo tengo claro
+      lri[[i]] <- data.frame(iri0 = NA, RI = NA_character_) # No lo tengo claro
     } else {
-      RI0 <- str_split(RI0, '; ')[[1]]
+      RI0 <- str_split(RI0, "; ")[[1]]
       # Trocear en nombre y ri
-      res <- str_split(RI0, '/', simplify = TRUE)
+      res <- str_split(RI0, "/", simplify = TRUE)
       # PROBLEMA: Pueden aparecer ris duplicados?
       res <- res[!duplicated(res[, 2]), , drop = FALSE]
       # PROBLEMA: Pueden aparecer ris vacios?
@@ -250,7 +272,7 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
       # PROBLEMA: Algún ri puede tener / en el nombre?
       # PROBLEMA: Puede haber ri sin nombre?
       res <- res[nzchar(res[, 1]), ]
-      if(nrow(res)) {
+      if (nrow(res)) {
         # PENDIENTE: Escribir mensajes en fichero .log
         # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         # PENDIENTE: Mejorar eficiencia (ir buscando cada autor y eliminando)
@@ -267,12 +289,16 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
       }
       # Avisar si no encuentra alguno (o si hay mas)
       if (verbose && rin[i] > nrow(autores1)) {
-        cat("\nWarning: number of authors (", nrow(autores1),
-            ") less than the number of RIs (", nrow(res),"), in source", i, "\n")
-
-      } else if(verbose && (tmp <- rin[i] - sum(!is.na(autores1$iri0))) > 0)
-        cat("\nWarning: ", tmp,
-            " RIs where not assigned, in source", i, "\n")
+        cat(
+          "\nWarning: number of authors (", nrow(autores1),
+          ") less than the number of RIs (", nrow(res), "), in source", i, "\n"
+        )
+      } else if (verbose && (tmp <- rin[i] - sum(!is.na(autores1$iri0))) > 0) {
+        cat(
+          "\nWarning: ", tmp,
+          " RIs where not assigned, in source", i, "\n"
+        )
+      }
     }
 
 
@@ -280,7 +306,7 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
     # ~~~~~~~~~~~~~~~~~~
     # AU	Autores
     # El nombre corto se establecerá como el primero al correspondiente AF
-    autores1 <- data.frame(AU = str_split(data$AU[i], '; ')[[1]], autores1)
+    autores1 <- data.frame(AU = str_split(data$AU[i], "; ")[[1]], autores1)
     lautores[[i]] <- autores1
     # Pendiente: EM	Dirección de correo electrónico
     #   Aparecen sin asociar al autor y sin criterio aparente
@@ -294,26 +320,26 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
     # PENDIENTE: direcciones vacias which(is.na(data$C1)) Warning?
     ldirs0 <- str_split(data$C1[i], "(; )?\\[")[[1]] # Elimina primer [
     if (length(ldirs0) == 1) {
-      ldirs[i] <- str_split(ldirs0, '; ')
+      ldirs[i] <- str_split(ldirs0, "; ")
       dirsn[i] <- length(ldirs[[i]])
       autdir[[i]] <- rep(list(ida0), length(ldirs[[i]]))
     } else {
       # Hay direcciones identificadas con [] (la primera "")
       # Dividir entre autores y dirección
-      d <- str_split(ldirs0[-1], '\\] ')
+      d <- str_split(ldirs0[-1], "\\] ")
       # Puede haber múltiples direcciones para un grupo de autores
-      ldirs[[i]] <- lapply(d, function(x) unlist(str_split(x[2], '; ')))
+      ldirs[[i]] <- lapply(d, function(x) unlist(str_split(x[2], "; ")))
       # Número de direcciones en documento
       res <- sapply(ldirs[[i]], length)
       dirsn[i] <- sum(res)
       # Lista con índices secuenciales de autor para cada dirección
-      autdir[[i]] <- rep(lapply(d, function(x) ida0[charmatch(str_split(x[1], '; ')[[1]], autores0)] ), res)
+      autdir[[i]] <- rep(lapply(d, function(x) ida0[charmatch(str_split(x[1], "; ")[[1]], autores0)]), res)
     }
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   } # for(i in 1:ndocs)
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    if (progress) cat('\nProcessing "Authors"...\n')
+  if (progress) cat('\nProcessing "Authors"...\n')
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -343,7 +369,8 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   # OI: Tabla de orcids
   # ioi OI, AFOI
   # ~~~~~~~~~~~~~~~~~~
-  OI <- orcids %>% select(ioi, OI, AFOI) %>%
+  OI <- orcids %>%
+    select(ioi, OI, AFOI) %>%
     filter(!duplicated(ioi))
   # Convertir cadenas vacias en NAs
   is.na(OI$AFOI) <- !nzchar(OI$AFOI)
@@ -380,7 +407,8 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   # RI: Tabla de ris
   # iri RI, AFRI
   # ~~~~~~~~~~~~~~~~~~
-  RI <- ris %>% select(iri, RI, AFRI) %>%
+  RI <- ris %>%
+    select(iri, RI, AFRI) %>%
     filter(!duplicated(iri))
   # Convertir cadenas vacias en NAs
   is.na(RI$AFRI) <- !nzchar(RI$AFRI)
@@ -430,10 +458,13 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   if (!is.null(res[["FALSE"]])) {
     res[["FALSE"]] <- res[["FALSE"]] %>% mutate(ida = cur_group_id(), .by = ioi)
     maxida <- max(res[["FALSE"]]$ida)
-  } else maxida <- 0
+  } else {
+    maxida <- 0
+  }
   # Autores sin ORCID ida consecutivos a partir de maxida agrupando por AF
-  if (!is.null(res[["TRUE"]]))
+  if (!is.null(res[["TRUE"]])) {
     res[["TRUE"]] <- res[["TRUE"]] %>% mutate(ida = cur_group_id() + maxida, .by = AF)
+  }
 
   # Volver a combinar
   autores <- bind_rows(res)
@@ -442,8 +473,10 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   # Authors: Tabla de autores
   # ida, AU, AF, ioi
   # ~~~~~~~~~~~~~~~~~~
-  Authors <- autores %>% select(ida, AU, AF, ioi, iri) %>%
-    filter(!duplicated(ida)) %>% arrange(ida)
+  Authors <- autores %>%
+    select(ida, AU, AF, ioi, iri) %>%
+    filter(!duplicated(ida)) %>%
+    arrange(ida)
   # Añadir etiquetas
   attr(Authors, "variable.labels") <- labels[names(Authors)]
 
@@ -469,19 +502,21 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   # Extraer Universidad y Pais
   # NOTA: La universidad se toma como la primera subcadena conteniendo "Univ"
   # NOTA: El pais se toma a partir de la última subcadena
-  res <- t(sapply(str_split(dirs, ', '), function(x) c(x[grepl('Univ', x)][1], x[length(x)])))
+  res <- t(sapply(str_split(dirs, ", "), function(x) c(x[grepl("Univ", x)][1], x[length(x)])))
   Country <- res[, 2]
   # USA aparece con estado e incluso zip: "AL 35294 USA"
-  Country[grepl('(.+ )?USA$', Country)] <- 'USA'
+  Country[grepl("(.+ )?USA$", Country)] <- "USA"
   # United Kingdom (UK) aparece por territorios: England, Scotland, Wales (y probablemente Northern Ireland)
-  Country[Country %in% c('England', 'Scotland', 'Wales', 'Northern Ireland')] <- 'UK'
+  Country[Country %in% c("England", "Scotland", "Wales", "Northern Ireland")] <- "UK"
   # Hay otros valores "raros": "Peoples R China"
-  Country[grepl('Peoples R China', Country)] <- 'China'
+  Country[grepl("Peoples R China", Country)] <- "China"
   Country <- as.factor(Country)
   idad <- seq_along(dirs)
   idd <- rep(data$idd, dirsn)
-  Addresses <- data.frame(idad = idad, idd = idd, C1 = dirs, Univ = res[,1], Country = Country,
-                          stringsAsFactors = FALSE)
+  Addresses <- data.frame(
+    idad = idad, idd = idd, C1 = dirs, Univ = res[, 1], Country = Country,
+    stringsAsFactors = FALSE
+  )
   # PENDIENTE:
   # Countries <- levels(Country)
   # Country en Addresses como entero
@@ -494,10 +529,10 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   # AddAutDoc: Tabla de direcciones por autor y documento
   # ida, idd, idad
   # ~~~~~~~~~~~~~~~~~~
-  res <- unlist(lapply(autdir, function (x) lapply(x,length)))
+  res <- unlist(lapply(autdir, function(x) lapply(x, length)))
   idad <- rep(idad, res)
-  idd <- rep( data$idd, sapply(autdir, function(x) sum(sapply(x, length)))) # optimizar...
-  AddAutDoc <- data.frame(ida = autores$ida[unlist(autdir)], idd = idd, idad = idad )
+  idd <- rep(data$idd, sapply(autdir, function(x) sum(sapply(x, length)))) # optimizar...
+  AddAutDoc <- data.frame(ida = autores$ida[unlist(autdir)], idd = idd, idad = idad)
   # Comprobación
   # AddAutDoc %>% filter(idd == 207)  %>% left_join(Addresses) %>% left_join(Authors)
   # data$C1[207]
@@ -530,15 +565,20 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   # en caso contrario como Proceedings
   # PENDIENTE: Comprobar con datos de BS (Book series)
   data <- data %>% mutate(PT = ifelse(PT == "C",
-           ifelse(is.null(BS), "Proceedings", "Proceeding Series"), PT))
+    ifelse(is.null(BS), "Proceedings", "Proceeding Series"), PT
+  ))
   # Convertir en factor
-  data$PT <- factor(data$PT, levels = c("J", "S", "Proceeding Series",
-                                          "Proceedings",  "B", "P"))
+  data$PT <- factor(data$PT, levels = c(
+    "J", "S", "Proceeding Series",
+    "Proceedings", "B", "P"
+  ))
   # Niveles PT (reorganizados)
-  levels(data$PT) <-  c("Journal", "Book Series", # WoS y Scopus Sources ("Trade Journal" -> "Journal")
-                        "Proceeding Series", # Scopus Serial Conf. Proc. with profile
-                        "Proceedings", # nivel scimagojr y "C" WoS
-                        "Book", "Patent")  # WoS
+  levels(data$PT) <- c(
+    "Journal", "Book Series", # WoS y Scopus Sources ("Trade Journal" -> "Journal")
+    "Proceeding Series", # Scopus Serial Conf. Proc. with profile
+    "Proceedings", # nivel scimagojr y "C" WoS
+    "Book", "Patent"
+  ) # WoS
 
 
   # Corregir SN/EI
@@ -559,7 +599,9 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
 
   # Problema WOS: Puede aparecer revistas duplicadas con el mismo EI y distinto SN (SN, NA)
   # Revistas con SN y EI completos
-  res <- data %>% filter(!is.na(SN) & !is.na(EI)) %>% distinct(SN, EI)
+  res <- data %>%
+    filter(!is.na(SN) & !is.na(EI)) %>%
+    distinct(SN, EI)
   # Completar SN a partir de EI solo si SN=NA
   index <- match(data$EI, res$EI, incomparables = NA_character_)
   sel <- !is.na(index) & is.na(data$SN)
@@ -568,14 +610,17 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
 
   # Crear ids
   # ~~~~~~~~~~~~~~~~~~
-  ids <- with(data,
-              ifelse(!is.na(BN), BN,
-                     ifelse(!is.na(SN), SN, EI)))
+  ids <- with(
+    data,
+    ifelse(!is.na(BN), BN,
+      ifelse(!is.na(SN), SN, EI)
+    )
+  )
   # Tener en cuenta la posibilidad de que any(!nzchar(ids)) sea verdadero
   ids <- match(ids, unique(ids), incomparables = NA_character_) # as.integer(as.factor(ids))
   index <- which(is.na(ids))
   # PENDIENTE:
-  if(length(index)) {
+  if (length(index)) {
     warning("Sources without BN, SN or EI were found.")
     ids[index] <- max(ids, na.rm = TRUE) + seq_along(index)
   }
@@ -586,8 +631,11 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   # ids: Journal ID (según BN o SN o EI)
   # ids, SO:LA, PU:EI, J9, JI
   # ~~~~~~~~~~~~~~~~~~
-  wos.var <- .wos.labels %>% filter(table == "Sources", !is.na(id)) %>% pull(name)
-  Sources <- data %>% select(ids, WC, SC, WE, all_of(wos.var)) %>%
+  wos.var <- .wos.labels %>%
+    filter(table == "Sources", !is.na(id)) %>%
+    pull(name)
+  Sources <- data %>%
+    select(ids, WC, SC, WE, all_of(wos.var)) %>%
     filter(!duplicated(ids))
   oldClass(Sources) <- "data.frame"
   # Añadir etiquetas
@@ -600,15 +648,15 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   # idc, WC
   # ~~~~~~~~~~~~~~~~~~
   if (progress) cat('Processing "Categories"...\n')
-  categ <- strsplit(Sources$WC, '; ')
-  nn <- sapply(categ, length)   # nº de categ
+  categ <- strsplit(Sources$WC, "; ")
+  nn <- sapply(categ, length) # nº de categ
   categ <- unlist(categ)
 
   # Categorías WOS en "R/sysdata.rda"
   # PENDIENTE: Crear Categories solo con las categorías en BD?
   idc <- match(toupper(categ), toupper(WosCat$WC))
   # Hay categorías que no están en el listado ...
-  if(any(is.na(idc))) warning("No matches were found for some categories.")
+  if (any(is.na(idc))) warning("No matches were found for some categories.")
   Sources$WC <- NULL
 
   # ~~~~~~~~~~~~~~~~~~
@@ -627,12 +675,12 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   # idra, SC
   # ~~~~~~~~~~~~~~~~~~
   if (progress) cat('Processing "Areas"...\n')
-  area <- strsplit(Sources$SC, '; ')
-  nn <- sapply(area, length)   # nº de areas
+  area <- strsplit(Sources$SC, "; ")
+  nn <- sapply(area, length) # nº de areas
   area <- as.factor(unlist(area))
   # No utilizamos listado áreas WOS "WosArea.RData"
   # Puede haber nuevas áreas
-  Areas <- data.frame(idra = seq_along(levels(area)), SC = levels(area), stringsAsFactors=FALSE )
+  Areas <- data.frame(idra = seq_along(levels(area)), SC = levels(area), stringsAsFactors = FALSE)
   Sources$SC <- NULL
   # Añadir etiquetas
   attr(Areas, "variable.labels") <- labels[names(Areas)]
@@ -676,10 +724,12 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   data$HP <- data$HP == "Y"
   data$HP[is.na(data$HP)] <- FALSE
   # Determinar variables WoS
-  wos.var <- .wos.labels %>% filter(table == "Docs", !is.na(id)) %>% pull(name)
+  wos.var <- .wos.labels %>%
+    filter(table == "Docs", !is.na(id)) %>%
+    pull(name)
   Docs <- data %>%
     select(idd, ids, all_of(wos.var)) %>%
-    mutate(across(c(NR:U2, PY, PG),  ~suppressWarnings(as.integer(.x)))) %>%           # Convierte a entero
+    mutate(across(c(NR:U2, PY, PG), ~ suppressWarnings(as.integer(.x)))) %>% # Convierte a entero
     mutate(UT = as.numeric(substr(UT, 5, 19)), an = an)
   # UT	Número de acceso
   # str(Docs)
@@ -695,12 +745,15 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   # idaf, C3
   # ~~~~~~~~~~~~~~~~~~
   # if (progress) cat('Processing "Affiliations"...\n')
-  aff <- strsplit(data$C3, '; ')
+  aff <- strsplit(data$C3, "; ")
   # Eliminar duplicados
   aff <- lapply(aff, unique)
-  nn <- sapply(aff, length)   # nº de afiliaciones
+  nn <- sapply(aff, length) # nº de afiliaciones
   aff <- as.factor(unlist(aff))
-  Affiliations <- data.frame(idaf = seq_along(levels(aff)), C3 = levels(aff), stringsAsFactors = FALSE)
+  Affiliations <- data.frame(
+    idaf = seq_along(levels(aff)), C3 = levels(aff),
+    stringsAsFactors = FALSE
+  )
   # Añadir etiquetas
   attr(Affiliations, "variable.labels") <- labels[names(Affiliations)]
 
@@ -720,12 +773,15 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
   # ~~~~~~~~~~~~~~~~~~
   # Depende de la revista
   # PENDIENTE: Comprobar que no cambia a lo largo del tiempo
-  wsi <- str_extract_all(Sources$WE,  "(?<=\\().+?(?=\\))")
-  nn <- sapply(wsi, length)   # nº de afiliaciones
+  wsi <- str_extract_all(Sources$WE, "(?<=\\().+?(?=\\))")
+  nn <- sapply(wsi, length) # nº de afiliaciones
   wsi <- as.factor(unlist(wsi))
   # Eliminar &amp; en levels(wsi)
   levels(wsi) <- str_replace(levels(wsi), "&amp;", "")
-  WSIndex <- data.frame(idwe = seq_along(levels(wsi)), WE = levels(wsi), stringsAsFactors = FALSE)
+  WSIndex <- data.frame(
+    idwe = seq_along(levels(wsi)), WE = levels(wsi),
+    stringsAsFactors = FALSE
+  )
   Sources$WE <- NULL
   # Añadir etiquetas
   attr(WSIndex, "variable.labels") <- labels[names(WSIndex)]
@@ -748,7 +804,8 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
     Addresses = Addresses, AddAutDoc = AddAutDoc,
     Affiliations = Affiliations, AffDoc = AffDoc,
     Sources = Sources, WSIndex = WSIndex, SourWSI = SourWSI,
-    label = label, export.date = data$DA[1])
+    label = label, date = data$DA[1]
+  )
   oldClass(res) <- "wos.db"
   return(res)
 }
@@ -758,7 +815,7 @@ CreateDB.wos.data <- function(data, label = "", progress = interactive(),
 # Generic methods wos.db ----
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#' @rdname CreateDB
+#' @rdname db_bib
 #' @method print wos.db
 #' @param x	an object used to select a method.
 #' @param ...	further arguments passed to or from other methods.
@@ -770,9 +827,9 @@ print.wos.db <- function(x, ...) {
 }
 
 
-#' @rdname CreateDB
+#' @rdname db_bib
 #' @method plot wos.db
-#' @param filter vector of document identifiers (usually a result of \code{\link{get.idDocs}}).
+#' @param filter vector of document identifiers (usually a result of \code{\link{get_id_docs}}).
 #' @param which	 if a subset of the plots is required,
 #' specify a subset of the numbers \code{1:3}.
 #' @param plot logical; if `TRUE` (default), the plots are drawn, otherwise only
@@ -780,29 +837,33 @@ print.wos.db <- function(x, ...) {
 #' @param warning logical; if `FALSE` (default), warnings are ignored.
 #' @param ask	logical; if `TRUE`, the user is asked before each plot
 #' (see \code{\link{par}(ask=.)}).
-#' @seealso \code{\link{plot.summary.wos.db}}, \code{\link{plot.summary.year}}
+#' @seealso \code{\link{plot.summary.wos.db}}, \code{\link{plot.summary.year.wos}}
 #' @export
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 plot.wos.db <- function(x, filter, which = 1:3, plot = TRUE, warning = FALSE,
-                    ask = plot && (length(which) > 1 ) && interactive(), ...) {
+                        ask = plot && (length(which) > 1) && interactive(), ...) {
   filtered <- !missing(filter)
   result <- list()
   show <- rep(FALSE, 3)
   show[which] <- TRUE
-  if(any(show[c(1,3)]))
-    docs <- if(filtered) x$Docs[filter, ] else x$Docs
-  if(show[1]) { # Authors per document
-    pobj <- ggplot(docs, aes(an, fill=I("blue"))) +
+  if (any(show[c(1, 3)])) {
+    docs <- if (filtered) x$Docs[filter, ] else x$Docs
+  }
+  if (show[1]) { # Authors per document
+    pobj <- ggplot(docs, aes(an, fill = I("blue"))) +
       geom_histogram(binwidth = max(binwidth.scott(docs$an), 1)) +
       labs(x = "Authors per document") +
       scale_y_log10() + # scale_y_continuous(trans = scale_y_log_2(base=10, from=0.9)) +
-      annotation_logticks(sides = "l")
+      annotation_logticks(sides = "l")+
+      geom_rug()
     result <- c(result, list(pobj))
   }
 
-  if(show[2]) { # Documents per author
-    ida <- with(x$AutDoc,
-                if(filtered) ida[idd %in% filter] else ida)
+  if (show[2]) { # Documents per author
+    ida <- with(
+      x$AutDoc,
+      if (filtered) ida[idd %in% filter] else ida
+    )
     autdoc <- data.frame(ida = as.numeric(table(ida)))
     pobj <- ggplot(autdoc, aes(ida, fill = I("blue"))) +
       geom_histogram(binwidth = max(binwidth.scott(autdoc$ida), 1)) +
@@ -811,15 +872,15 @@ plot.wos.db <- function(x, filter, which = 1:3, plot = TRUE, warning = FALSE,
       annotation_logticks(sides = "l") +
       geom_rug()
     result <- c(result, list(pobj))
-    }
-  if(show[3]) { # Times cited
+  }
+  if (show[3]) { # Times cited
     pobj <- ggplot(docs, aes(TC, fill = I("blue"))) +
       geom_histogram(binwidth = max(binwidth.scott(docs$TC), 1)) +
       labs(x = "Times cited") +
       scale_y_log10() + # scale_y_continuous(trans = scale_y_log_2(base=10, from=0.9)) +
       annotation_logticks(sides = "l") +
       geom_rug()
-  result <- c(result, list(pobj))
+    result <- c(result, list(pobj))
   }
   if (plot) {
     if (!warning) {
@@ -834,4 +895,3 @@ plot.wos.db <- function(x, filter, which = 1:3, plot = TRUE, warning = FALSE,
   }
   return(invisible(result))
 }
-

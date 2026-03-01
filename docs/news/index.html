@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">scimetr</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -40,25 +40,38 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.1" id="scimetr-11-2025-11-22">scimetr 1.1 (2025-11-22)<a class="anchor" aria-label="anchor" href="#scimetr-11-2025-11-22"></a></h2>
-<ul><li><p>Added methods for <code>wos.jcr</code>-class objects: <code><a href="../reference/AddDBJCR.html">plot.wos.jcr()</a></code>, <code><a href="../reference/summary.wos.db.html">summary.wos.jcr()</a></code>, <code><a href="../reference/summary.wos.db.html">print.summary.wos.jcr()</a></code>, <code><a href="../reference/summary.wos.db.html">plot.summary.wos.jcr()</a></code>, <code>summary.year.jcr()</code>, <code><a href="../reference/summary_year.html">print.summary.year.jcr()</a></code>, <code><a href="../reference/summary_year.html">plot.summary.year.jcr()</a></code></p></li>
-<li><p>Added dataset <code>dbjcr</code>.</p></li>
-<li><p>Added functions <code><a href="../reference/CreateDBJCR.html">CreateDBJCR()</a></code>, <code><a href="../reference/AddDBJCR.html">AddDBJCR()</a></code>, <code><a href="../reference/get_jcr.html">get_jcr()</a></code>, <code><a href="../reference/get_jcr.html">get_jcr_cat()</a></code>.</p></li>
-<li><p>Added (internal) global variables <code>.jcr.labels</code> and <code>.all.labels</code>.</p></li>
-<li><p><code>summary.year()</code> is now a generic function (with methods for <code>wos.db</code> and <code>wos.jcr</code> classes).</p></li>
-<li><p>Added a return value in plot methods <code><a href="../reference/CreateDB.html">plot.wos.db()</a></code>, <code><a href="../reference/summary.wos.db.html">plot.summary.wos.db()</a></code> and <code><a href="../reference/summary_year.html">plot.summary.year.wos()</a></code>.</p></li>
+<h2 class="pkg-version" data-toc-text="1.2.0" id="scimetr-120-2026-03-01">scimetr 1.2.0 (2026-03-01)<a class="anchor" aria-label="anchor" href="#scimetr-120-2026-03-01"></a></h2>
+<ul><li><p>Changes to prepare the package for its submission to CRAN (Defined global variables through <code><a href="https://rdrr.io/r/utils/globalVariables.html" class="external-link">utils::globalVariables()</a></code> to avoid check warnings related to dplyr usage, updated documentation, urls, package description, dependencies, …).</p></li>
+<li>
+<p>Consistent naming of functions using the <em>snake_case</em> convention</p>
+<ul><li><p><code>ImportSources.wos()</code> renamed to <code><a href="../reference/import_wos.html">import_wos()</a></code>.</p></li>
+<li><p><code>CreateDB()</code> renamed to <code><a href="../reference/db_bib.html">db_bib()</a></code>.</p></li>
+<li><p><code>CreateDBJCR()</code> renamed to <code><a href="../reference/db_jcr.html">db_jcr()</a></code>.</p></li>
+<li><p><code>AddDBJCR()</code> renamed to <code><a href="../reference/add_jcr.html">add_jcr()</a></code>.</p></li>
+<li><p><code>get.idXxxx()</code> functions renamed to <code>get_id_xxxx()</code><br><code>idXxxx</code> arguments renamed to <code>id_xxxx</code>.</p></li>
+<li><p><code>TC.authors()</code> renamed to <code><a href="../reference/summary.wos.db.html">author_metrics()</a></code><br><code>TC.index</code> argument renamed to <code>index</code>.</p></li>
+</ul></li>
 </ul></div>
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="1.0" id="scimetr-10-2025-03-21">scimetr 1.0 (2025-03-21)<a class="anchor" aria-label="anchor" href="#scimetr-10-2025-03-21"></a></h2>
+<h2 class="pkg-version" data-toc-text="1.1.0" id="scimetr-110-2025-11-22">scimetr 1.1.0 (2025-11-22)<a class="anchor" aria-label="anchor" href="#scimetr-110-2025-11-22"></a></h2>
+<ul><li><p>Added methods for <code>wos.jcr</code>-class objects: <code><a href="../reference/add_jcr.html">plot.wos.jcr()</a></code>, <code><a href="../reference/summary.wos.db.html">summary.wos.jcr()</a></code>, <code><a href="../reference/summary.wos.db.html">print.summary.wos.jcr()</a></code>, <code><a href="../reference/summary.wos.db.html">plot.summary.wos.jcr()</a></code>, <code>summary.year.jcr()</code>, <code><a href="../reference/summary_year.html">print.summary.year.jcr()</a></code>, <code><a href="../reference/summary_year.html">plot.summary.year.jcr()</a></code></p></li>
+<li><p>Added dataset <code>dbjcr</code>.</p></li>
+<li><p>Added functions <code>CreateDBJCR()</code>, <code>AddDBJCR()</code>, <code><a href="../reference/get_jcr.html">get_jcr()</a></code>, <code><a href="../reference/get_jcr.html">get_jcr_cat()</a></code>.</p></li>
+<li><p>Added (internal) global variables <code>.jcr.labels</code> and <code>.all.labels</code>.</p></li>
+<li><p><code><a href="../reference/summary_year.html">summary_year()</a></code> is now a generic function (with methods for <code>wos.db</code> and <code>wos.jcr</code> classes).</p></li>
+<li><p>Added a return value in plot methods <code><a href="../reference/db_bib.html">plot.wos.db()</a></code>, <code><a href="../reference/summary.wos.db.html">plot.summary.wos.db()</a></code> and <code><a href="../reference/summary_year.html">plot.summary.year.wos()</a></code>.</p></li>
+</ul></div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="1.0.0" id="scimetr-100-2025-03-21">scimetr 1.0.0 (2025-03-21)<a class="anchor" aria-label="anchor" href="#scimetr-100-2025-03-21"></a></h2>
 <ul><li>
 <p>Major internal changes:</p>
 <ul><li><p>Changes to the database structure: new variables, tables, and relationships have been added.</p></li>
 <li><p><code>NA_character_</code> is used instead of <code>""</code> as missing value in string variables.</p></li>
 <li><p>New global objects <code>.wos.labels</code> and <code>WosCat</code> (stored in <em>R/sysdata.rda</em>).</p></li>
 </ul></li>
-<li><p>New generic function <code><a href="../reference/CreateDB.html">CreateDB()</a></code> (the previous function <code>CreateDB.wos()</code> is now method <code><a href="../reference/CreateDB.html">CreateDB.wos.data()</a></code>).</p></li>
-<li><p>Added arguments <code>idOI</code>, <code>idRI</code>, <code>idAffiliations</code> to <code><a href="../reference/get.idDocs.html">get.idDocs()</a></code>.</p></li>
-<li><p>Added functions <code><a href="../reference/get.idDocs.html">get.idOI()</a></code>, <code><a href="../reference/get.idDocs.html">get.idRI()</a></code>, <code><a href="../reference/get.idDocs.html">get.idAffiliations()</a></code>.</p></li>
+<li><p>New generic function <code>CreateDB()</code> (the previous function <code>CreateDB.wos()</code> is now method <code>CreateDB.wos.data()</code>).</p></li>
+<li><p>Added arguments <code>idOI</code>, <code>idRI</code>, <code>idAffiliations</code> to <code>get.idDocs()</code>.</p></li>
+<li><p>Added functions <code>get.idOI()</code>, <code>get.idRI()</code>, <code>get.idAffiliations()</code>.</p></li>
 <li><p>New results were added to <code><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary()</a></code> and <code><a href="../reference/summary_year.html">summary_year()</a></code>.</p></li>
 <li><p>A new dataset <code>wosdf</code> is included instead of the previous ones.</p></li>
 <li><p>Changes in <code>match_authors()</code> to speed up computations.</p></li>
@@ -70,7 +83,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.5" id="scimetr-035-2022-09-16">scimetr 0.3.5 (2022-09-16)<a class="anchor" aria-label="anchor" href="#scimetr-035-2022-09-16"></a></h2>
 <ul><li><p>Added <em>NEWS.md</em> (Changelog)</p></li>
-<li><p>Small changes in <code><a href="../reference/ImportSources.wos.html">ImportSources.wos()</a></code> (format changes in WoS tab-delimited files).</p></li>
+<li><p>Small changes in <code>ImportSources.wos()</code> (format changes in WoS tab-delimited files).</p></li>
 <li><p>Fixed bug in <code>authors.short()</code> (when author’s first name is not included after a comma).</p></li>
 <li><p>Added a check in <code>CreateDB.wos()</code> for duplicated ORCIDs.</p></li>
 </ul></div>

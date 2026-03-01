@@ -8,20 +8,20 @@
 #' Extends the bibliographic database by adding JCR metrics to sources, per year
 #' and WoS category.
 #' @param db a bibliographic database (a [wos.db-class] object; typically the
-#' output of the function [CreateDB]).
+#' output of the function [db_bib()]).
 #' @param jcrdb a JCR database (a [jcr.db-class] object; typically the
-#' output of the function [CreateDBJCR]).
+#' output of the function [db_jcr()]).
 #' @return An S3 object of [class] `wos.jcr`.
 #' A [wos.db-class] object with additional components `JCRSour` and `JCRCatSour`.
 # \describe{
 #   item{Docs}{}
 # }
-#' @seealso [CreateDB], [CreateDBJCR].
+#' @seealso [db_bib], [db_jcr].
 #' @aliases wos.jcr-class
 #' @export
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-AddDBJCR <- function(db, jcrdb) {
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+add_jcr <- function(db, jcrdb) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # jcrdb <- jcr
   # Adapta a Sources y Categorías en la BBDD
   # Añade dos tablas nuevas "JCRSour", "JCRCatSour",
@@ -36,7 +36,9 @@ AddDBJCR <- function(db, jcrdb) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~
   # NOTA: Suponemos que jcrdb$Sources$ids es consecutivo
   is2 <- match(jcrdb$Sources$J9, db$Sources$J9)
-  JCRSour <- jcrdb$JCRSour %>% mutate(ids = is2[ids]) %>% filter(!is.na(ids))
+  JCRSour <- jcrdb$JCRSour %>%
+    mutate(ids = is2[ids]) %>%
+    filter(!is.na(ids))
 
   # Filtrar y sustituir idc en JCRCatSour
   # ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -47,16 +49,20 @@ AddDBJCR <- function(db, jcrdb) {
   # NOTA: Suponemos que jcrdb$Categories$idc es consecutivo
   # JCRCatSour <- jcrdb$JCRCatSour %>% mutate(ids = is2[ids]) %>% filter(!is.na(ids))
   ic2 <- match(jcrdb$Categories$WC, str_to_upper(db$Categories$WC))
-  JCRCatSour <- jcrdb$JCRCatSour %>% mutate(ids = is2[ids], idc = ic2[idc]) %>%
+  JCRCatSour <- jcrdb$JCRCatSour %>%
+    mutate(ids = is2[ids], idc = ic2[idc]) %>%
     filter(!is.na(idc), !is.na(ids))
 
   # Filtrar años, solo incluir combinaciones de años y revistas de db$Docs
   # ~~~~~~~~~~~~~~~~~~~~~~~~~
-  PYselect <- db$Docs %>% select(ids, PY) %>% unique() # 193 únicos
+  PYselect <- db$Docs %>%
+    select(ids, PY) %>%
+    unique() # 193 únicos
   JCRSour <- JCRSour %>% semi_join(PYselect, by = join_by(ids, PY)) # 192
   # PYselect %>% anti_join(JCRSour, by = join_by(ids, PY))
 
-  PYselect <- db$CatSour %>% select(ids, idc) %>%
+  PYselect <- db$CatSour %>%
+    select(ids, idc) %>%
     left_join(PYselect, by = join_by(ids), relationship = "many-to-many")
   JCRCatSour <- JCRCatSour %>% semi_join(PYselect, by = join_by(ids, idc, PY))
 
@@ -74,12 +80,14 @@ AddDBJCR <- function(db, jcrdb) {
 # Generic methods wos.jcr ----
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#' @rdname AddDBJCR
+#' @rdname add_jcr
 #' @method plot wos.jcr
-#' @param filter vector of document identifiers (usually a result of [get.idDocs]).
+#' @param x	a [wos.jcr-class] object.
+#' @param ...	further arguments passed to or from other methods.
+#' @param filter vector of document identifiers (usually a result of [get_id_docs()]).
 #' @param plot logical; if `TRUE` (default), the plots are drawn, otherwise only
 #' the ggplot2 object is (invisibly) returned.
-#' @param all logical; if `TRUE`, function [plot.wos.db] is called (additional
+#' @param all logical; if `TRUE`, function [plot.wos.db()] is called (additional
 #' parameters `...` are passed to this function), otherwise only a JCR metrics
 #' plot is generated.
 #' @param ask	logical; if `TRUE`, the user is asked before each plot
@@ -89,7 +97,7 @@ AddDBJCR <- function(db, jcrdb) {
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 plot.wos.jcr <- function(x, filter, plot = TRUE, all = FALSE,
                          ask = plot && all && interactive(), ...) {
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # ggplot(docjcr, aes(JIF, fill=I("blue"))) + geom_histogram(bins = 2*nclass.Sturges(docjcr$JIF)) +
   #         labs(x = labels["JIF"])
   # ggplot(docjcr, aes(JIF5, fill=I("blue"))) + geom_histogram() +
@@ -101,9 +109,10 @@ plot.wos.jcr <- function(x, filter, plot = TRUE, all = FALSE,
   # ~~~~~~~~~~~~~~~~~~~~
   docjcr <- get_jcr(x, filter) %>%
     tidyr::pivot_longer(JIF:JAI, names_to = "var", values_to = "x")
-  pobj <- ggplot(docjcr, aes(x, fill=I("blue"))) +
-    geom_histogram(bins = 2*nclass.Sturges(docjcr$x)) +
-    labs(x = "") + facet_wrap(~ var, scales = "free")
+  pobj <- ggplot(docjcr, aes(x, fill = I("blue"))) +
+    geom_histogram(bins = 2 * nclass.Sturges(docjcr$x)) +
+    labs(x = "") +
+    facet_wrap(~var, scales = "free")
   if (!all) {
     if (plot) print(pobj)
     result <- pobj
@@ -129,18 +138,20 @@ plot.wos.jcr <- function(x, filter, plot = TRUE, all = FALSE,
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' Get JCR metrics
 #'
-#' `get_jcr` combines document indexes with their source JCR metrics per year.
+#' `get_jcr()` combines document indexes with their source JCR metrics per year.
 #' @param db a bibliographic database with JCR information (a [wos.jcr-class] object;
-#' typically the output of the function [AddDBJCR]).
-#' @param filter vector of document identifiers (usually a result of [get.idDocs]).
-#' @seealso [AddDBJCR], [CreateDBJCR], [CreateDB].
+#' typically the output of the function [add_jcr()]).
+#' @param filter vector of document identifiers (usually a result of [get_id_docs()]).
+#' @returns A `data.frame` with document indexes and their source JCR metrics.
+#' @seealso [add_jcr()], [db_jcr()], [db_bib()].
 #' @export
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 get_jcr <- function(db, filter) {
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  docs <- if(!missing(filter)) db$Docs[filter, ] else db$Docs
-  result <- docs %>% select(idd, ids, PY) %>%
-              left_join(db$JCRSou, by = join_by(ids, PY))
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  docs <- if (!missing(filter)) db$Docs[filter, ] else db$Docs
+  result <- docs %>%
+    select(idd, ids, PY) %>%
+    left_join(db$JCRSou, by = join_by(ids, PY))
   attr(result, "variable.labels") <- .all.labels[names(result)]
   return(result)
 }
@@ -149,7 +160,7 @@ get_jcr <- function(db, filter) {
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' @rdname get_jcr
 #' @description
-#' `get_jcr_cat` combines document indexes with their source JCR metrics per year
+#' `get_jcr_cat()` combines document indexes with their source JCR metrics per year
 #' and WoS category.
 #' @param best logical; if `TRUE` (default), only the results for the WoS category
 #' with the best ranking for each document are returned.
@@ -159,19 +170,24 @@ get_jcr_cat <- function(db, filter, best = TRUE) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Pendiente: opción de filtrar categorías y WoS index
   # ~~~~~~~~~~~~~~~~~~~~
-  docs <- if(!missing(filter)) db$Docs[filter, ] else db$Docs
+  docs <- if (!missing(filter)) db$Docs[filter, ] else db$Docs
   if (best) {
     bestjcrcat <- db$JCRCatSour %>%
       slice_min(JIFP, by = c(ids, PY), with_ties = FALSE)
-    result <- docs %>% select(idd, ids, PY) %>%
-      left_join(bestjcrcat, relationship = "many-to-one",
-                by = join_by(ids, PY))
-  } else
-    result <- docs %>% select(idd, ids, PY) %>%
-      left_join(db$JCRCatSour, relationship = "many-to-many",
-                by = join_by(ids, PY))
+    result <- docs %>%
+      select(idd, ids, PY) %>%
+      left_join(bestjcrcat,
+        relationship = "many-to-one",
+        by = join_by(ids, PY)
+      )
+  } else {
+    result <- docs %>%
+      select(idd, ids, PY) %>%
+      left_join(db$JCRCatSour,
+        relationship = "many-to-many",
+        by = join_by(ids, PY)
+      )
+  }
   attr(result, "variable.labels") <- .all.labels[names(result)]
   return(result)
 }
-
-

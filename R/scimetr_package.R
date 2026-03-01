@@ -1,4 +1,3 @@
-
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # scimetr package ----
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -7,7 +6,7 @@
 #'
 #' This package implements tools for quantitative research in scientometrics and bibliometrics.
 #' It provides routines for importing bibliographic data from
-#' Thomson Reuters' Web of Science (<https://webofscience>) and performing bibliometric analysis.
+#' Clarivate Web of Science (<https://www.webofscience.com/>) and performing bibliometric analysis.
 #' For more information visit <https://rubenfcasal.github.io/scimetr/articles/scimetr.html>.
 #' @aliases scimetr
 #' @import graphics
@@ -17,9 +16,10 @@
 #' @importFrom stringi stri_trans_general
 #' @importFrom rlang try_fetch abort
 #' @importFrom scales trans_breaks
-#' @importFrom stats reorder median na.omit
+#' @importFrom stats var reorder median na.omit
 #' @importFrom utils str read.delim setTxtProgressBar txtProgressBar
-#' @importFrom grDevices dev.interactive devAskNewPage
+#' @importFrom grDevices dev.interactive devAskNewPage nclass.Sturges
+#' @importFrom openxlsx readWorkbook
 # @importFrom DBI dbConnect dbDisconnect dbListTables
 # @importFrom RSQLite SQLite
 # @name scimetr-package
@@ -44,7 +44,7 @@
 #'   \item{Social Sciences Citation Index (SSCI).}
 #'   \item{Arts & Humanities Citation Index (A&HCI).}
 #' }
-#' in the years 2018-2023 (generated using the [ImportSources.wos] function).
+#' in the years 2018-2023 (generated using the [import_wos] function).
 #' @format
 #' A data frame with 293 rows and 48 columns:
 #' \describe{
@@ -97,9 +97,9 @@
 #'   \item{DA}{Date of Export}
 #'   \item{UT}{Unique WOS ID}
 #' }
-#' @source Thomson Reuters' Web of Science:
-#' \url{http://www.webofscience.com}.
-#' @seealso [ImportSources.wos], [CreateDB]
+#' @source Clarivate Web of Science:
+#' \url{https://www.webofscience.com/}.
+#' @seealso [import_wos], [db_bib]
 # @name wosdf
 # @docType data
 # @keywords datasets
@@ -118,8 +118,8 @@
 #' Bibliographic database with JCR metrics (a [wos.jcr-class] S3 object)
 #' corresponding to a WoS search by the Affiliation field of *Universidade da Coruña (UDC)*
 #' in the research area `"Mathematics"` during the years 2018–2023
-#' (generated fom [wosdf] data set, using the functions [CreateDB], [CreateDBJCR]
-#' and [AddDBJCR]).
+#' (generated fom [wosdf] data set, using the functions [db_bib], [db_jcr]
+#' and [add_jcr]).
 # @name dbjcr
 # @docType data
 # @keywords datasets
@@ -136,22 +136,29 @@
 # utils::globalVariables(c(".", "Sources", "Authors", "Docs",
 #                          "Addresses", "Affiliations", "RI", "OI", "Categories",
 #                          "WSIndex", "Areas", .wos.labels$name))
-utils::globalVariables(c("AF", "AFOI", "AFRI", "AU", "Areas", "Authors", "BS",
-    "Categories", "Countries", "Country", "DT", "Documents", "EI", "Journals",
-    "NR", "PG", "PT", "PY", "SC", "SN", "TC", "Types", "U2", "UT", "WC", "WE",
-    "Years", "an", "ida", "idd", "ids", "ioi", "iri", "label", "name"))
+utils::globalVariables(c(
+  "AF", "AFOI", "AFRI", "AU", "Areas", "Authors", "BS",
+  "Categories", "Countries", "Country", "DT", "Documents", "EI", "Journals",
+  "NR", "PG", "PT", "PY", "SC", "SN", "TC", "Types", "U2", "UT", "WC", "WE",
+  "Years", "an", "ida", "idd", "ids", "ioi", "iri", "label", "name",
+  ".", "HC", "HP", "J9", "JAI", "JIF", "JIFP", "JIFQ", "PU", "WCC", "WCP",
+  "idc", "nbest3", "ndocjcr", "y", "id"
+))
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-.onAttach <- function(libname, pkgname){
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.onAttach <- function(libname, pkgname) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # pkg.info <- utils::packageDescription(pkgname, libname, fields = c("Title", "Version", "Date"))
-  pkg.info <- drop( read.dcf( file = system.file("DESCRIPTION", package = "scimetr"),
-                              fields = c("Title", "Version", "Date") ))
+  pkg.info <- drop(read.dcf(
+    file = system.file("DESCRIPTION", package = "scimetr"),
+    fields = c("Title", "Version", "Date")
+  ))
   packageStartupMessage(
     paste0(" scimetr: ", pkg.info["Title"], ",\n"),
     paste0(" version ", pkg.info["Version"], " (built on ", pkg.info["Date"], ").\n"),
     paste0(" Copyright (C) UDC Rankings Group 2017-", format(as.Date(pkg.info["Date"]), "%Y"), ".\n"),
     " Type `help(scimetr)` for an overview of the package or\n",
-    " visit https://rubenfcasal.github.io/scimetr.\n")
+    " visit https://rubenfcasal.github.io/scimetr.\n"
+  )
 }

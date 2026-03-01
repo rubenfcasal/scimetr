@@ -58,8 +58,8 @@ A data frame with 293 rows and 48 columns:
 }
 }
 \source{
-Thomson Reuters' Web of Science:
-\url{http://www.webofscience.com}.
+Clarivate Web of Science:
+\url{https://www.webofscience.com/}.
 }
 \usage{
 wosdf
@@ -74,9 +74,9 @@ indexed in the Web of Science Core Collection:
 \item{Social Sciences Citation Index (SSCI).}
 \item{Arts & Humanities Citation Index (A&HCI).}
 }
-in the years 2018-2023 (generated using the \link{ImportSources.wos} function).
+in the years 2018-2023 (generated using the \link{import_wos} function).
 }
 \seealso{
-\link{ImportSources.wos}, \link{CreateDB}
+\link{import_wos}, \link{db_bib}
 }
 \keyword{datasets}

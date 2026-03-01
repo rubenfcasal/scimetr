@@ -2,68 +2,79 @@
 # Get table identifiers ----
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Pendiente: ===========================
-# idCategories, idAreas se filtran por fuentes
-#   get_idDocs(db, idSources = get_idSources(idCategories = idCategories, idAreas = idAreas, idWSI = idWSI))
-#   incluir internamente en get.idDocs?
+# id_categories, id_areas se filtran por fuentes
+#   get_id_docs(db, id_sources = get_id_sources(id_categories = id_categories, id_areas = id_areas, id_wsi = id_wsi))
+#   incluir internamente en get_id_docs?
 # ... <data-masking> Expressions that return a logical value, and are defined in
-# terms of the variables in the corresponding table (XXXX for function \code{get.idXXXX}). If multiple expressions are included, they are combined
+# terms of the variables in the corresponding table (XXXX for function \code{get_idXXXX}). If multiple expressions are included, they are combined
 # with the & operator. Only rows for which all conditions evaluate to TRUE are kept.
 
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #' Get table identifiers
 #'
-#' \code{get.idDocs} returns the document identifiers (values of the \code{db$Docs$idd} variable)
-#' corresponding to identifiers of authors (values of \code{db$Authors$ids}), categories (...), areas (...),
-#' addresses (...) and/or sources (...). Multiple conditions are combined with &.
-#' @param db Object of \code{\link{class}} \code{wos.db}, as returned by [CreateDB].
-#' @param idAuthors optional; author identifiers
-#' @param idAddresses optional; addresses identifiers
-#' @param idSources optional; sources identifiers
-#' @param idOI optional; ORCID identifiers or codes (values of \code{db$OI$OI})
-#' @param idRI optional; RI identifiers or codes (values of \code{db$RI$RI})
-#' @param idAffiliations optional; affiliations identifiers or names (values of \code{db$Affiliations$C3})
-#' @seealso [CreateDB], \code{\link[dplyr]{filter}}.
+#' Retrieve internal identifiers (entity keys) for the corresponding relational
+#' table (authors, sources, categories, areas, ...). Any field in the target
+#' table can be used as a condition, and multiple conditions are combined with `&`
+#' (only IDs for which all conditions evaluate to TRUE are returned).
+#' *Tidy evaluation* can be used to construct the logical expressions,
+#' see [dplyr::filter()].
+#' @param db Object of \code{\link{class}} \code{wos.db}, as returned by [db_bib].
+#' @param id_authors optional; author identifiers (values of \code{db$Authors$ids}).
+#' @param id_addresses optional; addresses identifiers.
+#' @param id_sources optional; sources identifiers.
+#' @param id_oi optional; ORCID identifiers or codes (values of \code{db$OI$OI}).
+#' @param id_ri optional; RI identifiers or codes (values of \code{db$RI$RI}).
+#' @param id_affiliations optional; affiliations identifiers or names (values of \code{db$Affiliations$C3}).
+#' @param ... Logical predicates. Multiple conditions are combined with `&`
+#' (see \code{\link[dplyr]{filter}}).
+#' @returns
+#' An integer vector of identifiers.
+#' For instance, \code{get_id_docs} returns the document identifiers (values of
+#' the \code{db$Docs$idd} variable) corresponding to identifiers of authors,
+#' categories, areas, addresses and/or sources.
+#' Logical expressions defined in terms of the variables in \code{db$Docs} can
+#' also be used as arguments.
+#' @seealso [db_bib], \code{\link[dplyr]{filter}}.
 #' @export
-get.idDocs <- function(db, ..., idSources, idAuthors, idAddresses,
-                       idOI, idRI, idAffiliations) {
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+get_id_docs <- function(db, ..., id_sources, id_authors, id_addresses,
+                       id_oi, id_ri, id_affiliations) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   Docs <- dplyr::filter(db$Docs, ...)
-  idDocs <- Docs$idd
-  if(!missing(idSources)) {
-    # if (!missing(idCategories) | !missing(idAreas)) ...
-    idDocs <- idDocs[Docs$ids %in% idSources]
+  id_docs <- Docs$idd
+  if (!missing(id_sources)) {
+    # if (!missing(id_categories) | !missing(id_areas)) ...
+    id_docs <- id_docs[Docs$ids %in% id_sources]
   }
-  if(!missing(idAuthors)) {
-    idDocs <- idDocs[idDocs %in% with(db$AutDoc, idd[ida %in% idAuthors])]
+  if (!missing(id_authors)) {
+    id_docs <- id_docs[id_docs %in% with(db$AutDoc, idd[ida %in% id_authors])]
   }
-  if(!missing(idAddresses)) {
-    idDocs <- idDocs[idDocs %in% with(db$Addresses, idd[idad %in% idAddresses])]
-    # idDocs <- idDocs[idDocs %in% with(db$AddAutDoc, idd[idad %in% idAddresses])]
+  if (!missing(id_addresses)) {
+    id_docs <- id_docs[id_docs %in% with(db$Addresses, idd[idad %in% id_addresses])]
+    # id_docs <- id_docs[id_docs %in% with(db$AddAutDoc, idd[idad %in% id_addresses])]
   }
-  if(!missing(idOI)) {
-    if (is.character(idOI)) idOI <- with(db$OI, ioi[OI %in% idOI])
-    idDocs <- idDocs[idDocs %in% with(db$OIDoc, idd[ioi %in% idOI])]
+  if (!missing(id_oi)) {
+    if (is.character(id_oi)) id_oi <- with(db$OI, ioi[OI %in% id_oi])
+    id_docs <- id_docs[id_docs %in% with(db$OIDoc, idd[ioi %in% id_oi])]
   }
-  if(!missing(idRI)) {
-    if (is.character(idRI)) idRI <- with(db$RI, iri[RI %in% idRI])
-    idDocs <- idDocs[idDocs %in% with(db$RIDoc, idd[iri %in% idRI])]
+  if (!missing(id_ri)) {
+    if (is.character(id_ri)) id_ri <- with(db$RI, iri[RI %in% id_ri])
+    id_docs <- id_docs[id_docs %in% with(db$RIDoc, idd[iri %in% id_ri])]
   }
-  if(!missing(idAffiliations)) {
-    if (is.character(idAffiliations))
-      idAffiliations <- with(db$Affiliations, idaf[C3 %in% idAffiliations])
-    idDocs <- idDocs[idDocs %in% with(db$AffDoc, idd[idaf %in% idAffiliations])]
+  if (!missing(id_affiliations)) {
+    if (is.character(id_affiliations)) {
+      id_affiliations <- with(db$Affiliations, idaf[C3 %in% id_affiliations])
+    }
+    id_docs <- id_docs[id_docs %in% with(db$AffDoc, idd[idaf %in% id_affiliations])]
   }
-  return(idDocs)
+  return(id_docs)
 }
 
 
-#' @rdname get.idDocs
-#' @param ... Logical predicates. Multiple conditions are combined with & (see
-#' \code{\link[dplyr]{filter}})
+#' @rdname get_id_docs
 #' @export
-get.idAuthors <- function(db, ...) {
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+get_id_authors <- function(db, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   Authors <- dplyr::filter(db$Authors, ...) # "ida", "AU", "AF", "ioi"
   result <- Authors$ida
   names(result) <- Authors$AF
@@ -71,19 +82,19 @@ get.idAuthors <- function(db, ...) {
 }
 
 
-#' @rdname get.idDocs
+#' @rdname get_id_docs
 #' @export
-get.idAddresses <- function(db, ...) {
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  Addresses <- dplyr::filter(db$Addresses , ...) # "idad", "idd", "C1", "Univ", "Country"
+get_id_addresses <- function(db, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  Addresses <- dplyr::filter(db$Addresses, ...) # "idad", "idd", "C1", "Univ", "Country"
   return(Addresses$idad)
 }
 
 
-#' @rdname get.idDocs
+#' @rdname get_id_docs
 #' @export
-get.idAreas <- function(db, ...) {
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+get_id_areas <- function(db, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   Areas <- dplyr::filter(db$Areas, ...) # "idra", "SC"
   result <- Areas$idra
   names(result) <- Areas$SC
@@ -91,10 +102,10 @@ get.idAreas <- function(db, ...) {
 }
 
 
-#' @rdname get.idDocs
+#' @rdname get_id_docs
 #' @export
-get.idCategories <- function(db, ...) {
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+get_id_categories <- function(db, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   Categories <- dplyr::filter(db$Categories, ...) # "idc", "WC"
   result <- Categories$idc
   names(result) <- Categories$WC
@@ -102,10 +113,10 @@ get.idCategories <- function(db, ...) {
 }
 
 
-#' @rdname get.idDocs
+#' @rdname get_id_docs
 #' @export
-get.idWSI <- function(db, ...) {
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+get_id_wsi <- function(db, ...) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   WSI <- dplyr::filter(db$WSI, ...) # "idwe", "WE"
   result <- WSI$idwe
   names(result) <- WSI$WE
@@ -113,36 +124,37 @@ get.idWSI <- function(db, ...) {
 }
 
 
-#' @rdname get.idDocs
-#' @param idCategories optional; categories identifiers or names (values of \code{db$Categories$WC})
-#' @param idAreas optional; research area identifiers or names (values of \code{db$Areas$SC})
-#' @param idWSI optional; WoS Index identifiers or names (values of \code{db$WSI$WE})
+#' @rdname get_id_docs
+#' @param id_categories optional; categories identifiers or names (values of \code{db$Categories$WC})
+#' @param id_areas optional; research area identifiers or names (values of \code{db$Areas$SC})
+#' @param id_wsi optional; WoS Index identifiers or names (values of \code{db$WSI$WE})
 #' @export
-get.idSources <- function(db, ..., idCategories, idAreas, idWSI) {
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+get_id_sources <- function(db, ..., id_categories, id_areas, id_wsi) {
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   Sources <- dplyr::filter(db$Sources, ...)
-  idSources <- Sources$ids
-  names(idSources) <- Sources$SO # No es único any(duplicated(Sources$SO)) = TRUE
-  if(!missing(idCategories)) {
-    if (is.character(idCategories))
-      idCategories <- with(db$Categories, idc[WC %in% idCategories])
-    idSources <- idSources[idSources %in% with(db$CatSour, ids[idc %in% idCategories])]
+  id_sources <- Sources$ids
+  names(id_sources) <- Sources$SO # No es único any(duplicated(Sources$SO)) = TRUE
+  if (!missing(id_categories)) {
+    if (is.character(id_categories)) {
+      id_categories <- with(db$Categories, idc[WC %in% id_categories])
+    }
+    id_sources <- id_sources[id_sources %in% with(db$CatSour, ids[idc %in% id_categories])]
   }
-  if(!missing(idAreas)) {
-    if (is.character(idAreas)) idAreas <- with(db$Areas, idra[SC %in% idAreas])
-    idSources <- idSources[idSources %in% with(db$AreaSour, ids[idra %in% idAreas])]
+  if (!missing(id_areas)) {
+    if (is.character(id_areas)) id_areas <- with(db$Areas, idra[SC %in% id_areas])
+    id_sources <- id_sources[id_sources %in% with(db$AreaSour, ids[idra %in% id_areas])]
   }
-  if(!missing(idWSI)) {
-    if (is.character(idWSI)) idWSI <- with(db$WSI, idwe[WE %in% idWSI])
-    idSources <- idSources[idSources %in% with(db$SourWSI, ids[idwe %in% idWSI])]
+  if (!missing(id_wsi)) {
+    if (is.character(id_wsi)) id_wsi <- with(db$WSI, idwe[WE %in% id_wsi])
+    id_sources <- id_sources[id_sources %in% with(db$SourWSI, ids[idwe %in% id_wsi])]
   }
-  return(idSources)
+  return(id_sources)
 }
 
 
-#' @rdname get.idDocs
+#' @rdname get_id_docs
 #' @export
-get.idOI <- function(db, ...) {
+get_id_oi <- function(db, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   OI <- dplyr::filter(db$OI, ...) # "ioi", "OI", "AFOI"
   result <- OI$ioi
@@ -151,9 +163,9 @@ get.idOI <- function(db, ...) {
 }
 
 
-#' @rdname get.idDocs
+#' @rdname get_id_docs
 #' @export
-get.idRI <- function(db, ...) {
+get_id_ri <- function(db, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   RI <- dplyr::filter(db$RI, ...) # "iri", "RI", "AFRI"
   result <- RI$iri
@@ -162,14 +174,12 @@ get.idRI <- function(db, ...) {
 }
 
 
-#' @rdname get.idDocs
+#' @rdname get_id_docs
 #' @export
-get.idAffiliations <- function(db, ...) {
+get_id_affiliations <- function(db, ...) {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   Affiliations <- dplyr::filter(db$Affiliations, ...) # "idaf", "C3"
   result <- Affiliations$idaf
   names(result) <- Affiliations$C3
   return(result)
 }
-
-
