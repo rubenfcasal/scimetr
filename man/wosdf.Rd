@@ -59,7 +59,7 @@ A data frame with 293 rows and 48 columns:
 }
 \source{
 Clarivate Web of Science:
-\url{https://www.webofscience.com/}.
+\url{https://www.webofscience.com/wos/}.
 }
 \usage{
 wosdf

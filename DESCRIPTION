@@ -18,12 +18,10 @@ Authors@R: c(
     email = "yesica.ramos@udc.es"),
     person("Guillermo", "Lopez-Taboada", role = c("ctb"),
     email = "guillermo.lopez.taboada@udc.es"))
-Description: Tools for quantitative research in scientometrics and bibliometrics. 
+Description: Tools for quantitative research in scientometrics and bibliometrics.
     This package provides routines for importing bibliographic data from
-    Clarivate Web of Science (<https://www.webofscience.com/>) and performing 
-    bibliometric analysis.
-    For more information visit 
-    <https://rubenfcasal.github.io/scimetr/articles/scimetr.html>.
+    Clarivate Web of Science (<https://www.webofscience.com/wos/>) and
+    performing bibliometric analysis.
 Depends:
     R (>= 4.1.0),
     graphics

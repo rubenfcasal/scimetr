@@ -144,6 +144,8 @@ plot.wos.jcr <- function(x, filter, plot = TRUE, all = FALSE,
 #' @param filter vector of document identifiers (usually a result of [get_id_docs()]).
 #' @returns A `data.frame` with document indexes and their source JCR metrics.
 #' @seealso [add_jcr()], [db_jcr()], [db_bib()].
+#' @examples
+#' head(get_jcr(dbjcr))
 #' @export
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 get_jcr <- function(db, filter) {
@@ -164,6 +166,8 @@ get_jcr <- function(db, filter) {
 #' and WoS category.
 #' @param best logical; if `TRUE` (default), only the results for the WoS category
 #' with the best ranking for each document are returned.
+#' @examples
+#' head(get_jcr_cat(dbjcr, best = TRUE))
 #' @export
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 get_jcr_cat <- function(db, filter, best = TRUE) {

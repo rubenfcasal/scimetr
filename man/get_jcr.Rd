@@ -27,6 +27,10 @@ A \code{data.frame} with document indexes and their source JCR metrics.
 \code{get_jcr_cat()} combines document indexes with their source JCR metrics per year
 and WoS category.
 }
+\examples{
+head(get_jcr(dbjcr))
+head(get_jcr_cat(dbjcr, best = TRUE))
+}
 \seealso{
 \code{\link[=add_jcr]{add_jcr()}}, \code{\link[=db_jcr]{db_jcr()}}, \code{\link[=db_bib]{db_bib()}}.
 }

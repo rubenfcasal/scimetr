@@ -10,8 +10,14 @@
 #' @param object an object for which a summary is desired.
 #' @param ...	further arguments passed to or from other methods.
 #' @returns A list of summary statistics (an object of class `summary.year.wos`
-#' or `summary.year.jcr`), which have specialized [print()] and [plot()] methods.
-#' @seealso [db_bib], [add_jcr].
+#' and/or `summary.year.jcr`), which has specialized [print()] and [plot()] methods.
+#' @seealso [db_bib()], [add_jcr()].
+#' @examples
+#' # Bibliographic database
+#' db <- db_bib(wosdf)
+#' summary_year(db)
+#' # Bibliographic database with JCR metrics
+#' summary_year(dbjcr)
 #' @export
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 summary_year <- function(object, ...) {

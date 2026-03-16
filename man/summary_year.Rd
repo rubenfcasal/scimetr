@@ -60,11 +60,18 @@ of JCR metrics are returned.}
 }
 \value{
 A list of summary statistics (an object of class \code{summary.year.wos}
-or \code{summary.year.jcr}), which have specialized \code{\link[=print]{print()}} and \code{\link[=plot]{plot()}} methods.
+and/or \code{summary.year.jcr}), which has specialized \code{\link[=print]{print()}} and \code{\link[=plot]{plot()}} methods.
 }
 \description{
 The \code{summary_year} methods return summaries by year of a bibliometric database.
 }
+\examples{
+# Bibliographic database
+db <- db_bib(wosdf)
+summary_year(db)
+# Bibliographic database with JCR metrics
+summary_year(dbjcr)
+}
 \seealso{
-\link{db_bib}, \link{add_jcr}.
+\code{\link[=db_bib]{db_bib()}}, \code{\link[=add_jcr]{add_jcr()}}.
 }

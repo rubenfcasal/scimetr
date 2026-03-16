@@ -8,7 +8,8 @@
 #' Import bibliographic data downloaded from Web of Science (WoS).
 #'
 #' Reads bibliography entries from UTF-8 encoded Tab-delimited files containing
-#' "Full Record and Cited References" (see [wosdf] and vignette [Downloading data from the Web of Science](https://rubenfcasal.github.io/scimetr/articles/WoS_export.html)).
+#' "Full Record and Cited References" (see [wosdf] and vignette
+#' [Downloading data from the Web of Science](https://rubenfcasal.github.io/scimetr/articles/WoS_export.html)).
 #' @param path character; path to the directory containing the files.
 #' @param pattern regular expression; only matching files will be loaded.
 #' Defaults to `"*.txt"`.
@@ -19,6 +20,8 @@
 #' and `FALSE` otherwise.
 #' @return A `data.frame` with rows corresponding to sources and columns to
 #' WoS variables.
+#' @details
+#' A subscription to Web of Science is required to download bibliometric data.
 #' @seealso [wosdf], [db_bib()].
 #' @export
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -134,7 +137,6 @@ db_bib <- function(data, ...) {
 #' @seealso \code{\link{wosdf}}, \code{\link{import_wos}}.
 #' @examples
 #' db <- db_bib(wosdf)
-#' str(db, 1)
 #' print(db)
 #' summary(db)
 #' @export
@@ -883,15 +885,12 @@ plot.wos.db <- function(x, filter, which = 1:3, plot = TRUE, warning = FALSE,
     result <- c(result, list(pobj))
   }
   if (plot) {
-    if (!warning) {
-      oldwarn <- options("warn" = -1) # Disable warnings
-      on.exit(options(warn = oldwarn$warn))
-    }
     if (ask) {
       oask <- devAskNewPage(TRUE)
       on.exit(devAskNewPage(oask))
     }
-    lapply(result, print)
+    if (warning) lapply(result, print) else
+      suppressWarnings(lapply(result, print))
   }
   return(invisible(result))
 }

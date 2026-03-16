@@ -84,6 +84,26 @@ with the best ranking for each document are returned.</p></dd>
     <div class="dont-index"><p><code><a href="add_jcr.html">add_jcr()</a></code>, <code><a href="db_jcr.html">db_jcr()</a></code>, <code><a href="db_bib.html">db_bib()</a></code>.</p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">get_jcr</span><span class="op">(</span><span class="va">dbjcr</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   idd ids   PY   JIF   IMM  CHL   JIF5     JEF     JEFN   JAI</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1   1 2021 1.673 0.165  4.9 11.808 0.01332  2.86423 4.500</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2   2 2018 2.896 1.169  4.7  2.344 0.00585  0.69599 0.707</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3   3 2023 2.300 0.900  1.9  2.200 0.03686  8.10075 0.374</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4   4 2023 4.400 1.000  3.2  3.600 0.00847  1.86316 0.691</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   5   5 2023 4.400 1.000 10.0  7.600 0.12386 27.21696 3.056</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   6   6 2023 1.200 0.200  7.7  2.200 0.00235  0.51687 1.225</span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">get_jcr_cat</span><span class="op">(</span><span class="va">dbjcr</span>, best <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   idd ids   PY idc       WCR JIFQ     JIFP   WE WCP WCT</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1   1   1 2021  46 0.1351351   Q4 13.84000 SCIE  97 112</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2   2   2 2018  46 0.6571429   Q2 65.56604 SCIE  37 106</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   3   3 2023 148 0.9591002   Q1 95.80000 SCIE  21 490</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   4   4 2023  46 0.7810651   Q1 77.90000 SCIE  38 170</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5   5   5 2023  26 0.7861272   Q1 78.40000 SCIE  38 174</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6   6   6 2023 237 0.5628743   Q2 56.30000 SCIE  74 168</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

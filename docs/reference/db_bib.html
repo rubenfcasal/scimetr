@@ -151,65 +151,6 @@ identity over time.</p></li>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu">db_bib</span><span class="op">(</span><span class="va">wosdf</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">db</span>, <span class="fl">1</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> List of 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Docs        :'data.frame':	293 obs. of  28 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:28] "Document ID" "Source ID" "Article Title" "Document Type" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:28] "idd" "ids" "TI" "DT" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Authors     :'data.frame':	504 obs. of  5 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:5] "Author ID" "Author" "Author Full Name" "ORCID ID" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:5] "ida" "AU" "AF" "ioi" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ AutDoc      :'data.frame':	1065 obs. of  2 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:2] "Document ID" "Author ID"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:2] "idd" "ida"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ OI          :'data.frame':	262 obs. of  3 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:3] "ORCID ID" "ORCID" "ORCID Full Name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:3] "ioi" "OI" "AFOI"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ OIDoc       :'data.frame':	695 obs. of  2 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:2] "Document ID" "ORCID ID"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:2] "idd" "ioi"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ RI          :'data.frame':	247 obs. of  3 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:3] "RI ID" "Researcher Ids" "RI Full Name"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:3] "iri" "RI" "AFRI"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ RIDoc       :'data.frame':	734 obs. of  2 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:2] "Document ID" "RI ID"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:2] "idd" "iri"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Categories  :'data.frame':	254 obs. of  2 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:2] "id WOS category" "WOS category"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:2] "idc" "WC"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ CatSour     :'data.frame':	228 obs. of  2 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:2] "Source ID" "Categorie ID"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:2] "ids" "idc"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Areas       :'data.frame':	26 obs. of  2 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:2] "Area ID" "Research Area"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:2] "idra" "SC"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ AreaSour    :'data.frame':	198 obs. of  2 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:2] "Source ID" "Area ID"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:2] "ids" "idra"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Addresses   :'data.frame':	843 obs. of  5 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:5] "Address ID" "Document ID" "Address" "University" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:5] "idad" "idd" "C1" "Univ" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ AddAutDoc   :'data.frame':	1275 obs. of  3 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:3] "Author ID" "Document ID" "Address ID"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:3] "ida" "idd" "idad"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Affiliations:'data.frame':	148 obs. of  2 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:2] "Affiliation ID" "Affiliation"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:2] "idaf" "C3"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ AffDoc      :'data.frame':	673 obs. of  2 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:2] "Document ID" "Affiliation ID"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:2] "idd" "idaf"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ Sources     :'data.frame':	118 obs. of  14 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:17] "Source ID" "WoS Category" "Research Area" "Web of Science Index" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:17] "ids" "WC" "SC" "WE" ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ WSIndex     :'data.frame':	3 obs. of  2 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:2] "WoS Index ID" "Web of Science Index"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:2] "idwe" "WE"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ SourWSI     :'data.frame':	133 obs. of  2 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "variable.labels")= Named chr [1:2] "Source ID" "WoS Index ID"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   .. ..- attr(*, "names")= chr [1:2] "ids" "idwe"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ label       : chr ""</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ date        : chr "2025-02-19"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "class")= chr "wos.db"</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ Docs        :'data.frame':	293 obs. of  28 variables:</span>

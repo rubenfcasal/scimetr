@@ -28,6 +28,7 @@ It is assumed that the file name format is \emph{JCR_[WE]_[PY]}, where \emph{[WE
 the WoS index (SCIE, SSCI, ...) and \emph{[PY]} the JCR year.
 }
 \details{
+A subscription to Web of Science is required to download JCR data.
 For successful execution, Excel files must retain the original header fields
 from Clarivate exports:
 \code{Title20}, \code{ISO_ABBREV}, \code{TITLE}, \code{ISSN}, \code{EISSN}, \code{ISSUES/YEAR}, \code{COUNTRY},

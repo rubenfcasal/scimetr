@@ -1,13 +1,13 @@
 # scimetr: Analysis of Scientific Publication Data with R
 
 This package implements tools for quantitative research in scientometrics and bibliometrics. 
-It provides routines for importing bibliographic data from Clarivate Web of Science (<https://www.webofscience.com/>) and performing bibliometric analysis. 
+It provides routines for importing bibliographic data from Clarivate Web of Science (<https://www.webofscience.com/wos/>) and performing bibliometric analysis. 
 
 For more information visit <https://rubenfcasal.github.io/scimetr/articles/scimetr.html>. 
 
 ## Installation
 
-`scimetr` is not yet available from CRAN, but you can install the development
+`scimetr` is available from CRAN, but you can install the development
 version from github with:
 
 ``` r
@@ -23,8 +23,10 @@ install.packages('https://github.com/rubenfcasal/scimetr/releases/download/v1.2.
 ``` 
 
 <!-- 
+devtools::install(build_vignettes = TRUE)
 pkgdown::build_site()
 pkgdown::build_articles()
+devtools::check(cran = TRUE, remote = TRUE, manual = TRUE)
 # Avoid problems with "Onedrive - Universidade da Coruña" 
 devtools::check(getwd())
 pkgdown::build_site(getwd())

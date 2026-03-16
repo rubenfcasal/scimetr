@@ -16,6 +16,7 @@
 #' @param verbose logical; indicating whether the name of the file being processed
 #' is printed. Defaults to `TRUE`.
 #' @details
+#' A subscription to Web of Science is required to download JCR data.
 #' For successful execution, Excel files must retain the original header fields
 #' from Clarivate exports:
 #' `Title20`, `ISO_ABBREV`, `TITLE`, `ISSN`, `EISSN`, `ISSUES/YEAR`, `COUNTRY`,

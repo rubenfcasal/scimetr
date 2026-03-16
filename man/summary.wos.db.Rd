@@ -74,10 +74,17 @@ of JCR metrics are returned.}
 }
 \value{
 A list of summary statistics (an object of class \code{summary.wos.db}
-or \code{summary.wos.jcr}), which have specialized \code{\link[=print]{print()}} and \code{\link[=plot]{plot()}} methods.
+and/or \code{summary.wos.jcr}), which has specialized \code{\link[=print]{print()}} and \code{\link[=plot]{plot()}} methods.
 }
 \description{
 \code{\link[=summary]{summary()}} methods for bibliometric databases.
+}
+\examples{
+# Bibliographic database
+db <- db_bib(wosdf)
+summary(db)
+# Bibliographic database with JCR metrics
+summary(dbjcr)
 }
 \seealso{
 \code{\link[=db_bib]{db_bib()}}, \code{\link[=add_jcr]{add_jcr()}}.

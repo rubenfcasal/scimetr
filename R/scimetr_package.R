@@ -4,9 +4,9 @@
 
 #' scimetr: Analysis of Scientific Publication Data with R
 #'
-#' This package implements tools for quantitative research in scientometrics and bibliometrics.
-#' It provides routines for importing bibliographic data from
-#' Clarivate Web of Science (<https://www.webofscience.com/>) and performing bibliometric analysis.
+#' Tools for quantitative research in scientometrics and bibliometrics.
+#' This package provides routines for importing bibliographic data from
+#' Clarivate Web of Science (<https://www.webofscience.com/wos/>) and performing bibliometric analysis.
 #' For more information visit <https://rubenfcasal.github.io/scimetr/articles/scimetr.html>.
 #' @aliases scimetr
 #' @import graphics
@@ -98,7 +98,7 @@
 #'   \item{UT}{Unique WOS ID}
 #' }
 #' @source Clarivate Web of Science:
-#' \url{https://www.webofscience.com/}.
+#' \url{https://www.webofscience.com/wos/}.
 #' @seealso [import_wos], [db_bib]
 # @name wosdf
 # @docType data
@@ -158,7 +158,7 @@ utils::globalVariables(c(
     paste0(" scimetr: ", pkg.info["Title"], ",\n"),
     paste0(" version ", pkg.info["Version"], " (built on ", pkg.info["Date"], ").\n"),
     paste0(" Copyright (C) UDC Rankings Group 2017-", format(as.Date(pkg.info["Date"]), "%Y"), ".\n"),
-    " Type `help(scimetr)` for an overview of the package or\n",
-    " visit https://rubenfcasal.github.io/scimetr.\n"
+    " Type `vignette(\"scimetr\", package = \"scimetr\")` for an overview\n",
+    " or visit https://rubenfcasal.github.io/scimetr.\n"
   )
 }

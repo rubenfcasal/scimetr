@@ -19,8 +19,14 @@
 #' @param nmax number of top levels.
 #' @param ...	further arguments passed to or from other methods.
 #' @returns A list of summary statistics (an object of class `summary.wos.db`
-#' or `summary.wos.jcr`), which have specialized [print()] and [plot()] methods.
+#' and/or `summary.wos.jcr`), which has specialized [print()] and [plot()] methods.
 #' @seealso [db_bib()], [add_jcr()].
+#' @examples
+#' # Bibliographic database
+#' db <- db_bib(wosdf)
+#' summary(db)
+#' # Bibliographic database with JCR metrics
+#' summary(dbjcr)
 #' @export
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 summary.wos.db <- function(object, filter, index = c("H", "G"), nmax = 10, ...) {

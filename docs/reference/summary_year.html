@@ -127,13 +127,81 @@ of JCR metrics are returned.</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A list of summary statistics (an object of class <code>summary.year.wos</code>
-or <code>summary.year.jcr</code>), which have specialized <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> and <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> methods.</p>
+and/or <code>summary.year.jcr</code>), which has specialized <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> and <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> methods.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><a href="db_bib.html">db_bib</a>, <a href="add_jcr.html">add_jcr</a>.</p></div>
+    <div class="dont-index"><p><code><a href="db_bib.html">db_bib()</a></code>, <code><a href="add_jcr.html">add_jcr()</a></code>.</p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Bibliographic database</span></span></span>
+<span class="r-in"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="db_bib.html">db_bib</a></span><span class="op">(</span><span class="va">wosdf</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">summary_year</span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Annual Scientific Production:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Documents</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2018        40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2019        61</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2020        46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2021        51</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2022        45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2023        50</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Annual Authors per Document:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    PY     Mean Median</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2018 3.325000    3.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2019 3.590164    3.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2020 3.869565    3.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2021 3.509804    3.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2022 3.844444    3.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2023 3.660000    3.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Annual Times Cited:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    PY Cites     Mean Median</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2018   364 9.100000    5.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2019   538 8.819672    5.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2020   306 6.652174    3.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2021   206 4.039216    3.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2022   186 4.133333    2.0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2023   120 2.400000    1.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Status:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    PY Highly Cited Hot Paper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2018            0         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2019            1         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2020            0         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2021            0         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2022            0         0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2023            0         0</span>
+<span class="r-in"><span><span class="co"># Bibliographic database with JCR metrics</span></span></span>
+<span class="r-in"><span><span class="fu">summary_year</span><span class="op">(</span><span class="va">dbjcr</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean of JCR metrics:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    PY  JIF   IMM  CHL JIF5     JEF JEFN   JAI JIFP   WCP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2018 2.01 0.579 8.03 2.11 0.01397 1.66 0.864 54.8  89.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2019 1.60 0.527 8.85 1.61 0.00876 1.07 0.605 49.3  78.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2020 2.59 0.841 7.09 2.68 0.01030 2.16 0.899 60.8  87.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2021 2.27 0.624 8.81 2.92 0.01108 2.38 1.068 53.7  73.5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2022 2.28 0.638 8.98 2.39 0.01050 2.29 0.769 55.3  85.2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  2023 1.98 0.520 9.38 2.21 0.01349 2.97 0.830 58.4 103.7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Documents in JCR:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2018 2019 2020 2021 2022 2023 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   40   61   45   51   45   50 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Documents in Q1:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2018 2019 2020 2021 2022 2023 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   13   13   19   15   13   17 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Documents in D1:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2018 2019 2020 2021 2022 2023 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    6    5   15    8    7    9 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Documents in top 3 journals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2018 2019 2020 2021 2022 2023 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    0    0    0    0    0    0 </span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 

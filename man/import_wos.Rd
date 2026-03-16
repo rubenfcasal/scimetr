@@ -25,7 +25,11 @@ WoS variables.
 }
 \description{
 Reads bibliography entries from UTF-8 encoded Tab-delimited files containing
-"Full Record and Cited References" (see \link{wosdf} and vignette \href{https://rubenfcasal.github.io/scimetr/articles/WoS_export.html}{Downloading data from the Web of Science}).
+"Full Record and Cited References" (see \link{wosdf} and vignette
+\href{https://rubenfcasal.github.io/scimetr/articles/WoS_export.html}{Downloading data from the Web of Science}).
+}
+\details{
+A subscription to Web of Science is required to download bibliometric data.
 }
 \seealso{
 \link{wosdf}, \code{\link[=db_bib]{db_bib()}}.

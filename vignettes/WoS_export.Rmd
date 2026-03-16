@@ -21,13 +21,13 @@ Note that **a subscription is required to import data from Web of Science**.
 
 ## Web of Science search web page
 
-Access the Clarivate Web of Science (WoS) search web page: <https://www.webofscience.com/wos> 
+Access the Clarivate Web of Science (WoS) search web page: <https://www.webofscience.com/wos/> 
 (or through your institutional access link; for instance <https://www.recursoscientificos.fecyt.es> from the Spanish Foundation for Science and Technology, FECYT Consortium Academic Group).
 
 Select the **Web of Science Core Collection** database in the top dropdown menu *Search in*, and choose the desired options:
 
 -   **Editions**: this dropdown menu can be used to select the citation
-    indexes (For example, following the [IUNE](https://iune.es/) criteria, 
+    indexes (For example, following the [IUNE](https://alliance4universities.eu/observatorio-iune/) criteria, 
     the first three could be select: *Science Citation Index Expanded*, 
     *Social Sciences Citation Index* and *Arts & Humanities Citation Index*).
 

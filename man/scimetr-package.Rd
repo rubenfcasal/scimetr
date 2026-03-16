@@ -6,9 +6,9 @@
 \alias{scimetr}
 \title{scimetr: Analysis of Scientific Publication Data with R}
 \description{
-This package implements tools for quantitative research in scientometrics and bibliometrics.
-It provides routines for importing bibliographic data from
-Clarivate Web of Science (\url{https://www.webofscience.com/}) and performing bibliometric analysis.
+Tools for quantitative research in scientometrics and bibliometrics.
+This package provides routines for importing bibliographic data from
+Clarivate Web of Science (\url{https://www.webofscience.com/wos/}) and performing bibliometric analysis.
 For more information visit \url{https://rubenfcasal.github.io/scimetr/articles/scimetr.html}.
 }
 \seealso{

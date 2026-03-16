@@ -78,7 +78,6 @@ a relational database (a list of data.frames).
 }
 \examples{
 db <- db_bib(wosdf)
-str(db, 1)
 print(db)
 summary(db)
 }

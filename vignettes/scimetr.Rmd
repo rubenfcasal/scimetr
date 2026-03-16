@@ -13,14 +13,12 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(
-  fig.dim = c(8, 6),
-  fig.align = "center", out.width = "80%"
-)
-rebuid <- FALSE # TRUE
+knitr::opts_chunk$set(fig.dim = c(8, 6), fig.align = "center", 
+                      out.width = "80%")
+old.opt <- options(digits = 5)
+# rebuid <- FALSE # TRUE
 # knitr::spin("scimetr.R", knit = FALSE)
 # knitr::purl("scimetr.Rmd", documentation = 2)
-options(digits = 5)
 ```
 
 
@@ -29,7 +27,7 @@ library(scimetr)
 ```
 
 
-This vignette illustrates the use of the [`scimetr`](https://rubenfcasal.github.io/scimetr/) package for performing bibliometric analyses using datasets exported from Web of Science, highlighting the main workflows and functionalities. The package provides tools for scientometric and bibliometric research, including routines to import bibliographic records from [*Clarivate Analytics Web of Science*](https://www.webofscience.com/) (WoS) and conduct bibliometric analyses. 
+This vignette illustrates the use of the [`scimetr`](https://rubenfcasal.github.io/scimetr/) package for performing bibliometric analyses using datasets exported from Web of Science, highlighting the main workflows and functionalities. The package provides tools for scientometric and bibliometric research, including routines to import bibliographic records from [*Clarivate Analytics Web of Science*](https://www.webofscience.com/wos/) (WoS) and conduct bibliometric analyses. 
 
 <!-- 
 For more information visit <https://rubenfcasal.github.io/scimetr>. 
@@ -57,16 +55,16 @@ Pendiente:
 -->
 ```{r eval=FALSE}
 # Dependencies
-install.packages(c("dplyr", "tidyr", "stringr", "ggplot2", "scales", "rlang"))
+install.packages(c("dplyr", "tidyr", "stringr", "ggplot2", "scales", "rlang", "openxlsx"))
 # Last released version
-install.packages("https://github.com/rubenfcasal/scimetr/releases/download/v1.1.0/scimetr_1.1.0.zip", repos = NULL)
+install.packages("https://github.com/rubenfcasal/scimetr/releases/download/v1.2.0/scimetr_1.2.0.zip", repos = NULL)
 ```
 
 Once the package is installed, it can be loaded as usual.
 
 # Bibliographic data
 
-We will focus exclusively on importing publication data from [WoS](https://www.webofscience.com/) in text format.
+We will focus exclusively on importing publication data from [WoS](https://www.webofscience.com/wos/) in text format.
 First, you need to download the corresponding files from the WoS website, for example, by following the steps described [here](https://rubenfcasal.github.io/scimetr/articles/WoS_export.html).
 
 ## Loading WoS data from a directory
@@ -118,7 +116,7 @@ A full list of the variables used in the database tables is shown in the final s
 
 To create the [bibliographic database](https://en.wikipedia.org/wiki/Bibliographic_database), use the `db_bib()` function (the result is a `wos.db`-class S3 object):
 
-```{r wosdf, cache=!rebuid}
+```{r wosdf}
 db <- db_bib(wosdf, label = "Mathematics_UDC_2018-2023")
 names(db)
 ```
@@ -132,9 +130,8 @@ You can generate either global summaries or yearly summaries of your database.
 
 The `summary()` method of a bibliographic database `(summary.wos.db()`), provides an overview of the entire database, including total documents, authors, journals, citations, and other aggregated statistics.
 
-```{r summary, cache=!rebuid}
+```{r summary}
 res1 <- summary(db)
-options(digits = 5)
 res1
 ```
 
@@ -175,7 +172,6 @@ The plot method of a summary result (`plot.summary.wos.db()`) visualizes the res
 
 ```{r }
 plot(res1)
-
 plot(res1, pie = TRUE)
 ```
 
@@ -185,7 +181,6 @@ The `plot()` method of a yearly summary (`plot.summary.year()`) visualizes the r
 
 ```{r }
 plot(res2)
-
 plot(res2, boxplot = TRUE)
 ```
 
@@ -386,6 +381,11 @@ By default, the first rows are displayed.
 Click on the page index (below) to change this. 
 You can sort by column by clicking on the arrows to the right of its name. 
 You can search for values (search box, top right) and filter values (click on the filter box below the name of each variable).
+
+```{r echo=FALSE}
+# Restore user's options
+options(old.opt)
+```
 
 
 <!-- 

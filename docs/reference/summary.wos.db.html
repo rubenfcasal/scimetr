@@ -153,13 +153,126 @@ of JCR metrics are returned.</p></dd>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A list of summary statistics (an object of class <code>summary.wos.db</code>
-or <code>summary.wos.jcr</code>), which have specialized <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> and <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> methods.</p>
+and/or <code>summary.wos.jcr</code>), which has specialized <code><a href="https://rdrr.io/r/base/print.html" class="external-link">print()</a></code> and <code><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot()</a></code> methods.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p><code><a href="db_bib.html">db_bib()</a></code>, <code><a href="add_jcr.html">add_jcr()</a></code>.</p></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Bibliographic database</span></span></span>
+<span class="r-in"><span><span class="va">db</span> <span class="op">&lt;-</span> <span class="fu"><a href="db_bib.html">db_bib</a></span><span class="op">(</span><span class="va">wosdf</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">db</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of documents: 293 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Authors: 504 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Period: 2018 - 2023 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Document types:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                            Documents</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Article                          254</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Article; Early Access              1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Article; Proceedings Paper         2</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Correction                         7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Editorial Material                21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Review                             8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of authors per document:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   1.000   3.000   3.000   3.635   4.000  13.000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of documents per author:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   1.000   1.000   1.000   2.113   2.000  23.000 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Number of times cited:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    0.00    1.00    3.00    5.87    7.00  123.00 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Indexes:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  H  G </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 19 27 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Status:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Highly Cited   Hot Papers </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>            1            0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Top Categories:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                  Documents</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mathematics, Applied                                   133</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mathematics                                             96</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Statistics &amp; Probability                                84</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mathematics, Interdisciplinary Applications             55</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Computer Science, Interdisciplinary Applications        30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Logic                                                   28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mechanics                                               19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Engineering, Multidisciplinary                          17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Multidisciplinary Sciences                              13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Biochemical Research Methods                            11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Others                                                 104</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Top Areas:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                          Documents</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mathematics                                    293</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Computer Science                                45</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Science &amp; Technology - Other Topics             41</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Engineering                                     20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mechanics                                       19</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Biochemistry &amp; Molecular Biology                11</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mathematical &amp; Computational Biology             9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Operations Research &amp; Management Science         9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Physics                                          9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mathematical Methods In Social Sciences          7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Others                                          37</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Top Journals:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                          Documents</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Log. J. IGPL                                    28</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mathematics                                     21</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Test                                            17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Appl. Math. Comput.                              9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Complexity                                       9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> IEEE-ACM Trans. Comput. Biol. Bioinform.         7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> J. Math. Anal. Appl.                             7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Comput. Math. Appl.                              6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> J. Comput. Appl. Math.                           6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Arch. Comput. Method Eng.                        5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Others                                         178</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Top Countries:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>           Documents</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Spain           293</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> France           20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> UK               18</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> USA              17</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Italy            13</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Chile             9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ecuador           9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Portugal          8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Argentina         6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Uruguay           6</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Others           46</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> International colaboration documents (Spain): 134</span>
+<span class="r-in"><span><span class="co"># Bibliographic database with JCR metrics</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">dbjcr</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> JCR metrics:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>         JIF  IMM  CHL  JIF5     JEF   JEFN  JAI JIFP WCP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Min.    0.4 0.00  1.1  0.48 0.00042  0.053 0.18  2.8   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1st Qu. 1.0 0.26  5.6  1.00 0.00226  0.381 0.42 28.6  31</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Median  1.7 0.45  7.7  1.87 0.00500  0.848 0.66 56.3  58</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Mean    2.1 0.62  8.6  2.30 0.01119  2.060 0.83 55.1  86</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3rd Qu. 2.6 0.83 10.4  2.73 0.01412  2.352 0.89 82.6 126</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Max.    9.7 2.69 39.5 11.81 0.20530 29.627 4.50 97.6 298</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NA's    1.0 1.00  1.0  2.00 1.00000  1.000 2.00  1.0   1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Documents in JCR: 292 (99.66%)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Documents in Q1: 90 (30.82% of JCR)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Documents in D1: 50 (17.12% of JCR)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Documents in top 3 journals: 0 (0% of JCR)</span>
+</code></pre></div>
+    </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
 
